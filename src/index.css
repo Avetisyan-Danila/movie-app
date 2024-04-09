@@ -1,0 +1,14 @@
+:root {
+  --font: "Open Sans", sans-serif;
+  --bg-color: #1b2031;
+  --primary-color: #364156;
+  --text-color: #ffffff;
+}
+
+body {
+  margin: 0;
+
+  font-family: "Montserrat Alternates", sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
