@@ -2,10 +2,10 @@ import { auth } from "../../firebase.ts";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FormEvent } from "react";
 import styles from "./Register.module.css";
+import Input from "../../components/Input/Input.tsx";
 import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
 import { Button } from "../../components/Button/Button.tsx";
 import { Link } from "react-router-dom";
-import Input from "../../components/Input/Input.tsx";
 
 interface RegisterForm {
   email: {
@@ -41,7 +41,12 @@ export const Register = () => {
   };
 
   return (
-    <AuthForm title="Регистрация" className={styles["form"]} onSubmit={submit}>
+    <AuthForm
+      title="Регистрация"
+      className={styles["form"]}
+      onSubmit={submit}
+      withBackArrow={true}
+    >
       <Input
         id="email"
         label="Ваш email"

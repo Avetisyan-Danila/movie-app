@@ -1,9 +1,9 @@
-import { FormEvent } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.ts";
-import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FormEvent } from "react";
 import styles from "./Login.module.css";
 import Input from "../../components/Input/Input.tsx";
+import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
 import { Button } from "../../components/Button/Button.tsx";
 
 interface LoginForm {
@@ -31,7 +31,12 @@ export const Login = () => {
   };
 
   return (
-    <AuthForm title="Вход" className={styles["form"]} onSubmit={submit}>
+    <AuthForm
+      title="Вход"
+      className={styles["form"]}
+      onSubmit={submit}
+      withBackArrow={true}
+    >
       <Input
         id="email"
         label="Ваш email"

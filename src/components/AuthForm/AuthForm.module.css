@@ -1,4 +1,6 @@
 .auth-form {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -12,4 +14,26 @@
 .title {
   margin: 0 0 15px 0;
   font-size: 32px;
+}
+
+.with-back-arrow {
+  margin-top: 20px;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 24px;
+  left: 18px;
+
+  width: 40px;
+  height: 35px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-arrow img {
+  width: 100%;
+  height: 100%;
 }
