@@ -1,4 +1,4 @@
-import styles from "./AuthLayout.module.css";
+import styles from "./Welcome.module.css";
 import Logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button/Button.tsx";
 import { Link, useNavigate } from "react-router-dom";

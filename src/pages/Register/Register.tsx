@@ -1,10 +1,11 @@
-import { FormEvent } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.ts";
-import styles from "../Login/Login.module.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { FormEvent } from "react";
+import styles from "./Register.module.css";
 import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
-import Input from "../../components/Input/Input.tsx";
 import { Button } from "../../components/Button/Button.tsx";
+import { Link } from "react-router-dom";
+import Input from "../../components/Input/Input.tsx";
 
 interface RegisterForm {
   email: {
@@ -71,6 +72,11 @@ export const Register = () => {
       <Button className={styles["button"]} color="white">
         Зарегистрироваться
       </Button>
+
+      <div className={styles["links"]}>
+        <span>Уже есть аккаунт?</span>
+        <Link to="/auth/login">Войти</Link>
+      </div>
     </AuthForm>
   );
 };

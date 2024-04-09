@@ -5,3 +5,16 @@
 .button {
   margin-top: 15px;
 }
+
+.links {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+
+  text-align: right;
+  color: var(--gray);
+}
+
+.links a {
+  color: var(--gray);
+}
