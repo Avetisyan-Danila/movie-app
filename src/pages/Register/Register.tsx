@@ -52,7 +52,7 @@ export const Register = () => {
 
       <Input
         id="password"
-        label="Ваш пароль"
+        label="Придумайте пароль"
         name="password"
         type="password"
         placeholder="Пароль"
@@ -64,7 +64,7 @@ export const Register = () => {
         label="Повторите пароль"
         name="password"
         type="copy-password"
-        placeholder="Повторите пароль"
+        placeholder="Пароль"
         required
       />
 
