@@ -1,0 +1,15 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  padding: 50px 70px;
+  border-radius: 20px;
+
+  background-color: var(--primary-color);
+}
+
+.title {
+  margin: 0 0 15px 0;
+  font-size: 32px;
+}

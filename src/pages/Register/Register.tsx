@@ -1,28 +1,38 @@
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.ts";
+import styles from "../Login/Login.module.css";
+import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
+import Input from "../../components/Input/Input.tsx";
+import { Button } from "../../components/Button/Button.tsx";
+
+interface RegisterForm {
+  email: {
+    value: string;
+  };
+  password: {
+    value: string;
+  };
+  copyPassword: {
+    value: string;
+  };
+}
 
 export const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [copyPassword, setCopyPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const register = (e: FormEvent<HTMLFormElement>) => {
+  const submit = (e: FormEvent) => {
     e.preventDefault();
 
+    const target = e.target as typeof e.target & RegisterForm;
+    const { email, password, copyPassword } = target;
+
     if (password !== copyPassword) {
-      setError("Пароли не совпадают");
+      alert("Пароли не совпадают");
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email.value, password.value)
       .then((user) => {
         console.log(user);
-        setError("");
-        setEmail("");
-        setPassword("");
-        setCopyPassword("");
       })
       .catch((error) => {
         console.log(error);
@@ -30,36 +40,37 @@ export const Register = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={register}>
-        <h2>Create an account</h2>
+    <AuthForm title="Регистрация" className={styles["form"]} onSubmit={submit}>
+      <Input
+        id="email"
+        label="Ваш email"
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+      />
 
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          autoComplete="off"
-        />
-        <input
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          autoComplete="off"
-        />
-        <input
-          placeholder="Повторите пароль"
-          value={copyPassword}
-          onChange={(e) => setCopyPassword(e.target.value)}
-          type="password"
-          autoComplete="off"
-        />
+      <Input
+        id="password"
+        label="Ваш пароль"
+        name="password"
+        type="password"
+        placeholder="Пароль"
+        required
+      />
 
-        <button>Create</button>
+      <Input
+        id="password"
+        label="Повторите пароль"
+        name="password"
+        type="copy-password"
+        placeholder="Повторите пароль"
+        required
+      />
 
-        <div>{error && "Ошибка: " + error}</div>
-      </form>
-    </div>
+      <Button className={styles["button"]} color="white">
+        Зарегистрироваться
+      </Button>
+    </AuthForm>
   );
 };

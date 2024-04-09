@@ -1,6 +1,10 @@
 import { FormEvent } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.ts";
+import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
+import styles from "./Login.module.css";
+import Input from "../../components/Input/Input.tsx";
+import { Button } from "../../components/Button/Button.tsx";
 
 interface LoginForm {
   email: {
@@ -27,15 +31,28 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submit}>
-        <h2>Sign in</h2>
+    <AuthForm title="Вход" className={styles["form"]} onSubmit={submit}>
+      <Input
+        id="email"
+        label="Ваш email"
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+      />
 
-        <input name="email" placeholder="Email" type="email" />
-        <input name="password" placeholder="Пароль" type="password" />
+      <Input
+        id="password"
+        label="Ваш пароль"
+        name="password"
+        type="password"
+        placeholder="Пароль"
+        required
+      />
 
-        <button>Login</button>
-      </form>
-    </div>
+      <Button className={styles["button"]} color="white">
+        Войти
+      </Button>
+    </AuthForm>
   );
 };

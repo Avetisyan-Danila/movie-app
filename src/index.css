@@ -1,14 +1,17 @@
 :root {
-  --font: "Open Sans", sans-serif;
+  --font: "Montserrat Alternates", sans-serif;
   --bg-color: #1b2031;
   --primary-color: #364156;
+  --primary-hover-color: #2c3546;
   --text-color: #ffffff;
+  --dark-blue: #222738;
+  --blue: #536296;
 }
 
 body {
   margin: 0;
 
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: var(--font);
   color: var(--text-color);
   background-color: var(--bg-color);
 }
