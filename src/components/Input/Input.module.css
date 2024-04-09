@@ -1,4 +1,6 @@
 .field {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -11,13 +13,35 @@
   border-radius: 8px;
 
   font-family: inherit;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-color);
   background-color: var(--dark-blue);
-  outline: 2px solid transparent;
+  outline: 3px solid transparent;
   transition: 0.2s ease;
+}
+
+.input[type="password"] {
+  padding: 12px 70px 12px 18px;
 }
 
 .input:focus {
   outline-color: var(--blue);
+}
+
+.eye {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+
+  width: 40px;
+  height: 48px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eye img {
+  width: 100%;
+  height: 100%;
 }

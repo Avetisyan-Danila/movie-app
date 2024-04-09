@@ -66,10 +66,10 @@ export const Register = () => {
       />
 
       <Input
-        id="password"
+        id="copy-password"
         label="Повторите пароль"
-        name="password"
-        type="copy-password"
+        name="copy-password"
+        type="password"
         placeholder="Пароль"
         required
       />

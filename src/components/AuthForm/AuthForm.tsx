@@ -19,6 +19,7 @@ export const AuthForm = ({
         <button
           className={styles["back-arrow"]}
           onClick={() => navigate("/auth")}
+          type="button"
         >
           <img src={LeftArrow} alt="Назад" />
         </button>
