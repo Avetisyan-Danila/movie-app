@@ -6,14 +6,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase.ts";
-import { getUserInfo } from "../../helpers/getUserInfo.ts";
+import { getUserData } from "../../helpers/getUserData.ts";
 
 export const login = createAsyncThunk(
   "user/login",
   async (params: { email: string; password: string }) => {
     return await signInWithEmailAndPassword(auth, params.email, params.password)
       .then(async () => {
-        return await getUserInfo();
+        return await getUserData();
       })
       .catch(() => {
         throw new Error("Неверный логин или пароль");
@@ -34,7 +34,7 @@ export const register = createAsyncThunk(
           displayName: params.userName,
         });
 
-        return await getUserInfo();
+        return await getUserData();
       })
       .catch((error) => {
         console.log(error);

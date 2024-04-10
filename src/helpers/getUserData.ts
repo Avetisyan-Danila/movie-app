@@ -1,7 +1,7 @@
 import { UserState } from "../store/user/userSlice.ts";
 import { auth } from "../firebase.ts";
 
-export const getUserInfo = async () => {
+export const getUserData = async () => {
   let user: UserState["profile"] = undefined;
   let jwt: UserState["jwt"] = null;
 
