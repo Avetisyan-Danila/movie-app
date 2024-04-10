@@ -1,12 +1,15 @@
 :root {
   --font: "Montserrat Alternates", sans-serif;
+
   --bg-color: #1b2031;
   --primary-color: #364156;
   --primary-hover-color: #2c3546;
   --text-color: #ffffff;
+
   --dark-blue: #222738;
   --blue: #536296;
   --gray: #a6a6a6;
+  --light-gray: #c5c3c3;
 }
 
 body {
@@ -15,4 +18,14 @@ body {
   font-family: var(--font);
   color: var(--text-color);
   background-color: var(--bg-color);
+}
+
+div[class^="rnc__notification-container--"] {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+div[class^="rnc__notification-container--"]:has(> .rnc__notification) {
+  visibility: visible;
+  opacity: 1;
 }

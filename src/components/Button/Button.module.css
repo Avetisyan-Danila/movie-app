@@ -33,5 +33,15 @@
 }
 
 .white:hover {
-  background-color: #c5c3c3;
+  background-color: var(--light-gray);
+}
+
+.button:disabled {
+  cursor: default;
+  background-color: var(--gray);
+}
+
+.button:disabled:hover {
+  cursor: default;
+  background-color: var(--gray);
 }

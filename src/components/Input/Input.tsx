@@ -6,7 +6,7 @@ import EyeClosed from "../../assets/eye-closed.svg";
 import EyeOpened from "../../assets/eye-opened.svg";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { id, label, className, type = "string", ...props },
+  { id, label, className, type = "text", ...props },
   ref,
 ) {
   const [showPassword, setShowPassword] = useState(false);

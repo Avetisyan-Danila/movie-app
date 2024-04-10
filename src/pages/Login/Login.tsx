@@ -1,10 +1,13 @@
-import { auth } from "../../firebase.ts";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import styles from "./Login.module.css";
 import Input from "../../components/Input/Input.tsx";
 import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
 import { Button } from "../../components/Button/Button.tsx";
+import { useAppDispatch } from "../../store/store.ts";
+import { login } from "../../store/user/userSlice.ts";
+import { useSelector } from "react-redux";
+import { selectJwt, selectStatus } from "../../store/user/userSelectors.ts";
+import { useNavigate } from "react-router-dom";
 
 interface LoginForm {
   email: {
@@ -16,18 +19,25 @@ interface LoginForm {
 }
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const status = useSelector(selectStatus);
+  const jwt = useSelector(selectJwt);
+
+  useEffect(() => {
+    if (jwt) {
+      navigate("/");
+    }
+  }, [jwt, navigate]);
+
   const submit = (e: FormEvent) => {
     e.preventDefault();
 
     const target = e.target as typeof e.target & LoginForm;
     const { email, password } = target;
-    signInWithEmailAndPassword(auth, email.value, password.value)
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    dispatch(login({ email: email.value, password: password.value }));
   };
 
   return (
@@ -44,6 +54,7 @@ export const Login = () => {
         type="email"
         placeholder="Email"
         required
+        autoComplete="on"
       />
 
       <Input
@@ -53,9 +64,14 @@ export const Login = () => {
         type="password"
         placeholder="Пароль"
         required
+        autoComplete="on"
       />
 
-      <Button className={styles["button"]} color="white">
+      <Button
+        className={styles["button"]}
+        color="white"
+        disabled={status === "loading"}
+      >
         Войти
       </Button>
     </AuthForm>
