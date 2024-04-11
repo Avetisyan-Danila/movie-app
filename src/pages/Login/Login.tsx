@@ -4,7 +4,7 @@ import Input from "../../components/Input/Input.tsx";
 import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
 import { Button } from "../../components/Button/Button.tsx";
 import { useAppDispatch } from "../../store/store.ts";
-import { login } from "../../store/user/userSlice.ts";
+import { login } from "../../store/user/userThunks.ts";
 import { useSelector } from "react-redux";
 import { selectJwt, selectStatus } from "../../store/user/userSelectors.ts";
 import { useNavigate } from "react-router-dom";

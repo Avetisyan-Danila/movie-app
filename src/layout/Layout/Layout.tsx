@@ -1,7 +1,7 @@
 import { Button } from "../../components/Button/Button.tsx";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../store/store.ts";
-import { logout } from "../../store/user/userSlice.ts";
+import { logout } from "../../store/user/userThunks.ts";
 import { useSelector } from "react-redux";
 import { selectStatus } from "../../store/user/userSelectors.ts";
 
