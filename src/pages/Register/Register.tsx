@@ -1,14 +1,14 @@
-import { FormEvent, useEffect } from "react";
-import styles from "./Register.module.css";
-import Input from "../../components/Input/Input.tsx";
-import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
-import { Button } from "../../components/Button/Button.tsx";
-import { Link, useNavigate } from "react-router-dom";
-import { register } from "../../store/user/userThunks.ts";
-import { useAppDispatch } from "../../store/store.ts";
-import { useSelector } from "react-redux";
-import { selectJwt, selectStatus } from "../../store/user/userSelectors.ts";
-import { addNotification } from "../../helpers/notification.ts";
+import { FormEvent, useEffect } from 'react';
+import styles from './Register.module.css';
+import Input from '../../components/Input/Input.tsx';
+import { AuthForm } from '../../components/AuthForm/AuthForm.tsx';
+import { Button } from '../../components/Button/Button.tsx';
+import { Link, useNavigate } from 'react-router-dom';
+import { register } from '../../store/user/userThunks.ts';
+import { useAppDispatch } from '../../store/store.ts';
+import { useSelector } from 'react-redux';
+import { selectJwt, selectStatus } from '../../store/user/userSelectors.ts';
+import { addNotification } from '../../helpers/notification.ts';
 
 interface RegisterForm {
   userName: {
@@ -34,7 +34,7 @@ export const Register = () => {
 
   useEffect(() => {
     if (jwt) {
-      navigate("/");
+      navigate('/');
     }
   }, [jwt, navigate]);
 
@@ -45,7 +45,7 @@ export const Register = () => {
     const { userName, email, password, copyPassword } = target;
 
     if (password.value !== copyPassword.value) {
-      addNotification("Пароли не совпадают", "danger");
+      addNotification('Пароли не совпадают', 'danger');
       return;
     }
 
@@ -61,7 +61,7 @@ export const Register = () => {
   return (
     <AuthForm
       title="Регистрация"
-      className={styles["form"]}
+      className={styles['form']}
       onSubmit={submit}
       withBackArrow={true}
     >
@@ -105,14 +105,14 @@ export const Register = () => {
       />
 
       <Button
-        className={styles["button"]}
+        className={styles['button']}
         color="white"
-        disabled={status === "loading"}
+        disabled={status === 'loading'}
       >
         Зарегистрироваться
       </Button>
 
-      <div className={styles["links"]}>
+      <div className={styles['links']}>
         <span>Уже есть аккаунт?</span>
         <Link to="/auth/login">Войти</Link>
       </div>

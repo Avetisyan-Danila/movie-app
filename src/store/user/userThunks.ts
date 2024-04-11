@@ -1,28 +1,28 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-} from "firebase/auth";
-import { auth } from "../../firebase.ts";
-import { getUserData } from "../../helpers/getUserData.ts";
+} from 'firebase/auth';
+import { auth } from '../../firebase.ts';
+import { getUserData } from '../../helpers/getUserData.ts';
 
 export const login = createAsyncThunk(
-  "user/login",
+  'user/login',
   async (params: { email: string; password: string }) => {
     return await signInWithEmailAndPassword(auth, params.email, params.password)
       .then(async () => {
         return await getUserData();
       })
       .catch(() => {
-        throw new Error("Неверный логин или пароль");
+        throw new Error('Неверный логин или пароль');
       });
   },
 );
 
 export const register = createAsyncThunk(
-  "user/register",
+  'user/register',
   async (params: { userName: string; email: string; password: string }) => {
     return await createUserWithEmailAndPassword(
       auth,
@@ -38,14 +38,14 @@ export const register = createAsyncThunk(
       })
       .catch((error) => {
         console.log(error);
-        throw new Error("Ошибка при регистрации");
+        throw new Error('Ошибка при регистрации');
       });
   },
 );
 
-export const logout = createAsyncThunk("user/logout", async () => {
+export const logout = createAsyncThunk('user/logout', async () => {
   await signOut(auth).catch((error) => {
     console.log(error);
-    throw new Error("Ошибка при выходе");
+    throw new Error('Ошибка при выходе');
   });
 });

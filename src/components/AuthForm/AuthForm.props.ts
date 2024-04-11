@@ -1,4 +1,4 @@
-import { FormHTMLAttributes, ReactNode } from "react";
+import { FormHTMLAttributes, ReactNode } from 'react';
 
 export interface AuthFormProps extends FormHTMLAttributes<HTMLFormElement> {
   children: ReactNode;

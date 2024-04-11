@@ -1,13 +1,13 @@
-import { FormEvent, useEffect } from "react";
-import styles from "./Login.module.css";
-import Input from "../../components/Input/Input.tsx";
-import { AuthForm } from "../../components/AuthForm/AuthForm.tsx";
-import { Button } from "../../components/Button/Button.tsx";
-import { useAppDispatch } from "../../store/store.ts";
-import { login } from "../../store/user/userThunks.ts";
-import { useSelector } from "react-redux";
-import { selectJwt, selectStatus } from "../../store/user/userSelectors.ts";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useEffect } from 'react';
+import styles from './Login.module.css';
+import Input from '../../components/Input/Input.tsx';
+import { AuthForm } from '../../components/AuthForm/AuthForm.tsx';
+import { Button } from '../../components/Button/Button.tsx';
+import { useAppDispatch } from '../../store/store.ts';
+import { login } from '../../store/user/userThunks.ts';
+import { useSelector } from 'react-redux';
+import { selectJwt, selectStatus } from '../../store/user/userSelectors.ts';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginForm {
   email: {
@@ -27,7 +27,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (jwt) {
-      navigate("/");
+      navigate('/');
     }
   }, [jwt, navigate]);
 
@@ -43,7 +43,7 @@ export const Login = () => {
   return (
     <AuthForm
       title="Вход"
-      className={styles["form"]}
+      className={styles['form']}
       onSubmit={submit}
       withBackArrow={true}
     >
@@ -68,9 +68,9 @@ export const Login = () => {
       />
 
       <Button
-        className={styles["button"]}
+        className={styles['button']}
         color="white"
-        disabled={status === "loading"}
+        disabled={status === 'loading'}
       >
         Войти
       </Button>
