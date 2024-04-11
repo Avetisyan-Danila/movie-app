@@ -2,7 +2,7 @@ import { AuthFormProps } from './AuthForm.props.ts';
 import styles from './AuthForm.module.css';
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
-import LeftArrow from '../../assets/left-arrow.svg';
+import LeftArrowIcon from '../../assets/icons/left-arrow.svg';
 
 export const AuthForm = ({
   children,
@@ -21,7 +21,7 @@ export const AuthForm = ({
           onClick={() => navigate('/auth')}
           type="button"
         >
-          <img src={LeftArrow} alt="Назад" />
+          <img src={LeftArrowIcon} alt="Назад" />
         </button>
       )}
 

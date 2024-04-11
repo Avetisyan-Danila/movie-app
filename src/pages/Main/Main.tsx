@@ -1,3 +1,7 @@
 export const Main = () => {
-  return <h2>Menu</h2>;
+  return (
+    <div>
+      <h2 style={{ margin: 0 }}>Main</h2>
+    </div>
+  );
 };

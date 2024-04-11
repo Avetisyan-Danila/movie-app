@@ -2,7 +2,7 @@ import { UserState } from '../store/user/userSlice.ts';
 import { auth } from '../firebase.ts';
 
 export const getUserData = async () => {
-  let user: UserState['profile'] = undefined;
+  let user: UserState['profile'] = null;
   let jwt: UserState['jwt'] = null;
 
   if (auth.currentUser) {

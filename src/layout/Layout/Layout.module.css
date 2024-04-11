@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+
+  width: 64px;
+}
+
+.content {
+  padding: calc(40px + 32px + 40px) 40px 40px calc(40px + 64px + 40px);
+  height: 200vh;
+}

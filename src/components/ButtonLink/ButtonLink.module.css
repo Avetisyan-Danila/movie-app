@@ -1,0 +1,23 @@
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  border-radius: 50%;
+
+  transition: 0.2s ease;
+}
+
+.link.active {
+  background-color: var(--blue);
+}
+
+.link:hover:not(.active) {
+  background-color: var(--primary-hover-color);
+}
+
+.link img {
+  width: 24px;
+  height: 24px;
+}

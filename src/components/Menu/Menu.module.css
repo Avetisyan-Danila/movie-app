@@ -1,0 +1,10 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  padding: 50px 10px;
+
+  border-radius: 15px;
+  background-color: var(--primary-color);
+}

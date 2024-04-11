@@ -44,8 +44,5 @@ export const register = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk('user/logout', async () => {
-  await signOut(auth).catch((error) => {
-    console.log(error);
-    throw new Error('Ошибка при выходе');
-  });
+  await signOut(auth);
 });

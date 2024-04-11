@@ -1,0 +1,24 @@
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 3px;
+
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.link.active {
+  color: var(--blue);
+}
+
+.link:hover:not(.active) {
+  color: var(--light-gray);
+}
+
+.link img {
+  width: 24px;
+  height: 24px;
+}
