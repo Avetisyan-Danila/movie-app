@@ -12,23 +12,24 @@ import { Link } from '../Link/Link.tsx';
 import { useScroll } from '../../hooks/useScroll.ts';
 import { selectProfile } from '../../store/user/userSelectors.ts';
 import { useEffect, useRef, useState } from 'react';
+import { HeaderProps } from './Header.props.ts';
 
-export const Header = () => {
+export const Header = ({ className }: HeaderProps) => {
   const [bgWidth, setBgWidth] = useState<number | undefined>();
 
   const scroll = useScroll();
   const profile = useSelector(selectProfile);
-  const controlsBlock = useRef<HTMLDivElement | null>(null);
+  const controlsBlockRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setTimeout(() => {
-      setBgWidth(controlsBlock.current?.getBoundingClientRect().width);
+      setBgWidth(controlsBlockRef.current?.getBoundingClientRect().width);
     }, 100);
   }, [profile?.name]);
 
   return (
     <header
-      className={cn(styles['header'], {
+      className={cn(className, styles['header'], {
         [styles['scroll']]: scroll > 0,
       })}
     >
@@ -39,7 +40,7 @@ export const Header = () => {
       </div>
 
       <div
-        ref={controlsBlock}
+        ref={controlsBlockRef}
         className={cn(styles['block'], styles['controls'])}
       >
         <Search />

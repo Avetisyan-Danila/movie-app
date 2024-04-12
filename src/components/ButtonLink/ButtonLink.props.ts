@@ -5,4 +5,5 @@ export interface ButtonLinkProps
   extends NavLinkProps,
     React.RefAttributes<HTMLAnchorElement> {
   activeState?: boolean;
+  label?: string;
 }

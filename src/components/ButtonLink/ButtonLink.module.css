@@ -1,23 +1,31 @@
-.link {
+.button-link {
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 30px;
 
   padding: 10px;
-  border-radius: 50%;
+  border-radius: 25px;
 
+  color: var(--text-color);
+  white-space: nowrap;
+  text-decoration: none;
   transition: 0.2s ease;
 }
 
-.link.active {
+.button-link.active {
   background-color: var(--blue);
 }
 
-.link:hover:not(.active) {
+.button-link:hover:not(.active) {
   background-color: var(--primary-hover-color);
 }
 
-.link img {
+.button-link img {
   width: 24px;
   height: 24px;
+}
+
+.label {
+  opacity: 0;
+  transition: 0.4s ease;
 }

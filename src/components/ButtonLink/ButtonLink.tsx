@@ -6,18 +6,23 @@ import { NavLink } from 'react-router-dom';
 export const ButtonLink = ({
   children,
   activeState = true,
+  className,
+  label,
   ...props
 }: ButtonLinkProps) => {
   return (
     <NavLink
       className={({ isActive }) =>
-        cn(styles['link'], {
+        cn(className, styles['button-link'], {
           [styles['active']]: isActive && activeState,
         })
       }
       {...props}
     >
-      {children}
+      <>
+        {children}
+        {label && <span className={styles['label']}>{label}</span>}
+      </>
     </NavLink>
   );
 };

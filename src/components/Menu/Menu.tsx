@@ -19,27 +19,27 @@ export const Menu = () => {
 
   return (
     <div className={styles['menu']}>
-      <ButtonLink to={'/'}>
+      <ButtonLink to={'/'} label="Главная">
         <img src={FilmIcon} alt="Главная" />
       </ButtonLink>
 
-      <ButtonLink to={'/favorites'}>
+      <ButtonLink to={'/favorites'} label="Любимые">
         <img src={HeartIcon} alt="Любимые" />
       </ButtonLink>
 
-      <ButtonLink to={'/trendingUp'}>
+      <ButtonLink to={'/trendingUp'} label="В тренде">
         <img src={TrendingUpIcon} alt="В тренде" />
       </ButtonLink>
 
-      <ButtonLink to={'/comingSoon'}>
+      <ButtonLink to={'/comingSoon'} label="Скоро выйдет">
         <img src={CalendarIcon} alt="Скоро выйдет" />
       </ButtonLink>
 
-      <ButtonLink to={'/settings'}>
+      <ButtonLink to={'/settings'} label="Настройки">
         <img src={SlidersIcon} alt="Настройки" />
       </ButtonLink>
 
-      <ButtonLink to={'/auth'} onClick={onLogout}>
+      <ButtonLink to={'/auth'} onClick={onLogout} label="Выйти">
         <img src={LogoutIcon} alt="Выйти" />
       </ButtonLink>
     </div>

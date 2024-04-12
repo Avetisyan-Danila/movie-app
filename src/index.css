@@ -10,6 +10,12 @@
   --blue: #6375b9;
   --gray: #a6a6a6;
   --light-gray: #c5c3c3;
+
+  --body-spacing: 40px;
+  --sidebar-default-width: 74px;
+  --sidebar-active-width: 240px;
+  --header-height: 32px;
+  --header-padding-top: 16px;
 }
 
 body {

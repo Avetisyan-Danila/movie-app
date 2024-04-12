@@ -6,8 +6,6 @@ import { Header } from '../../components/Header/Header.tsx';
 export const Layout = () => {
   return (
     <div className={styles['layout']}>
-      <Header />
-
       <div className={styles['sidebar']}>
         <Menu />
       </div>
@@ -15,6 +13,8 @@ export const Layout = () => {
       <div className={styles['content']}>
         <Outlet />
       </div>
+
+      <Header className={styles['header-layout']} />
     </div>
   );
 };
