@@ -22,6 +22,16 @@
   animation: slideDown 0.5s ease;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo img:first-child {
+  transform: translateX(7px);
+}
+
 @keyframes slideDown {
   from {
     height: 0;

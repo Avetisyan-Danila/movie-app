@@ -2,6 +2,8 @@ import { logout } from '../../store/user/userThunks.ts';
 import { useAppDispatch } from '../../store/store.ts';
 
 import styles from './Menu.module.css';
+import LogoIcon from '../../assets/logo-icon.svg';
+import LogoText from '../../assets/logo-text.svg';
 import FilmIcon from '../../assets/icons/film.svg';
 import HeartIcon from '../../assets/icons/heart.svg';
 import TrendingUpIcon from '../../assets/icons/trending-up.svg';
@@ -19,6 +21,11 @@ export const Menu = () => {
 
   return (
     <div className={styles['menu']}>
+      <div className={styles['logo']}>
+        <img src={LogoIcon} alt="Логотип компании" />
+        <img src={LogoText} alt="Название компании" />
+      </div>
+
       <ButtonLink to={'/'} label="Главная">
         <img src={FilmIcon} alt="Главная" />
       </ButtonLink>

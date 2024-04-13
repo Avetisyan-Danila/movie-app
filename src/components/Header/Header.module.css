@@ -35,6 +35,10 @@
 
 .block.controls {
   padding: 10px 20px;
+  border-radius: 15px;
+
+  background-color: var(--primary-color);
+  animation: fillBg 1s ease;
 }
 
 .user {
@@ -72,4 +76,16 @@
 
 .header.scroll .background {
   width: 100% !important;
+}
+
+@keyframes fillBg {
+  from {
+    background-color: transparent;
+  }
+  50% {
+    background-color: transparent;
+  }
+  to {
+    background-color: var(--primary-color);
+  }
 }

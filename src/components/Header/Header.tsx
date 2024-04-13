@@ -11,21 +11,36 @@ import { ButtonLink } from '../ButtonLink/ButtonLink.tsx';
 import { Link } from '../Link/Link.tsx';
 import { useScroll } from '../../hooks/useScroll.ts';
 import { selectProfile } from '../../store/user/userSelectors.ts';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { HeaderProps } from './Header.props.ts';
+import { useObserveElementWidth } from '../../hooks/useObserveElementWidth.ts';
 
 export const Header = ({ className }: HeaderProps) => {
-  const [bgWidth, setBgWidth] = useState<number | undefined>();
+  const { elementWidth, refElement } = useObserveElementWidth<HTMLDivElement>();
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
   const scroll = useScroll();
   const profile = useSelector(selectProfile);
-  const controlsBlockRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setBgWidth(controlsBlockRef.current?.getBoundingClientRect().width);
-    }, 100);
-  }, [profile?.name]);
+  const onSearchIconClick = (value: boolean) => {
+    setIsSearchActive(value);
+  };
+
+  const onSearch = (value: string) => {
+    console.log('value -', value);
+  };
+
+  const bgWidthCondition = () => {
+    if (isSearchActive) {
+      if (scroll > 0) {
+        return '100%';
+      } else {
+        return '200px';
+      }
+    } else {
+      return elementWidth;
+    }
+  };
 
   return (
     <header
@@ -39,11 +54,12 @@ export const Header = ({ className }: HeaderProps) => {
         <Link to={'/documentaries'}>Документальные фильмы</Link>
       </div>
 
-      <div
-        ref={controlsBlockRef}
-        className={cn(styles['block'], styles['controls'])}
-      >
-        <Search />
+      <div ref={refElement} className={cn(styles['block'], styles['controls'])}>
+        <Search
+          onSearch={onSearch}
+          isSearchActive={isSearchActive}
+          onSearchIconClick={onSearchIconClick}
+        />
 
         <ButtonLink to={'/notifications'} activeState={false}>
           <img src={BellIcon} alt="Уведомления" />
@@ -61,8 +77,7 @@ export const Header = ({ className }: HeaderProps) => {
 
       <div
         style={{
-          width: bgWidth,
-          padding: bgWidth ? '10px' : 0,
+          width: bgWidthCondition(),
         }}
         className={styles['background']}
       ></div>
