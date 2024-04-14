@@ -1,0 +1,23 @@
+.add-to-favorite-button {
+  border-radius: 8px;
+  padding: 8px;
+  width: 52px;
+  height: 52px;
+
+  border: 1px solid var(--gray);
+  background: var(--light-gray);
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.add-to-favorite-button svg {
+  width: 24px;
+  height: 24px;
+  fill: transparent;
+
+  transition: fill 0.2s ease;
+}
+
+.add-to-favorite-button.active svg {
+  fill: var(--primary-color);
+}

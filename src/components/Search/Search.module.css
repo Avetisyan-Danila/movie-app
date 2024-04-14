@@ -36,10 +36,12 @@
 
   font-size: 16px;
   color: var(--text-color);
+  opacity: 0;
   transition: 0.4s ease;
 }
 
 .input.active {
   width: 250px;
   padding-right: 10px;
+  opacity: 1;
 }

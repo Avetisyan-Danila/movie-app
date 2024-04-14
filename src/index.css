@@ -15,7 +15,11 @@
   --sidebar-default-width: 74px;
   --sidebar-active-width: 240px;
   --header-height: 32px;
-  --header-padding-top: 16px;
+  --header-paddings: 32px;
+
+
+  --positive-rating: #3bb33b;
+  --neutral-rating: #777777;
 }
 
 body {
