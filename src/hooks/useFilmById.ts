@@ -4,7 +4,7 @@ import { Film } from '../types/film.ts';
 import { useState, useEffect } from 'react';
 import { addNotification } from '../helpers/notification.ts';
 
-export const useFilm = (filmId: string) => {
+export const useFilmById = (filmId: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [filmData, setFilmData] = useState<Film | null>(null);
 
