@@ -2,7 +2,7 @@ import axios from 'axios';
 import { PREFIX } from '../helpers/API.ts';
 import { Film } from '../types/film.ts';
 import { useState, useEffect } from 'react';
-import film from '../mocks/main-page-film.ts';
+import { addNotification } from '../helpers/notification.ts';
 
 export const useFilm = (filmId: string) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ export const useFilm = (filmId: string) => {
         const { data } = await axios.get<Film>(`${PREFIX}/movie/${filmId}`);
         setFilmData(data);
       } catch (error) {
-        setFilmData(film);
+        addNotification('Ошибка при получении данных', 'danger');
       } finally {
         setIsLoading(false);
       }

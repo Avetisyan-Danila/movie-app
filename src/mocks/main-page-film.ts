@@ -2,7 +2,6 @@ import { Film } from '../types/film.ts';
 const film: Film = {
   rating: {
     kp: 7.679,
-    imdb: 8,
   },
   poster: {
     url: 'https://image.openmoviedb.com/kinopoisk-images/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/orig',

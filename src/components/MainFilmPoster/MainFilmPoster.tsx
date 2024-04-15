@@ -16,6 +16,12 @@ export const MainFilmPoster = ({
 }: MainFilmPosterProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const onTrailerClick = () => {
+    if (videos) {
+      window.open(videos.trailers[0].url!, '_blank', 'noopener, noreferrer');
+    }
+  };
+
   return (
     <div
       className={styles['poster']}
@@ -24,7 +30,7 @@ export const MainFilmPoster = ({
       <div className={styles['background']}></div>
 
       <div className={styles['info']}>
-        <h2 className={styles['name']}>{name}</h2>
+        <h2 className={styles['title']}>{name}</h2>
         <p className={styles['description']}>{description}</p>
 
         <div className={styles['line']}>
@@ -44,13 +50,8 @@ export const MainFilmPoster = ({
 
         <div className={styles['actions']}>
           <Button
-            onClick={() =>
-              window.open(
-                videos.trailers[0].url,
-                '_blank',
-                'noopener, noreferrer',
-              )
-            }
+            onClick={videos ? onTrailerClick : undefined}
+            disabled={!videos}
           >
             Смотреть трейлер
           </Button>

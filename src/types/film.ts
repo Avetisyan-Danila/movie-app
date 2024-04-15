@@ -7,7 +7,7 @@ export type Film = {
     kp: number;
   };
   year: number;
-  videos: {
+  videos?: {
     trailers: Array<{
       url: string;
       name: string;
@@ -21,7 +21,7 @@ export type Film = {
   backdrop: {
     url: string;
   };
-  persons: Array<{
+  persons?: Array<{
     id: number;
     photo: string;
     name: string;

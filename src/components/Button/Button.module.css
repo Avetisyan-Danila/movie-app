@@ -39,6 +39,7 @@
 .button:disabled {
   cursor: default;
   background-color: var(--gray);
+  color: var(--light-gray);
 }
 
 .button:disabled:hover {

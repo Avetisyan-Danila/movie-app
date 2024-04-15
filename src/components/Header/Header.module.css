@@ -1,5 +1,6 @@
 .header {
   position: fixed;
+  z-index: 12;
   top: 56px;
   right: var(--body-spacing);
 
@@ -15,6 +16,8 @@
 }
 
 .block {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -60,7 +63,6 @@
 
   content: '';
   position: absolute;
-  z-index: -1;
   top: -16px;
   right: 0;
 

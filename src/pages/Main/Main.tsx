@@ -1,20 +1,20 @@
-import { useFilm } from '../../hooks/useFilm.ts';
 import { MainFilmPoster } from '../../components/MainFilmPoster/MainFilmPoster.tsx';
+import mainFilm from '../../mocks/main-page-film.ts';
 
 export const Main = () => {
-  const { filmData } = useFilm('409424');
+  // const { data: mainFilm } = useFilms('/409424');
 
   return (
     <div>
-      {filmData && (
+      {mainFilm && (
         <MainFilmPoster
-          backdrop={filmData.backdrop}
-          name={filmData.name}
-          genres={filmData.genres}
-          description={filmData.description}
-          videos={filmData.videos}
-          rating={filmData.rating}
-          year={filmData.year}
+          backdrop={mainFilm.backdrop}
+          name={mainFilm.name}
+          genres={mainFilm.genres}
+          description={mainFilm.description}
+          videos={mainFilm.videos}
+          rating={mainFilm.rating}
+          year={mainFilm.year}
         />
       )}
     </div>
