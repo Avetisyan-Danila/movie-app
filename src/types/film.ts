@@ -17,9 +17,11 @@ export type Film = {
   };
   poster: {
     url: string;
+    previewUrl: string;
   };
   backdrop: {
     url: string;
+    previewUrl: string;
   };
   persons?: Array<{
     id: number;
@@ -30,4 +32,6 @@ export type Film = {
     profession: string;
     enProfession: string;
   }>;
+  ageRating: number;
+  movieLength: number;
 };

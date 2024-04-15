@@ -1,8 +1,9 @@
 import { MainFilmPoster } from '../../components/MainFilmPoster/MainFilmPoster.tsx';
 import mainFilm from '../../mocks/main-page-film.ts';
+import popularFilms from '../../mocks/main-page-popular-films.ts';
 
 export const Main = () => {
-  // const { data: mainFilm } = useFilm('/409424');
+  // const { data: mainFilm } = useFilmById('/409424');
 
   return (
     <div>
@@ -17,6 +18,8 @@ export const Main = () => {
           year={mainFilm.year}
         />
       )}
+
+      {popularFilms && <div></div>}
     </div>
   );
 };
