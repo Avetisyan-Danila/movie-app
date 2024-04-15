@@ -9,14 +9,12 @@
   --dark-blue: #222738;
   --blue: #6375b9;
   --gray: #a6a6a6;
-  --light-gray: #c5c3c3;
+  --light-gray: #e1e1e1;
 
   --body-spacing: 40px;
   --sidebar-default-width: 74px;
   --sidebar-active-width: 240px;
-  --header-height: 32px;
-  --header-paddings: 32px;
-
+  --header-height: 64px;
 
   --positive-rating: #3bb33b;
   --neutral-rating: #777777;

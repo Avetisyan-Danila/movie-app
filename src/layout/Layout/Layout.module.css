@@ -23,7 +23,7 @@
 }
 
 .content {
-  padding: calc(var(--body-spacing) + var(--header-paddings) + var(--header-height) + var(--body-spacing)) var(--body-spacing) var(--body-spacing) calc(var(--body-spacing) + var(--sidebar-default-width) + var(--body-spacing));
+  padding: calc(var(--body-spacing) + var(--header-height) + var(--body-spacing)) var(--body-spacing) var(--body-spacing) calc(var(--body-spacing) + var(--sidebar-default-width) + var(--body-spacing));
   width: 100%;
   height: 200vh;
   transition: 0.4s ease;

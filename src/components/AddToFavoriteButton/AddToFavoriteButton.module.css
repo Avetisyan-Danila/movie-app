@@ -1,10 +1,15 @@
 .add-to-favorite-button {
-  border-radius: 8px;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 52px;
   height: 52px;
 
+  padding: 8px;
+
   border: 1px solid var(--gray);
+  border-radius: 8px;
   background: var(--light-gray);
   cursor: pointer;
   transition: 0.4s ease;
