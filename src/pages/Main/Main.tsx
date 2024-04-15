@@ -2,7 +2,7 @@ import { MainFilmPoster } from '../../components/MainFilmPoster/MainFilmPoster.t
 import mainFilm from '../../mocks/main-page-film.ts';
 
 export const Main = () => {
-  // const { data: mainFilm } = useFilms('/409424');
+  // const { data: mainFilm } = useFilm('/409424');
 
   return (
     <div>
