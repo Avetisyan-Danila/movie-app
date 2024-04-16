@@ -78,6 +78,7 @@
 
 .header.scroll .background {
   width: 100% !important;
+  box-shadow: 0 10px 40px 0 var(--dark-blue);
 }
 
 @keyframes fillBg {

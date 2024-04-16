@@ -13,7 +13,7 @@
 
   --body-spacing: 40px;
   --sidebar-default-width: 74px;
-  --sidebar-active-width: 240px;
+  --sidebar-active-width: 270px;
   --header-height: 64px;
 
   --positive-rating: #3bb33b;
@@ -33,7 +33,30 @@ div[class^="rnc__notification-container--"] {
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
 }
+
 div[class^="rnc__notification-container--"]:has(> .rnc__notification) {
   visibility: visible;
   opacity: 1;
+}
+
+.swiper.swiper-horizontal {
+  padding: 40px 60px
+}
+
+.swiper .swiper-pagination.swiper-pagination-horizontal {
+  top: auto;
+  bottom: 0;
+}
+
+.swiper .swiper-pagination.swiper-pagination-horizontal .swiper-pagination-bullet {
+  background-color: var(--blue);
+}
+
+.swiper .swiper-pagination.swiper-pagination-horizontal .swiper-pagination-bullet {
+  background-color: var(--blue);
+}
+
+.swiper.swiper-horizontal .swiper-button-prev,
+.swiper.swiper-horizontal .swiper-button-next {
+  color: var(--blue);
 }

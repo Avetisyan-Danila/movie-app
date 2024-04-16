@@ -1,0 +1,62 @@
+.card {
+  position: relative;
+
+  border-radius: 15px;
+  overflow: hidden;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.poster {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  padding: 20px 25px 30px 25px;
+
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.title {
+  margin: 0 0 15px 0;
+
+  font-size: 20px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+}
+
+.info-item {
+  padding: 0 10px;
+}
+
+.info-item:first-child {
+  padding-left: 0;
+}
+
+.info-item:not(:last-child) {
+  border-right: 2px solid var(--text-color);
+}

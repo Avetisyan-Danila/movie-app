@@ -3,274 +3,454 @@ import { ListApiResponse } from '../types/listApiResponse.ts';
 const film: ListApiResponse = {
   docs: [
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
     },
     {
-      id: 5275429,
-      name: 'Лёд 3',
+      id: 1402937,
+      name: 'Артур, ты король',
       year: 2024,
       description:
-        'Надя выросла и стала фигуристкой. Она мечтает о «Кубке Льда», как когда-то мечтала ее мама. Горин возражает против спортивной карьеры дочери — он оберегает ее от любых трудностей и его можно понять: он потерял слишком много. На тайной тренировке Надя знакомится с молодым и дерзким хоккеистом из Москвы, и между ними вспыхивает первая любовь. Отец не верит в искренность чувств юноши и разлучает пару.\nНо препятствия только укрепляют настоящую любовь, а когда любишь — самый сказочный финал может стать реальностью.',
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
       rating: {
-        kp: 8.244,
+        kp: 8.026,
       },
-      ageRating: 6,
+      movieLength: 107,
+      ageRating: 12,
       poster: {
-        url: 'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-images/10671298/5d4e5068-4902-4dd3-a318-c13272de7134/x1000',
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
       },
       backdrop: {
-        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/orig',
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
         previewUrl:
-          'https://image.openmoviedb.com/kinopoisk-ott-images/1652588/2a0000018eadd38f83d1618858084599c213/x1000',
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
       },
       genres: [
         {
-          name: 'мелодрама',
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
         },
       ],
-      movieLength: 134,
+    },
+    {
+      id: 1402937,
+      name: 'Артур, ты король',
+      year: 2024,
+      description:
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
+      rating: {
+        kp: 8.026,
+      },
+      movieLength: 107,
+      ageRating: 12,
+      poster: {
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
+      },
+      backdrop: {
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
+      },
+      genres: [
+        {
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
+        },
+      ],
+    },
+    {
+      id: 1402937,
+      name: 'Артур, ты король',
+      year: 2024,
+      description:
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
+      rating: {
+        kp: 8.026,
+      },
+      movieLength: 107,
+      ageRating: 12,
+      poster: {
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
+      },
+      backdrop: {
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
+      },
+      genres: [
+        {
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
+        },
+      ],
+    },
+    {
+      id: 1402937,
+      name: 'Артур, ты король',
+      year: 2024,
+      description:
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
+      rating: {
+        kp: 8.026,
+      },
+      movieLength: 107,
+      ageRating: 12,
+      poster: {
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
+      },
+      backdrop: {
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
+      },
+      genres: [
+        {
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
+        },
+      ],
+    },
+    {
+      id: 1402937,
+      name: 'Артур, ты король',
+      year: 2024,
+      description:
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
+      rating: {
+        kp: 8.026,
+      },
+      movieLength: 107,
+      ageRating: 12,
+      poster: {
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
+      },
+      backdrop: {
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
+      },
+      genres: [
+        {
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
+        },
+      ],
+    },
+    {
+      id: 1402937,
+      name: 'Артур, ты король',
+      year: 2024,
+      description:
+        'Это было последнее соревнование капитана по приключенческим гонкам Майкла Линднорда, он был полон решимости ничему не позволить встать у него на пути. Собрав первоклассную команду, он не мог и представить, что в 700-километровом забеге у них появится неожиданный попутчик — пес по кличке Артур, встреча с которым изменит не только исход гонки, но и их жизнь.',
+      rating: {
+        kp: 8.026,
+      },
+      movieLength: 107,
+      ageRating: 12,
+      poster: {
+        url: 'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-images/10812607/4b4619c4-9fcb-40b3-880f-e1cc11caeaf5/x1000',
+      },
+      backdrop: {
+        url: 'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/orig',
+        previewUrl:
+          'https://image.openmoviedb.com/kinopoisk-ott-images/223007/2a0000018eaa2f034fc72de007fe2ac7678d/x1000',
+      },
+      genres: [
+        {
+          name: 'приключения',
+        },
+        {
+          name: 'драма',
+        },
+      ],
     },
   ],
   total: 101,

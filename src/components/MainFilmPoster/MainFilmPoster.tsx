@@ -57,6 +57,7 @@ export const MainFilmPoster = ({
           </Button>
 
           <AddToFavoriteButton
+            appearance="big"
             isActive={isFavorite}
             onClick={() => setIsFavorite(!isFavorite)}
           />
