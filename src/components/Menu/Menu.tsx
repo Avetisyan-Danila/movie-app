@@ -35,15 +35,15 @@ export const Menu = () => {
         <img src={HeartIcon} alt="Любимые" />
       </ButtonLink>
 
-      <ButtonLink to={'/favorites'} label="Смотреть позже">
+      <ButtonLink to={'/watch-list'} label="Смотреть позже">
         <img src={ClockIcon} alt="Смотреть позже" />
       </ButtonLink>
 
-      <ButtonLink to={'/trendingUp'} label="Популярные">
+      <ButtonLink to={'/trending-up'} label="Популярные">
         <img src={TrendingUpIcon} alt="Популярные" />
       </ButtonLink>
 
-      <ButtonLink to={'/comingSoon'} label="Скоро выйдет">
+      <ButtonLink to={'/coming-soon'} label="Скоро выйдет">
         <img src={CalendarIcon} alt="Скоро выйдет" />
       </ButtonLink>
 

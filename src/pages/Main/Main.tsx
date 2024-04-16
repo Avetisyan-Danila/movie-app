@@ -29,10 +29,10 @@ export const Main = () => {
         <div className={styles['main-block']}>
           <Heading>Популярные</Heading>
 
-          <FilmsCarousel spaceBetween={65} slidesPerView={6} slidesPerGroup={6}>
-            {popularFilms.docs.map((film) => {
+          <FilmsCarousel spaceBetween={65} slidesPerView={4} slidesPerGroup={4}>
+            {popularFilms.docs.map((film, index) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <FilmCard
                     name={film.name}
                     year={film.year}
@@ -50,10 +50,10 @@ export const Main = () => {
         <div className={styles['main-block']}>
           <Heading>Ближайшие премьеры</Heading>
 
-          <FilmsCarousel spaceBetween={65} slidesPerView={5} slidesPerGroup={5}>
-            {closestReleases.docs.map((film) => {
+          <FilmsCarousel spaceBetween={65} slidesPerView={3} slidesPerGroup={3}>
+            {closestReleases.docs.map((film, index) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <FilmCard
                     name={film.name}
                     year={film.year}
