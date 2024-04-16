@@ -15,6 +15,7 @@ export const FilmsCarousel = ({
   slidesPerGroup,
   autoplayDuration = 12000,
   allowTouchMove = false,
+  pauseOnMouseEnter = true,
   className,
 }: FilmsCarouselProps) => {
   return (
@@ -22,7 +23,10 @@ export const FilmsCarousel = ({
       modules={[Pagination, Autoplay, Navigation]}
       navigation
       pagination={{ clickable: true }}
-      autoplay={{ delay: autoplayDuration }}
+      autoplay={{
+        delay: autoplayDuration,
+        pauseOnMouseEnter: pauseOnMouseEnter,
+      }}
       spaceBetween={spaceBetween}
       slidesPerView={slidesPerView}
       className={className}

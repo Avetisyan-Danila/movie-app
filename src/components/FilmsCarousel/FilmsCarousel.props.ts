@@ -7,5 +7,6 @@ export interface FilmsCarouselProps {
   slidesPerGroup: number;
   autoplayDuration?: number;
   allowTouchMove?: boolean;
+  pauseOnMouseEnter?: boolean;
   className?: string;
 }
