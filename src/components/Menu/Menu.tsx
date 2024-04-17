@@ -39,7 +39,7 @@ export const Menu = () => {
         <img src={ClockIcon} alt="Смотреть позже" />
       </ButtonLink>
 
-      <ButtonLink to={'/trending-up'} label="Популярные">
+      <ButtonLink to={'/popular'} label="Популярные">
         <img src={TrendingUpIcon} alt="Популярные" />
       </ButtonLink>
 

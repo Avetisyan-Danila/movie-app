@@ -5,6 +5,8 @@ import './index.css';
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 
+import { store } from './store/store.ts';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Main } from './pages/Main/Main.tsx';
 import { RequireAuth } from './helpers/RequireAuth.tsx';
@@ -15,7 +17,11 @@ import { Register } from './pages/Register/Register.tsx';
 import { Error as ErrorPage } from './pages/Error/Error.tsx';
 import { Provider } from 'react-redux';
 import { Favorites } from './pages/Favorites/Favorites.tsx';
-import { store } from './store/store.ts';
+import { WatchList } from './pages/WatchList/WatchList.tsx';
+import { Popular } from './pages/Popular/Popular.tsx';
+import { ComingSoon } from './pages/ComingSoon/ComingSoon.tsx';
+import { Settings } from './pages/Settings/Settings.tsx';
+import { Notifications } from './pages/Notifications/Notifications.tsx';
 
 const router = createBrowserRouter([
   {
@@ -31,8 +37,28 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: '/Favorites',
+        path: '/favorites',
         element: <Favorites />,
+      },
+      {
+        path: '/watch-list',
+        element: <WatchList />,
+      },
+      {
+        path: '/popular',
+        element: <Popular />,
+      },
+      {
+        path: '/coming-soon',
+        element: <ComingSoon />,
+      },
+      {
+        path: '/settings',
+        element: <Settings />,
+      },
+      {
+        path: '/notifications',
+        element: <Notifications />,
       },
     ],
   },

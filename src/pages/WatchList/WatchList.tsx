@@ -3,7 +3,7 @@ import { Pagination } from '../../components/Pagination/Pagination.tsx';
 import { useEffect, useState } from 'react';
 import { addNotification } from '../../helpers/notification.ts';
 
-export const Favorites = () => {
+export const WatchList = () => {
   const [list, setList] = useState([]);
   const [pageOffset, setPageOffset] = useState(0);
   const [pageCount, setPageCount] = useState(20);
@@ -39,7 +39,7 @@ export const Favorites = () => {
 
   return (
     <>
-      <Heading>Любимые фильмы</Heading>
+      <Heading>Смотреть позже</Heading>
 
       {list && (
         <Pagination
