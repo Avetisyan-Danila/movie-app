@@ -5,12 +5,18 @@ const film: Film = {
   },
   poster: {
     url: 'https://image.openmoviedb.com/kinopoisk-images/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/orig',
+    previewUrl:
+      'https://image.openmoviedb.com/kinopoisk-images/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/x1000',
   },
   backdrop: {
     url: 'https://image.openmoviedb.com/kinopoisk-ott-images/1672343/2a0000017c9a7befa597b53c1700dcaa89b7/orig',
+    previewUrl:
+      'https://image.openmoviedb.com/kinopoisk-ott-images/1672343/2a0000017c9a7befa597b53c1700dcaa89b7/x1000',
   },
   id: 409424,
   name: 'Дюна',
+  movieLength: 155,
+  ageRating: 12,
   description:
     'Наследник знаменитого дома Атрейдесов Пол отправляется вместе с семьей на одну из самых опасных планет во Вселенной — Арракис. Здесь нет ничего, кроме песка, палящего солнца, гигантских чудовищ и основной причины межгалактических конфликтов — невероятно ценного ресурса, который называется меланж. В результате захвата власти Пол вынужден бежать и скрываться, и это становится началом его эпического путешествия. Враждебный мир Арракиса приготовил для него множество тяжелых испытаний, но только тот, кто готов взглянуть в глаза своему страху, достоин стать избранным.',
   year: 2021,

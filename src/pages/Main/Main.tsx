@@ -15,7 +15,9 @@ export const Main = () => {
     <>
       {mainFilm && (
         <MainFilmPoster
+          id={mainFilm.id}
           backdrop={mainFilm.backdrop}
+          poster={mainFilm.poster}
           name={mainFilm.name}
           genres={mainFilm.genres}
           description={mainFilm.description}
@@ -27,13 +29,14 @@ export const Main = () => {
 
       {popularFilms && (
         <div className={styles['main-block']}>
-          <Heading>Популярные</Heading>
+          <Heading withMargin={false}>Популярные</Heading>
 
           <FilmsCarousel spaceBetween={65} slidesPerView={4} slidesPerGroup={4}>
             {popularFilms.docs.map((film, index) => {
               return (
                 <SwiperSlide key={index}>
                   <FilmCard
+                    id={film.id}
                     name={film.name}
                     year={film.year}
                     genres={film.genres}
@@ -48,13 +51,14 @@ export const Main = () => {
 
       {closestReleases && (
         <div className={styles['main-block']}>
-          <Heading>Ближайшие премьеры</Heading>
+          <Heading withMargin={false}>Ближайшие премьеры</Heading>
 
           <FilmsCarousel spaceBetween={65} slidesPerView={3} slidesPerGroup={3}>
             {closestReleases.docs.map((film, index) => {
               return (
                 <SwiperSlide key={index}>
                   <FilmCard
+                    id={film.id}
                     name={film.name}
                     year={film.year}
                     genres={film.genres}

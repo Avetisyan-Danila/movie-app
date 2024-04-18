@@ -1,4 +1,3 @@
-import { Film } from '../../types/film.ts';
+import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 
-export interface FilmCardProps
-  extends Pick<Film, 'name' | 'year' | 'genres' | 'poster'> {}
+export interface FilmCardProps extends ShortFilmInfo {}

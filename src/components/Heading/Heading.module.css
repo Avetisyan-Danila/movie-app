@@ -2,3 +2,7 @@
   font-size: 32px;
   margin: 0;
 }
+
+.heading.with-margin {
+  margin-bottom: var(--body-spacing);
+}

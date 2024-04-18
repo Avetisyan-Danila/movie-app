@@ -4,9 +4,14 @@ import { Button } from '../Button/Button.tsx';
 import { AddToFavoriteButton } from '../AddToFavoriteButton/AddToFavoriteButton.tsx';
 import { useState } from 'react';
 import cn from 'classnames';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase.ts';
+import { addNotification } from '../../helpers/notification.ts';
 
 export const MainFilmPoster = ({
+  id,
   backdrop,
+  poster,
   name,
   genres,
   description,
@@ -15,6 +20,18 @@ export const MainFilmPoster = ({
   year,
 }: MainFilmPosterProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const favorites = doc(db, `favorites/${id}`);
+  const handleFavoriteClick = async (value: boolean) => {
+    setDoc(favorites, { id, name, year, genres, poster })
+      .then(() => {
+        setIsFavorite(value);
+      })
+      .catch((error) => {
+        console.log(error);
+        addNotification('Ошибка при добавлении фильма в избранное', 'danger');
+      });
+  };
 
   const onTrailerClick = () => {
     if (videos) {
@@ -59,7 +76,7 @@ export const MainFilmPoster = ({
           <AddToFavoriteButton
             appearance="big"
             isActive={isFavorite}
-            onClick={() => setIsFavorite(!isFavorite)}
+            onClick={() => handleFavoriteClick(!isFavorite)}
           />
         </div>
       </div>

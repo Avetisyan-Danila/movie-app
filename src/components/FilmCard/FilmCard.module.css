@@ -6,15 +6,19 @@
 
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  background-color: var(--gray);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.03);
 }
 
 .poster {
   display: block;
   width: 100%;
-  height: auto;
-
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  height: 100%;
 }
 
 .favorite-button {
@@ -30,12 +34,18 @@
   right: 0;
 
   box-sizing: border-box;
-  width: 100%;
+  width: 101%;
 
   padding: 20px 25px 30px 25px;
 
+  transform: translateY(100%);
   background-color: var(--primary-color);
   color: var(--text-color);
+  transition: 0.4s;
+}
+
+.card:hover .info {
+  transform: translateY(0);
 }
 
 .title {
