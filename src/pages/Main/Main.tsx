@@ -9,15 +9,11 @@ import { Heading } from '../../components/Heading/Heading.tsx';
 import styles from './Main.module.css';
 
 export const Main = () => {
-  // const { data: mainFilm } = useFilmById('/409424');
-
   return (
     <>
       {mainFilm && (
         <MainFilmPoster
-          id={mainFilm.id}
           backdrop={mainFilm.backdrop}
-          poster={mainFilm.poster}
           name={mainFilm.name}
           genres={mainFilm.genres}
           description={mainFilm.description}
