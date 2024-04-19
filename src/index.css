@@ -11,13 +11,14 @@
   --gray: #a6a6a6;
   --light-gray: #e1e1e1;
 
+  --positive-rating: #3bb33b;
+  --neutral-rating: #777777;
+
   --body-spacing: 40px;
   --sidebar-default-width: 74px;
   --sidebar-active-width: 270px;
   --header-height: 64px;
-
-  --positive-rating: #3bb33b;
-  --neutral-rating: #777777;
+  --heading-height: 79px;
 }
 
 body {
