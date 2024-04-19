@@ -1,24 +1,22 @@
-import { FilmCardProps } from './FilmCard.props.ts';
 import styles from './FilmCard.module.css';
+import { FilmCardProps } from './FilmCard.props.ts';
 import { AddToFavoriteButton } from '../AddToFavoriteButton/AddToFavoriteButton.tsx';
-import { useState } from 'react';
-import { db } from '../../firebase.ts';
-import { doc, setDoc } from 'firebase/firestore';
-import { addNotification } from '../../helpers/notification.ts';
+import { useFavorites } from '../../hooks/useFavorites.ts';
 
-export const FilmCard = ({ id, name, year, genres, poster }: FilmCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+export const FilmCard = (props: FilmCardProps) => {
+  const { id, name, year, genres, poster } = props;
 
-  const favorites = doc(db, `favorites/${id}`);
+  const { isFavorite, addToFavorite, deleteFromFavorite } = useFavorites(
+    id,
+    name,
+  );
+
   const handleFavoriteClick = async (value: boolean) => {
-    setDoc(favorites, { id, name, year, genres, poster })
-      .then(() => {
-        setIsFavorite(value);
-      })
-      .catch((error) => {
-        console.log(error);
-        addNotification('Ошибка при добавлении фильма в избранное', 'danger');
-      });
+    if (value) {
+      addToFavorite(props);
+    } else {
+      deleteFromFavorite();
+    }
   };
 
   return (
