@@ -3,17 +3,11 @@ export type Film = {
   genres: Array<{ name: string }>;
   name: string;
   description: string;
+  year: number;
+  ageRating: number;
+  movieLength: number;
   rating: {
     kp: number;
-  };
-  year: number;
-  videos?: {
-    trailers: Array<{
-      url: string;
-      name: string;
-      site: string;
-      type: string;
-    }>;
   };
   poster: {
     url: string;
@@ -22,6 +16,15 @@ export type Film = {
   backdrop: {
     url: string;
     previewUrl: string;
+  };
+
+  videos?: {
+    trailers: Array<{
+      url: string;
+      name: string;
+      site: string;
+      type: string;
+    }>;
   };
   persons?: Array<{
     id: number;
@@ -32,6 +35,4 @@ export type Film = {
     profession: string;
     enProfession: string;
   }>;
-  ageRating: number;
-  movieLength: number;
 };
