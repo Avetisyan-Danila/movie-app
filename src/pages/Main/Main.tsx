@@ -31,7 +31,7 @@ export const Main = () => {
         <div className={styles['main-block']}>
           <Heading withMargin={false}>Популярные</Heading>
 
-          <FilmsCarousel spaceBetween={65} slidesPerView={4} slidesPerGroup={4}>
+          <FilmsCarousel spaceBetween={65} slidesPerView={5} slidesPerGroup={5}>
             {popularFilms.docs.map((film, index) => {
               return (
                 <SwiperSlide key={index}>
@@ -53,7 +53,7 @@ export const Main = () => {
         <div className={styles['main-block']}>
           <Heading withMargin={false}>Ближайшие премьеры</Heading>
 
-          <FilmsCarousel spaceBetween={65} slidesPerView={3} slidesPerGroup={3}>
+          <FilmsCarousel spaceBetween={65} slidesPerView={4} slidesPerGroup={4}>
             {closestReleases.docs.map((film, index) => {
               return (
                 <SwiperSlide key={index}>

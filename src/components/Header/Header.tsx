@@ -19,7 +19,7 @@ export const Header = ({ className }: HeaderProps) => {
   const { elementWidth, refElement } = useObserveElementWidth<HTMLDivElement>();
   const [isSearchActive, setIsSearchActive] = useState(false);
 
-  const scroll = useScroll();
+  const { scroll } = useScroll();
   const profile = useSelector(selectProfile);
 
   const onSearchIconClick = (value: boolean) => {
