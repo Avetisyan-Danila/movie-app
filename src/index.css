@@ -61,3 +61,9 @@ div[class^="rnc__notification-container--"]:has(> .rnc__notification) {
 .swiper.swiper-horizontal .swiper-button-next {
   color: var(--blue);
 }
+
+svg {
+  fill: transparent;
+
+  transition: fill 0.2s ease;
+}

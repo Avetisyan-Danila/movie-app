@@ -6,7 +6,6 @@ import LogoIcon from '../../assets/logo-icon.svg';
 import LogoText from '../../assets/logo-text.svg';
 import FilmIcon from '../../assets/icons/film.svg';
 import HeartIcon from '../../assets/icons/heart.svg';
-import ClockIcon from '../../assets/icons/clock.svg';
 import TrendingUpIcon from '../../assets/icons/trending-up.svg';
 import CalendarIcon from '../../assets/icons/calendar.svg';
 import SlidersIcon from '../../assets/icons/sliders.svg';
@@ -36,15 +35,11 @@ export const Menu = () => {
       </ButtonLink>
 
       <ButtonLink to={'/watch-list'} label="Смотреть позже">
-        <img src={ClockIcon} alt="Смотреть позже" />
+        <img src={CalendarIcon} alt="Смотреть позже" />
       </ButtonLink>
 
       <ButtonLink to={'/popular'} label="Популярные">
         <img src={TrendingUpIcon} alt="Популярные" />
-      </ButtonLink>
-
-      <ButtonLink to={'/coming-soon'} label="Скоро выйдет">
-        <img src={CalendarIcon} alt="Скоро выйдет" />
       </ButtonLink>
 
       <ButtonLink to={'/settings'} label="Настройки">

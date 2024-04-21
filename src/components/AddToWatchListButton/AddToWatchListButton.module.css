@@ -1,4 +1,4 @@
-.add-to-favorite-button {
+.add-to-watch-list-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,8 +15,8 @@
   transition: 0.4s ease;
 }
 
-.add-to-favorite-button svg path {
-  stroke: var(--primary-color);
+.add-to-watch-list-button svg path {
+  fill: var(--primary-color);
 }
 
 .big {
