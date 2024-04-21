@@ -9,6 +9,7 @@ import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useScroll } from '../../hooks/useScroll.ts';
 import { useEffect, useRef, useState } from 'react';
 import { PER_PAGE } from '../../helpers/constants.ts';
+import cn from 'classnames';
 
 export const FilmListWithPagination = ({
   collectionName,
@@ -76,11 +77,20 @@ export const FilmListWithPagination = ({
         </Heading>
       )}
 
-      {isLoading && <Loader />}
+      {isLoading && (
+        <Loader
+          className={cn({
+            [styles['first-load']]: data.length === 0,
+          })}
+        />
+      )}
 
       {data.length > 0 && !isLoadedAll && (
         <Button
-          style={{ opacity: loadAllActive ? '0' : '1' }}
+          style={{
+            transition: loadAllActive ? 'none' : '0.2s ease',
+            opacity: loadAllActive ? '0' : '1',
+          }}
           onClick={handleLoadAll}
           disabled={loadAllActive}
         >
