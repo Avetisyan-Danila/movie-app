@@ -18,14 +18,11 @@ export const useFirestorePaginatedData = <T>(
   perPage: number,
 ) => {
   const [data, setData] = useState<T[]>([]);
-  const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot | null>(
-    null,
-  );
+  const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot>();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadedAll, setIsLoadedAll] = useState(false);
 
   const fetchData = useCallback(async () => {
-    if (isLoading) return;
     setIsLoading(true);
 
     const collectionRef = collection(db, collectionName);
@@ -48,17 +45,18 @@ export const useFirestorePaginatedData = <T>(
 
       if (querySnapshot.empty) {
         setIsLoadedAll(true);
-      } else {
-        const newData = querySnapshot.docs.map((doc) => doc.data()) as T[];
-        setData((prevData) => [...prevData, ...newData]);
-        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+        return;
       }
+
+      const newData = querySnapshot.docs.map((doc) => doc.data()) as T[];
+      setData((prevData) => [...prevData, ...newData]);
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
     } catch {
       addNotification('Ошибка при получении данных', 'danger');
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, lastVisible, perPage, collectionName, orderByField]);
+  }, [lastVisible, perPage, collectionName, orderByField]);
 
-  return { data, fetchData, isLoading, isLoadedAll, lastVisible };
+  return { data, fetchData, isLoading, isLoadedAll };
 };

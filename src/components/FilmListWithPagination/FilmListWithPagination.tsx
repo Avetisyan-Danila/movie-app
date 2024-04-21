@@ -1,52 +1,44 @@
 import styles from './FilmListWithPagination.module.css';
+import cn from 'classnames';
+import { useEffect, useRef, useState } from 'react';
 import { FilmCard } from '../FilmCard/FilmCard.tsx';
 import { Heading } from '../Heading/Heading.tsx';
 import { Loader } from '../Loader/Loader.tsx';
 import { Button } from '../Button/Button.tsx';
-import { FilmListWithPaginationProps } from './FilmListWithPagination.props.ts';
-import { useFirestorePaginatedData } from '../../hooks/useFirestorePaginatedData.ts';
-import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useScroll } from '../../hooks/useScroll.ts';
-import { useEffect, useRef, useState } from 'react';
-import { PER_PAGE } from '../../helpers/constants.ts';
-import cn from 'classnames';
+import { FilmListWithPaginationProps } from './FilmListWithPagination.props.ts';
 
 export const FilmListWithPagination = ({
-  collectionName,
-  orderBy,
-  perPage = PER_PAGE,
+  fetchDataFunction,
+  data,
+  isLoading,
+  isLoadedAll,
   emptyMessage,
 }: FilmListWithPaginationProps) => {
-  const { data, fetchData, isLoading, isLoadedAll, lastVisible } =
-    useFirestorePaginatedData<ShortFilmInfo>(collectionName, orderBy, perPage);
-
-  const { triggerHeight } = useScroll();
-
   const [loadAllActive, setLoadAllActive] = useState(false);
-
   const initialFetchDone = useRef(false);
+  const { triggerHeight } = useScroll();
 
   useEffect(() => {
     if (!initialFetchDone.current) {
-      fetchData();
+      fetchDataFunction();
       initialFetchDone.current = true;
     }
-  }, []);
+  }, [fetchDataFunction]);
 
   useEffect(() => {
     if (
       loadAllActive &&
       triggerHeight >= document.body.scrollHeight - 1000 &&
       !isLoadedAll &&
-      !isLoading &&
-      lastVisible
+      !isLoading
     ) {
-      fetchData();
+      fetchDataFunction();
     }
-  }, [loadAllActive, triggerHeight, isLoadedAll, isLoading, lastVisible]);
+  }, [loadAllActive, triggerHeight, isLoadedAll, isLoading, fetchDataFunction]);
 
   const handleLoadAll = () => {
-    fetchData();
+    fetchDataFunction();
     setLoadAllActive(true);
   };
 
