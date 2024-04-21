@@ -34,7 +34,7 @@ export const FilmCard = (props: FilmCardProps) => {
 
   return (
     <div className={styles['card']}>
-      <img className={styles['poster']} src={poster.previewUrl} alt={name} />
+      <img className={styles['poster']} src={poster?.previewUrl} alt={name} />
 
       <AddToFavoriteButton
         className={styles['favorite-button']}

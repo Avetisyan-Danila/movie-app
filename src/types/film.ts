@@ -9,15 +9,15 @@ export type Film = {
   rating: {
     kp: number;
   };
-  poster: {
-    url: string;
-    previewUrl: string;
-  };
-  backdrop: {
-    url: string;
-    previewUrl: string;
-  };
 
+  backdrop?: {
+    url?: string;
+    previewUrl?: string;
+  };
+  poster?: {
+    url?: string;
+    previewUrl?: string;
+  };
   videos?: {
     trailers: Array<{
       url: string;
