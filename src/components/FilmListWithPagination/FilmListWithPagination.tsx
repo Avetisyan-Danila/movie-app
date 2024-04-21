@@ -4,7 +4,7 @@ import { Heading } from '../Heading/Heading.tsx';
 import { Loader } from '../Loader/Loader.tsx';
 import { Button } from '../Button/Button.tsx';
 import { FilmListWithPaginationProps } from './FilmListWithPagination.props.ts';
-import { usePaginatedData } from '../../hooks/usePaginatedData.ts';
+import { useFirestorePaginatedData } from '../../hooks/useFirestorePaginatedData.ts';
 import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useScroll } from '../../hooks/useScroll.ts';
 import { useEffect, useRef, useState } from 'react';
@@ -18,7 +18,7 @@ export const FilmListWithPagination = ({
   emptyMessage,
 }: FilmListWithPaginationProps) => {
   const { data, fetchData, isLoading, isLoadedAll, lastVisible } =
-    usePaginatedData<ShortFilmInfo>(collectionName, orderBy, perPage);
+    useFirestorePaginatedData<ShortFilmInfo>(collectionName, orderBy, perPage);
 
   const { triggerHeight } = useScroll();
 

@@ -12,7 +12,7 @@ import {
 import { db } from '../firebase';
 import { addNotification } from '../helpers/notification.ts';
 
-export const usePaginatedData = <T>(
+export const useFirestorePaginatedData = <T>(
   collectionName: string,
   orderByField: string,
   perPage: number,
