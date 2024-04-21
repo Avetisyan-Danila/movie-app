@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { PREFIX } from '../helpers/API.ts';
+import api from '../services/api.ts';
 import { Film } from '../types/film.ts';
 import { useState, useEffect } from 'react';
 import { addNotification } from '../helpers/notification.ts';
@@ -12,7 +11,7 @@ export const useFilmById = (filmId: string) => {
     const fetchFilm = async () => {
       setIsLoading(true);
       try {
-        const { data } = await axios.get<Film>(`${PREFIX}/movie/${filmId}`);
+        const { data } = await api.get<Film>(`/movie/${filmId}`);
         setFilmData(data);
       } catch (error) {
         addNotification('Ошибка при получении данных', 'danger');

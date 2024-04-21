@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { PREFIX } from './API.ts';
+import api from '../services/api.ts';
 import { addNotification } from './notification.ts';
 import { UrlSearchParams } from '../types/urlSearchParams.ts';
 import { convertSearchParamsToStrings } from './convertSearchParamsToStrings.ts';
@@ -9,11 +8,7 @@ export const getFilmWithParams = async <T>(params: UrlSearchParams) => {
     const stringifiedParams = convertSearchParamsToStrings(params);
 
     const queryParams = new URLSearchParams(stringifiedParams).toString();
-    const { data } = await axios.get<T>(`${PREFIX}/movie?${queryParams}`, {
-      headers: {
-        'X-API-KEY': 'HGFY3HG-DD5MQSW-HDTMZPR-Q85SRNB',
-      },
-    });
+    const { data } = await api.get<T>(`/movie?${queryParams}`);
 
     return data;
   } catch (error) {

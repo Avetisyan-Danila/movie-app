@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { PREFIX } from '../helpers/API.ts';
+import api from '../services/api.ts';
 import { useState, useEffect } from 'react';
 import { addNotification } from '../helpers/notification.ts';
 
@@ -14,7 +13,7 @@ export const useFilmWithParams = <T>(
       setIsLoading(true);
       try {
         const queryParams = new URLSearchParams(params).toString();
-        const { data } = await axios.get<T>(`${PREFIX}/movie?${queryParams}`);
+        const { data } = await api.get<T>(`/movie?${queryParams}`);
         setFilmData(data);
       } catch (error) {
         addNotification('Ошибка при получении данных', 'danger');
