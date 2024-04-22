@@ -2,7 +2,7 @@
   position: relative;
 
   width: 100%;
-  height: 70vh;
+  height: 65vh;
 
   margin-bottom: var(--body-spacing);
 
@@ -13,7 +13,7 @@
   background-position: 50% 50%;
 
   @media (max-width: 1440px) {
-    height: 55vh;
+    height: 50vh;
   }
 }
 

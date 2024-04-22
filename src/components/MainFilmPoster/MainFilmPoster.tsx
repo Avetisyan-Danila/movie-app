@@ -21,7 +21,7 @@ export const MainFilmPoster = ({
   return (
     <div
       className={styles['poster']}
-      style={{ backgroundImage: `url(${backdrop.url})` }}
+      style={{ backgroundImage: `url(${backdrop?.url})` }}
     >
       <div className={styles['background']}></div>
 
