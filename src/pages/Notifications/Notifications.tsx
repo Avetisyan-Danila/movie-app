@@ -4,6 +4,10 @@ export const Notifications = () => {
   return (
     <>
       <Heading>Уведомления</Heading>
+
+      <Heading appearance="small" empty={true} centered={true}>
+        Нет уведомлений
+      </Heading>
     </>
   );
 };

@@ -6,5 +6,6 @@ export interface HeadingProps {
   className?: string;
   appearance?: 'big' | 'small';
   empty?: boolean;
+  centered?: boolean;
   withMargin?: boolean;
 }

@@ -8,6 +8,7 @@ export const Heading = ({
   withMargin = true,
   appearance = 'big',
   empty,
+  centered,
 }: HeadingProps) => {
   return (
     <h3
@@ -16,6 +17,7 @@ export const Heading = ({
         [styles['big']]: appearance === 'big',
         [styles['small']]: appearance === 'small',
         [styles['empty']]: empty,
+        [styles['centered']]: centered,
       })}
     >
       {children}
