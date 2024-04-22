@@ -22,7 +22,7 @@ export const useWatchList = (id: number | string, name: string) => {
           'danger',
         );
       });
-  }, [id, name]);
+  }, [filmRef, id, name]);
 
   const addToWatchList = (filmData: ShortFilmInfo) => {
     setDoc(filmRef, {

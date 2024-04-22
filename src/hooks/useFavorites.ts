@@ -22,7 +22,7 @@ export const useFavorites = (id: number | string, name: string) => {
           'danger',
         );
       });
-  }, [id, name]);
+  }, [filmRef, id, name]);
 
   const addToFavorite = (filmData: ShortFilmInfo) => {
     setDoc(filmRef, {
