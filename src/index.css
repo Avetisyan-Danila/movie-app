@@ -41,7 +41,7 @@ div[class^="rnc__notification-container--"]:has(> .rnc__notification) {
 }
 
 .swiper.swiper-horizontal {
-  padding: 40px 60px
+  padding: var(--body-spacing) 60px
 }
 
 .swiper .swiper-pagination.swiper-pagination-horizontal {

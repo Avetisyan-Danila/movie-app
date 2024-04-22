@@ -1,20 +1,26 @@
-import api from '../services/api.ts';
 import { useState, useEffect } from 'react';
 import { addNotification } from '../helpers/notification.ts';
+import { UrlSearchParams } from '../types/urlSearchParams.ts';
+import { getFilmWithParams } from '../helpers/getFilmWithParams.ts';
+import { ListApiResponse } from '../types/listApiResponse.ts';
+
+interface UseFilmWithParamsResult<T> {
+  isLoading: boolean;
+  filmData: T[] | null;
+}
 
 export const useFilmWithParams = <T>(
-  params: Record<string, string>,
-): { isLoading: boolean; filmData: T | null } => {
+  params: UrlSearchParams,
+): UseFilmWithParamsResult<T> => {
+  const [filmData, setFilmData] = useState<T[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [filmData, setFilmData] = useState<T | null>(null);
 
   useEffect(() => {
     const fetchFilm = async () => {
       setIsLoading(true);
       try {
-        const queryParams = new URLSearchParams(params).toString();
-        const { data } = await api.get<T>(`/movie?${queryParams}`);
-        setFilmData(data);
+        const data = await getFilmWithParams<ListApiResponse>(params);
+        setFilmData((data?.docs as T[]) ?? []);
       } catch (error) {
         addNotification('Ошибка при получении данных', 'danger');
       } finally {
