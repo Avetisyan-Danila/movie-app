@@ -5,5 +5,6 @@ export interface HeadingProps {
 
   className?: string;
   appearance?: 'big' | 'small';
+  empty?: boolean;
   withMargin?: boolean;
 }

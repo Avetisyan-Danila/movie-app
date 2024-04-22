@@ -61,9 +61,10 @@ export const FilmListWithPagination = ({
 
       {!isLoading && data.length === 0 && (
         <Heading
-          className={styles['empty']}
+          className={styles['centered']}
           appearance="small"
           withMargin={false}
+          empty={true}
         >
           {emptyMessage}
         </Heading>

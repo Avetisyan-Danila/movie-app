@@ -21,7 +21,7 @@ export const Main = () => {
     [],
   );
   const closestReleasesParams = useMemo(
-    () => ({ ...CLOSEST_RELEASES_FILMS_PARAMS, limit: 12 }),
+    () => ({ ...CLOSEST_RELEASES_FILMS_PARAMS, limit: 20 }),
     [],
   );
 

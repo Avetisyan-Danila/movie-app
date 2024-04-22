@@ -13,3 +13,7 @@
 .heading.with-margin {
   margin-bottom: var(--body-spacing);
 }
+
+.empty {
+  opacity: 0.3;
+}
