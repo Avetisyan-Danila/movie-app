@@ -13,6 +13,9 @@ export const Main = () => {
   const popularFilmsTitle = 'Популярные';
   const closestReleasesTitle = 'Ближайшие премьеры';
 
+  const popularEmptyMessage = 'Список популярных фильмов пуст';
+  const closestReleasesEmptyMessage = 'Список ближайших премьер пуст';
+
   const popularFilmsParams = useMemo(
     () => ({ ...POPULAR_FILMS_PARAMS, limit: 15 }),
     [],
@@ -41,25 +44,23 @@ export const Main = () => {
         />
       )}
 
-      {popularFilms && (
-        <FilmsCarouselSection
-          title={popularFilmsTitle}
-          films={popularFilms}
-          loading={popularFilmsLoading}
-          slidesPerView={5}
-          slidesPerGroup={5}
-        />
-      )}
+      <FilmsCarouselSection
+        title={popularFilmsTitle}
+        films={popularFilms ?? []}
+        loading={popularFilmsLoading}
+        slidesPerView={5}
+        slidesPerGroup={5}
+        emptyMessage={popularEmptyMessage}
+      />
 
-      {closestReleases && (
-        <FilmsCarouselSection
-          title={closestReleasesTitle}
-          films={closestReleases}
-          loading={closestReleasesLoading}
-          slidesPerView={4}
-          slidesPerGroup={4}
-        />
-      )}
+      <FilmsCarouselSection
+        title={closestReleasesTitle}
+        films={closestReleases ?? []}
+        loading={closestReleasesLoading}
+        slidesPerView={4}
+        slidesPerGroup={4}
+        emptyMessage={closestReleasesEmptyMessage}
+      />
     </>
   );
 };

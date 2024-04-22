@@ -4,6 +4,7 @@ import { SwiperSlide } from 'swiper/react';
 import { FilmCard } from '../FilmCard/FilmCard.tsx';
 import { FilmsCarouselSectionProps } from './FilmsCarouselSection.props.ts';
 import { Loader } from '../Loader/Loader.tsx';
+import styles from '../FilmListWithPagination/FilmListWithPagination.module.css';
 
 export const FilmsCarouselSection = ({
   title,
@@ -11,14 +12,27 @@ export const FilmsCarouselSection = ({
   loading,
   slidesPerView,
   slidesPerGroup,
+  emptyMessage,
   spaceBetween = 65,
 }: FilmsCarouselSectionProps) => {
-  if (loading) return <Loader />;
   if (!films) return null;
 
   return (
     <>
       <Heading withMargin={false}>{title}</Heading>
+
+      {loading && <Loader />}
+
+      {!loading && films.length === 0 && (
+        <Heading
+          className={styles['empty']}
+          appearance="small"
+          withMargin={false}
+        >
+          {emptyMessage}
+        </Heading>
+      )}
+
       <FilmsCarousel
         spaceBetween={spaceBetween}
         slidesPerView={slidesPerView}

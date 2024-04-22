@@ -6,6 +6,7 @@ export interface FilmsCarouselSectionProps {
   loading: boolean;
   slidesPerView: number;
   slidesPerGroup: number;
+  emptyMessage: string;
 
   spaceBetween?: number;
 }
