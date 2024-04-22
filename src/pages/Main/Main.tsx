@@ -1,9 +1,5 @@
 import mainFilm from '../../mocks/main-page-film.ts';
 import { MainFilmPoster } from '../../components/MainFilmPoster/MainFilmPoster.tsx';
-import { FilmsCarousel } from '../../components/FilmsCarousel/FilmsCarousel.tsx';
-import { SwiperSlide } from 'swiper/react';
-import { FilmCard } from '../../components/FilmCard/FilmCard.tsx';
-import { Heading } from '../../components/Heading/Heading.tsx';
 import { useFilmWithParams } from '../../hooks/useFilmWithParams.ts';
 import {
   CLOSEST_RELEASES_FILMS_PARAMS,
@@ -11,22 +7,23 @@ import {
 } from '../../helpers/constants.ts';
 import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useMemo } from 'react';
-import { Loader } from '../../components/Loader/Loader.tsx';
+import { FilmsCarouselSection } from '../../components/FilmsCarouselSection/FilmsCarouselSection.tsx';
 
 export const Main = () => {
+  const popularFilmsTitle = 'Популярные';
+  const closestReleasesTitle = 'Ближайшие премьеры';
+
   const popularFilmsParams = useMemo(
-    () => ({ ...POPULAR_FILMS_PARAMS, limit: 25 }),
+    () => ({ ...POPULAR_FILMS_PARAMS, limit: 15 }),
     [],
   );
-
   const closestReleasesParams = useMemo(
-    () => ({ ...CLOSEST_RELEASES_FILMS_PARAMS, limit: 25 }),
+    () => ({ ...CLOSEST_RELEASES_FILMS_PARAMS, limit: 12 }),
     [],
   );
 
   const { filmData: popularFilms, isLoading: popularFilmsLoading } =
     useFilmWithParams<ShortFilmInfo>(popularFilmsParams);
-
   const { filmData: closestReleases, isLoading: closestReleasesLoading } =
     useFilmWithParams<ShortFilmInfo>(closestReleasesParams);
 
@@ -44,46 +41,24 @@ export const Main = () => {
         />
       )}
 
-      <Heading withMargin={false}>Популярные</Heading>
-
-      {popularFilmsLoading && <Loader />}
       {popularFilms && (
-        <FilmsCarousel spaceBetween={65} slidesPerView={5} slidesPerGroup={5}>
-          {popularFilms.map((film, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <FilmCard
-                  id={film.id}
-                  name={film.name}
-                  year={film.year}
-                  genres={film.genres}
-                  poster={film.poster}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </FilmsCarousel>
+        <FilmsCarouselSection
+          title={popularFilmsTitle}
+          films={popularFilms}
+          loading={popularFilmsLoading}
+          slidesPerView={5}
+          slidesPerGroup={5}
+        />
       )}
 
-      <Heading withMargin={false}>Ближайшие премьеры</Heading>
-
-      {closestReleasesLoading && <Loader />}
       {closestReleases && (
-        <FilmsCarousel spaceBetween={65} slidesPerView={4} slidesPerGroup={4}>
-          {closestReleases.map((film, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <FilmCard
-                  id={film.id}
-                  name={film.name}
-                  year={film.year}
-                  genres={film.genres}
-                  poster={film.poster}
-                />
-              </SwiperSlide>
-            );
-          })}
-        </FilmsCarousel>
+        <FilmsCarouselSection
+          title={closestReleasesTitle}
+          films={closestReleases}
+          loading={closestReleasesLoading}
+          slidesPerView={4}
+          slidesPerGroup={4}
+        />
       )}
     </>
   );
