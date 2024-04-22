@@ -13,8 +13,8 @@ export const Main = () => {
   const popularFilmsTitle = 'Популярные';
   const closestReleasesTitle = 'Ближайшие премьеры';
 
-  const popularEmptyMessage = 'Список популярных фильмов пуст';
-  const closestReleasesEmptyMessage = 'Список ближайших премьер пуст';
+  const popularEmptyMessage = 'Не удалось загрузить популярные фильмы';
+  const closestReleasesEmptyMessage = 'Не удалось загрузить ближайшие премьеры';
 
   const popularFilmsParams = useMemo(
     () => ({ ...POPULAR_FILMS_PARAMS, limit: 15 }),
