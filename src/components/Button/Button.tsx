@@ -1,6 +1,6 @@
+import cn from 'classnames';
 import styles from './Button.module.css';
 import { ButtonProps } from './Button.props.ts';
-import cn from 'classnames';
 
 export const Button = ({
   children,
@@ -16,6 +16,7 @@ export const Button = ({
         [styles['big']]: appearance === 'big',
         [styles['accent']]: color === 'accent',
         [styles['white']]: color === 'white',
+        [styles['danger']]: color === 'danger',
       })}
       {...props}
     >

@@ -9,9 +9,7 @@ export const AuthLayout = () => {
     <div className={styles['layout']}>
       {location.pathname === '/auth' && <Welcome />}
 
-      <div className={styles['content']}>
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 };

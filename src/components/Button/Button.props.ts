@@ -4,5 +4,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 
   appearance?: 'big' | 'small';
-  color?: 'accent' | 'white';
+  color?: 'accent' | 'white' | 'danger';
 }

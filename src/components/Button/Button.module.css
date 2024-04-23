@@ -36,6 +36,15 @@
   background-color: var(--light-gray);
 }
 
+.danger {
+  color: var(--text-color);
+  background-color: var(--danger-color);
+}
+
+.danger:not(:disabled):hover {
+  opacity: 0.7;
+}
+
 .button:disabled {
   cursor: default;
   background-color: var(--gray);

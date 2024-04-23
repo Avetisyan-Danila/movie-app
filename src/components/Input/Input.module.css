@@ -7,7 +7,7 @@
 }
 
 .input {
-  padding: 12px 18px;
+  padding: 15px 20px;
 
   border: none;
   border-radius: 8px;
@@ -17,11 +17,11 @@
   color: var(--text-color);
   background-color: var(--dark-blue);
   outline: 3px solid transparent;
-  transition: 0.2s ease;
+  transition: 0.4s ease;
 }
 
-.input[type="password"] {
-  padding: 12px 70px 12px 18px;
+.input[type="password"], .input[id="password"] {
+  padding: 15px 80px 15px 20px;
 }
 
 .input:focus {
@@ -39,6 +39,11 @@
   background: none;
   border: none;
   cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.input:disabled + .eye {
+  opacity: 0;
 }
 
 .eye img {
