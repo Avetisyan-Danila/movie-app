@@ -1,33 +1,40 @@
 import { Heading } from '../../components/Heading/Heading.tsx';
-import { Button } from '../../components/Button/Button.tsx';
 import styles from './Settings.module.css';
 import { useSelector } from 'react-redux';
 import { selectStatus } from '../../store/user/userSelectors.ts';
 import { useCallback } from 'react';
 import { useAppDispatch } from '../../store/store.ts';
 import {
+  deleteAccount,
   updateUserEmail,
   updateUserPassword,
 } from '../../store/user/userThunks.ts';
 import { EmailChangeForm } from '../../components/EmailChangeForm/EmailChangeForm.tsx';
 import { PasswordChangeForm } from '../../components/PasswordChangeForm/PasswordChangeForm.tsx';
+import { DeleteAccount } from '../../components/DeleteAccount/DeleteAccount.tsx';
 
 export const Settings = () => {
   const status = useSelector(selectStatus);
+
   const dispatch = useAppDispatch();
 
   const handleEmailSubmit = useCallback(
-    (email: string) => {
-      // TODO: Попросить юзера авторизоваться заново
-      dispatch(updateUserEmail(email));
+    (email: string, password: string) => {
+      dispatch(updateUserEmail({ newEmail: email, password }));
     },
     [dispatch],
   );
 
   const handlePasswordSubmit = useCallback(
+    (newPassword: string, oldPassword: string) => {
+      dispatch(updateUserPassword({ newPassword, oldPassword: oldPassword }));
+    },
+    [dispatch],
+  );
+
+  const handleDeleteAccount = useCallback(
     (password: string) => {
-      // TODO: Попросить юзера авторизоваться заново
-      dispatch(updateUserPassword(password));
+      dispatch(deleteAccount({ password }));
     },
     [dispatch],
   );
@@ -41,11 +48,7 @@ export const Settings = () => {
 
         <PasswordChangeForm status={status} onSubmit={handlePasswordSubmit} />
 
-        <div>
-          <Button disabled={status === 'loading'} color="danger">
-            Удалить аккаунт
-          </Button>
-        </div>
+        <DeleteAccount status={status} onSubmit={handleDeleteAccount} />
       </div>
     </>
   );

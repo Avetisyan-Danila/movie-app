@@ -11,7 +11,7 @@ import { ButtonLink } from '../ButtonLink/ButtonLink.tsx';
 import { Link } from '../Link/Link.tsx';
 import { useScroll } from '../../hooks/useScroll.ts';
 import { selectProfile } from '../../store/user/userSelectors.ts';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { HeaderProps } from './Header.props.ts';
 import { useObserveElementWidth } from '../../hooks/useObserveElementWidth.ts';
 
@@ -22,15 +22,15 @@ export const Header = ({ className }: HeaderProps) => {
   const { scroll } = useScroll();
   const profile = useSelector(selectProfile);
 
-  const onSearchIconClick = (value: boolean) => {
+  const onSearchIconClick = useCallback((value: boolean) => {
     setIsSearchActive(value);
-  };
+  }, []);
 
-  const onSearch = (value: string) => {
+  const onSearch = useCallback((value: string) => {
     console.log('value -', value);
-  };
+  }, []);
 
-  const bgWidthCondition = () => {
+  const bgWidthCondition = useCallback(() => {
     if (isSearchActive) {
       if (scroll > 0) {
         return '100%';
@@ -40,7 +40,7 @@ export const Header = ({ className }: HeaderProps) => {
     } else {
       return elementWidth;
     }
-  };
+  }, [elementWidth, isSearchActive, scroll]);
 
   return (
     <header

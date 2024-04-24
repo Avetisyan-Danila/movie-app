@@ -8,6 +8,7 @@ import { login } from '../../store/user/userThunks.ts';
 import { useSelector } from 'react-redux';
 import { selectJwt, selectStatus } from '../../store/user/userSelectors.ts';
 import { useNavigate } from 'react-router-dom';
+import { STATUS_LOADING } from '../../helpers/constants.ts';
 
 interface LoginForm {
   email: {
@@ -70,7 +71,7 @@ export const Login = () => {
       <Button
         className={styles['button']}
         color="white"
-        disabled={status === 'loading'}
+        disabled={status === STATUS_LOADING}
       >
         Войти
       </Button>

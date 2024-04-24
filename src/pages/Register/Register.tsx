@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../store/store.ts';
 import { useSelector } from 'react-redux';
 import { selectJwt, selectStatus } from '../../store/user/userSelectors.ts';
 import { addNotification } from '../../helpers/notification.ts';
+import { STATUS_LOADING } from '../../helpers/constants.ts';
 
 interface RegisterForm {
   userName: {
@@ -107,7 +108,7 @@ export const Register = () => {
       <Button
         className={styles['button']}
         color="white"
-        disabled={status === 'loading'}
+        disabled={status === STATUS_LOADING}
       >
         Зарегистрироваться
       </Button>
