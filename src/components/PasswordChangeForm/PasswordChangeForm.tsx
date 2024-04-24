@@ -118,6 +118,7 @@ export const PasswordChangeForm = ({
               onChange={handleChange}
               disabled={!isChanging}
               required={true}
+              minLength={6}
             />
           </>
         )}

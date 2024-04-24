@@ -53,9 +53,8 @@ export const register = createAsyncThunk(
 
         return await getUserData();
       })
-      .catch((error) => {
-        console.log(error);
-        throw new Error('Ошибка при регистрации');
+      .catch(() => {
+        throw new Error('Произошла ошибка при регистрации. Попробуйте позже.');
       });
   },
 );
@@ -73,11 +72,11 @@ export const updateUserEmail = createAsyncThunk(
         params.password!,
       );
 
-      await reauthenticateWithCredential(auth.currentUser, credential).then(
-        async () => {
+      await reauthenticateWithCredential(auth.currentUser, credential)
+        .then(async () => {
           if (auth.currentUser) {
-            await updateEmail(auth.currentUser, params.newEmail)
-              .then(async () => {
+            await updateEmail(auth.currentUser, params.newEmail).then(
+              async () => {
                 if (auth.currentUser) {
                   await sendEmailVerification(auth.currentUser).then(() => {
                     addNotification(
@@ -87,13 +86,19 @@ export const updateUserEmail = createAsyncThunk(
                     );
                   });
                 }
-              })
-              .catch(() => {
-                throw new Error('Произошла ошибка при смене Email');
-              });
+              },
+            );
           }
-        },
-      );
+        })
+        .catch((error) => {
+          if (error.code === 'auth/wrong-password') {
+            throw new Error('Неверный пароль');
+          } else {
+            throw new Error(
+              'Произошла ошибка при смене Email. Попробуйте позже.',
+            );
+          }
+        });
     }
 
     return await getUserData();
@@ -109,17 +114,21 @@ export const updateUserPassword = createAsyncThunk(
         params.oldPassword!,
       );
 
-      await reauthenticateWithCredential(auth.currentUser, credential).then(
-        async () => {
+      await reauthenticateWithCredential(auth.currentUser, credential)
+        .then(async () => {
           if (auth.currentUser) {
-            await updatePassword(auth.currentUser, params.newPassword).catch(
-              () => {
-                throw new Error('Произошла ошибка при смене пароля');
-              },
+            await updatePassword(auth.currentUser, params.newPassword);
+          }
+        })
+        .catch((error) => {
+          if (error.code === 'auth/wrong-password') {
+            throw new Error('Неверный пароль');
+          } else {
+            throw new Error(
+              'Произошла ошибка при смене пароля. Попробуйте позже.',
             );
           }
-        },
-      );
+        });
     }
 
     return await getUserData();
@@ -135,15 +144,21 @@ export const deleteAccount = createAsyncThunk(
         params.password!,
       );
 
-      await reauthenticateWithCredential(auth.currentUser, credential).then(
-        async () => {
+      await reauthenticateWithCredential(auth.currentUser, credential)
+        .then(async () => {
           if (auth.currentUser) {
-            await deleteUser(auth.currentUser).catch(() => {
-              throw new Error('Произошла ошибка при удалении аккаунта');
-            });
+            await deleteUser(auth.currentUser);
           }
-        },
-      );
+        })
+        .catch((error) => {
+          if (error.code === 'auth/wrong-password') {
+            throw new Error('Неверный пароль');
+          } else {
+            throw new Error(
+              'Произошла ошибка при удалении аккаунта. Попробуйте позже.',
+            );
+          }
+        });
     }
   },
 );
