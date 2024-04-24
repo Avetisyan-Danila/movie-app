@@ -71,7 +71,7 @@ export const Register = () => {
         label="Ваше имя"
         name="userName"
         placeholder="Имя"
-        required
+        required={true}
         autoComplete="on"
       />
 
@@ -81,7 +81,7 @@ export const Register = () => {
         name="email"
         type="email"
         placeholder="Email"
-        required
+        required={true}
         autoComplete="on"
       />
 
@@ -91,8 +91,9 @@ export const Register = () => {
         name="password"
         type="password"
         placeholder="Пароль"
-        required
+        required={true}
         autoComplete="on"
+        minLength={6}
       />
 
       <Input
@@ -101,7 +102,7 @@ export const Register = () => {
         name="copyPassword"
         type="password"
         placeholder="Пароль"
-        required
+        required={true}
         autoComplete="on"
       />
 

@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import userSlice, { USER_PERSISTENT_STATE } from './user/userSlice.ts';
+import userSlice from './user/userSlice.ts';
 import { saveState } from './storage.ts';
+import { USER_PERSISTENT_STATE } from '../helpers/constants.ts';
 
 export const store = configureStore({
   reducer: {

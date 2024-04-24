@@ -54,4 +54,5 @@
 .button:disabled:hover {
   cursor: default;
   background-color: var(--gray);
+  opacity: 1;
 }

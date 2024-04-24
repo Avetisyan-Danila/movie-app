@@ -16,9 +16,13 @@ import {
   STATUS_SUCCESS,
   STATUS_FAILED,
   STATUS_IDLE,
+  EMAIL_VERIFICATION_MESSAGE,
+  EMAIL_UPDATE_SUCCESS_MESSAGE,
+  PASSWORD_UPDATE_SUCCESS_MESSAGE,
+  DELETE_ACCOUNT_SUCCESS_MESSAGE,
+  USER_PERSISTENT_STATE,
+  NEED_REAUTHORIZATION_MESSAGE,
 } from '../../helpers/constants.ts';
-
-export const USER_PERSISTENT_STATE = 'userData';
 
 export interface UserPersistentState {
   jwt: string | null;
@@ -68,6 +72,8 @@ export const userSlice = createSlice({
         state.status = STATUS_SUCCESS;
         state.profile = action.payload.user;
         state.jwt = action.payload.jwt;
+
+        addNotification(EMAIL_VERIFICATION_MESSAGE, 'info', 15000);
       })
       .addCase(register.rejected, (state, action) => {
         state.status = STATUS_FAILED;
@@ -93,12 +99,17 @@ export const userSlice = createSlice({
         state.profile = action.payload.user;
         state.jwt = action.payload.jwt;
 
-        addNotification('Email успешно изменен', 'success');
+        addNotification(EMAIL_UPDATE_SUCCESS_MESSAGE, 'success');
+        addNotification(EMAIL_VERIFICATION_MESSAGE, 'info', 15000);
       })
       .addCase(updateUserEmail.rejected, (state, action) => {
         state.status = STATUS_FAILED;
 
         if (action.error.message) {
+          if (action.error.message === NEED_REAUTHORIZATION_MESSAGE) {
+            state.jwt = null;
+          }
+
           addNotification(action.error.message, 'danger');
         }
       })
@@ -111,12 +122,16 @@ export const userSlice = createSlice({
         state.profile = action.payload.user;
         state.jwt = action.payload.jwt;
 
-        addNotification('Пароль успешно изменен', 'success');
+        addNotification(PASSWORD_UPDATE_SUCCESS_MESSAGE, 'success');
       })
       .addCase(updateUserPassword.rejected, (state, action) => {
         state.status = STATUS_FAILED;
 
         if (action.error.message) {
+          if (action.error.message === NEED_REAUTHORIZATION_MESSAGE) {
+            state.jwt = null;
+          }
+
           addNotification(action.error.message, 'danger');
         }
       })
@@ -128,12 +143,16 @@ export const userSlice = createSlice({
         state.status = STATUS_SUCCESS;
         state.jwt = null;
 
-        addNotification('Аккаунт успешно удален', 'success');
+        addNotification(DELETE_ACCOUNT_SUCCESS_MESSAGE, 'success');
       })
       .addCase(deleteAccount.rejected, (state, action) => {
         state.status = STATUS_FAILED;
 
         if (action.error.message) {
+          if (action.error.message === NEED_REAUTHORIZATION_MESSAGE) {
+            state.jwt = null;
+          }
+
           addNotification(action.error.message, 'danger');
         }
       });

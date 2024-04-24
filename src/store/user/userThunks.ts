@@ -2,8 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
   deleteUser,
-  EmailAuthProvider,
-  reauthenticateWithCredential,
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
@@ -11,154 +9,118 @@ import {
   updatePassword,
   updateProfile,
 } from 'firebase/auth';
+import { FirebaseError } from '@firebase/util';
 import { auth } from '../../firebase.ts';
 import { getUserData } from '../../helpers/getUserData.ts';
-import { addNotification } from '../../helpers/notification.ts';
+import AuthErrorMap from '../../helpers/AuthErrorMap.ts';
+import { reauthenticateCurrentUser } from '../../helpers/reauthenticateCurrentUser.ts';
 
 export const login = createAsyncThunk(
   'user/login',
   async (params: { email: string; password: string }) => {
-    return await signInWithEmailAndPassword(auth, params.email, params.password)
-      .then(async () => {
-        return await getUserData();
-      })
-      .catch(() => {
-        throw new Error('Неверный логин или пароль');
-      });
+    try {
+      await signInWithEmailAndPassword(auth, params.email, params.password);
+      return getUserData();
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['login-unknown-error']);
+      }
+    }
   },
 );
 
 export const register = createAsyncThunk(
   'user/register',
   async (params: { userName: string; email: string; password: string }) => {
-    return await createUserWithEmailAndPassword(
-      auth,
-      params.email,
-      params.password,
-    )
-      .then(async () => {
-        if (auth.currentUser) {
-          await updateProfile(auth.currentUser, {
-            displayName: params.userName,
-          });
+    try {
+      await createUserWithEmailAndPassword(auth, params.email, params.password);
 
-          await sendEmailVerification(auth.currentUser).then(() => {
-            addNotification(
-              'Вам отправлено письмо для подтверждения эл. почты',
-              'info',
-              15000,
-            );
-          });
-        }
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, {
+          displayName: params.userName,
+        });
 
-        return await getUserData();
-      })
-      .catch(() => {
-        throw new Error('Произошла ошибка при регистрации. Попробуйте позже.');
-      });
+        await sendEmailVerification(auth.currentUser);
+      }
+
+      return getUserData();
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['register-unknown-error']);
+      }
+    }
   },
 );
 
 export const logout = createAsyncThunk('user/logout', async () => {
-  await signOut(auth);
+  try {
+    await signOut(auth);
+  } catch (error) {
+    if (error instanceof FirebaseError) {
+      throw new Error(AuthErrorMap[error.code]);
+    } else {
+      throw new Error(AuthErrorMap['logout-unknown-error']);
+    }
+  }
 });
 
 export const updateUserEmail = createAsyncThunk(
   'user/updateUserEmail',
   async (params: { newEmail: string; password: string }) => {
-    if (auth.currentUser && auth.currentUser.email) {
-      const credential = EmailAuthProvider.credential(
-        auth.currentUser.email,
-        params.password!,
-      );
+    try {
+      await reauthenticateCurrentUser(params.password);
 
-      await reauthenticateWithCredential(auth.currentUser, credential)
-        .then(async () => {
-          if (auth.currentUser) {
-            await updateEmail(auth.currentUser, params.newEmail).then(
-              async () => {
-                if (auth.currentUser) {
-                  await sendEmailVerification(auth.currentUser).then(() => {
-                    addNotification(
-                      'Вам отправлено письмо для подтверждения эл. почты',
-                      'info',
-                      15000,
-                    );
-                  });
-                }
-              },
-            );
-          }
-        })
-        .catch((error) => {
-          if (error.code === 'auth/wrong-password') {
-            throw new Error('Неверный пароль');
-          } else {
-            throw new Error(
-              'Произошла ошибка при смене Email. Попробуйте позже.',
-            );
-          }
-        });
+      await updateEmail(auth.currentUser!, params.newEmail);
+
+      await sendEmailVerification(auth.currentUser!);
+
+      return getUserData();
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['updateEmail-unknown-error']);
+      }
     }
-
-    return await getUserData();
   },
 );
 
 export const updateUserPassword = createAsyncThunk(
   'user/updateUserPassword',
   async (params: { newPassword: string; oldPassword: string }) => {
-    if (auth.currentUser && auth.currentUser.email) {
-      const credential = EmailAuthProvider.credential(
-        auth.currentUser.email,
-        params.oldPassword!,
-      );
+    try {
+      await reauthenticateCurrentUser(params.oldPassword);
 
-      await reauthenticateWithCredential(auth.currentUser, credential)
-        .then(async () => {
-          if (auth.currentUser) {
-            await updatePassword(auth.currentUser, params.newPassword);
-          }
-        })
-        .catch((error) => {
-          if (error.code === 'auth/wrong-password') {
-            throw new Error('Неверный пароль');
-          } else {
-            throw new Error(
-              'Произошла ошибка при смене пароля. Попробуйте позже.',
-            );
-          }
-        });
+      await updatePassword(auth.currentUser!, params.newPassword);
+
+      return getUserData();
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['updatePassword-unknown-error']);
+      }
     }
-
-    return await getUserData();
   },
 );
 
 export const deleteAccount = createAsyncThunk(
   'user/deleteAccount',
   async (params: { password: string }) => {
-    if (auth.currentUser && auth.currentUser.email) {
-      const credential = EmailAuthProvider.credential(
-        auth.currentUser.email,
-        params.password!,
-      );
+    try {
+      await reauthenticateCurrentUser(params.password);
 
-      await reauthenticateWithCredential(auth.currentUser, credential)
-        .then(async () => {
-          if (auth.currentUser) {
-            await deleteUser(auth.currentUser);
-          }
-        })
-        .catch((error) => {
-          if (error.code === 'auth/wrong-password') {
-            throw new Error('Неверный пароль');
-          } else {
-            throw new Error(
-              'Произошла ошибка при удалении аккаунта. Попробуйте позже.',
-            );
-          }
-        });
+      await deleteUser(auth.currentUser!);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['deleteAccount-unknown-error']);
+      }
     }
   },
 );

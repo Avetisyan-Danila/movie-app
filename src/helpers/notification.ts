@@ -3,7 +3,7 @@ import { Store, NOTIFICATION_TYPE } from 'react-notifications-component';
 export const addNotification = (
   title: string,
   type: NOTIFICATION_TYPE = 'default',
-  duration: number = 4000,
+  duration: number = 5000,
 ) => {
   Store.addNotification({
     title: title,
