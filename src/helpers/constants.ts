@@ -12,9 +12,9 @@ export const STATUS_FAILED: Status = 'failed';
 export const STATUS_SUCCESS: Status = 'success';
 
 export const EMAIL_VERIFICATION_MESSAGE =
-  'Вам отправлено письмо для подтверждения эл. почты.';
+  'Вам отправлено письмо для подтверждения эл. почты';
 export const NEED_REAUTHORIZATION_MESSAGE =
-  'Необходимо повторно пройти авторизацию.';
-export const EMAIL_UPDATE_SUCCESS_MESSAGE = 'Email успешно изменен.';
-export const PASSWORD_UPDATE_SUCCESS_MESSAGE = 'Пароль успешно изменен.';
-export const DELETE_ACCOUNT_SUCCESS_MESSAGE = 'Аккаунт успешно удален.';
+  'Необходимо повторно пройти авторизацию';
+export const EMAIL_UPDATE_SUCCESS_MESSAGE = 'Email успешно изменен';
+export const PASSWORD_UPDATE_SUCCESS_MESSAGE = 'Пароль успешно изменен';
+export const DELETE_ACCOUNT_SUCCESS_MESSAGE = 'Аккаунт успешно удален';
