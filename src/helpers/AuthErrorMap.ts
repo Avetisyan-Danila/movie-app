@@ -4,7 +4,8 @@ export default {
   'auth/weak-password': 'Пароль должен состоять из 6 символов.',
   'auth/too-many-requests':
     'Из-за многочисленных неудачных попыток запрос был отклонен. Повторите попытку позже.',
-  'auth/email-already-in-use': 'Этот email уже используется.',
+  'auth/email-already-in-use':
+    'Пользователь с таким Email уже зарегистрирован.',
 
   'login-unknown-error': 'Произошла ошибка при авторизации. Попробуйте позже.',
   'register-unknown-error':
