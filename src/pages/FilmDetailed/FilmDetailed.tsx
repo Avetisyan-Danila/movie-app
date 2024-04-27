@@ -93,8 +93,8 @@ export const FilmDetailed = () => {
 
             {filmData.genres && (
               <ul className={styles['genres-list']}>
-                {filmData.genres.map(({ name }, i) => (
-                  <li className={styles['genres-item']} key={i}>
+                {filmData.genres.map(({ name }) => (
+                  <li className={styles['genres-item']} key={name}>
                     {name}
                   </li>
                 ))}
@@ -126,11 +126,11 @@ export const FilmDetailed = () => {
 
           <div className={styles['actors']}>
             {filmData.persons.map(
-              ({ enProfession, name, enName, photo, description }, i) => {
+              ({ id, enProfession, name, enName, photo, description }) => {
                 if (enProfession !== 'actor') return;
 
                 return (
-                  <div className={styles['actor']} key={i}>
+                  <div className={styles['actor']} key={id}>
                     <img src={photo} alt={`Фото актера - ${name}`} />
 
                     <div>

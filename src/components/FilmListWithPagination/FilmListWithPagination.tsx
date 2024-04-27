@@ -46,7 +46,7 @@ export const FilmListWithPagination = ({
     <div className={styles['wrapper']}>
       {data.length > 0 && (
         <div className={styles['list']}>
-          {data.map((film, index) => (
+          {data.map((film) => (
             <FilmCard
               id={film.id}
               name={film.name}
@@ -54,7 +54,7 @@ export const FilmListWithPagination = ({
               genres={film.genres}
               poster={film.poster}
               rating={film.rating}
-              key={`${film.id + index}`}
+              key={`${film.id}`}
             />
           ))}
         </div>
