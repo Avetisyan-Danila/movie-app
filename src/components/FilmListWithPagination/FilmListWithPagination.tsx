@@ -53,6 +53,7 @@ export const FilmListWithPagination = ({
               year={film.year}
               genres={film.genres}
               poster={film.poster}
+              rating={film.rating}
               key={`${film.id + index}`}
             />
           ))}

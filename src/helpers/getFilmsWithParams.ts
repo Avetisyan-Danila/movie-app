@@ -3,7 +3,7 @@ import { addNotification } from './notification.ts';
 import { UrlSearchParams } from '../types/urlSearchParams.ts';
 import { convertSearchParamsToStrings } from './convertSearchParamsToStrings.ts';
 
-export const getFilmWithParams = async <T>(params: UrlSearchParams) => {
+export const getFilmsWithParams = async <T>(params: UrlSearchParams) => {
   try {
     const stringifiedParams = convertSearchParamsToStrings(params);
 

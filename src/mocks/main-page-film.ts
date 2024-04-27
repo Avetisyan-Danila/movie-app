@@ -19,6 +19,7 @@ const film: Film = {
   ageRating: 12,
   description:
     'Наследник знаменитого дома Атрейдесов Пол отправляется вместе с семьей на одну из самых опасных планет во Вселенной — Арракис. Здесь нет ничего, кроме песка, палящего солнца, гигантских чудовищ и основной причины межгалактических конфликтов — невероятно ценного ресурса, который называется меланж. В результате захвата власти Пол вынужден бежать и скрываться, и это становится началом его эпического путешествия. Враждебный мир Арракиса приготовил для него множество тяжелых испытаний, но только тот, кто готов взглянуть в глаза своему страху, достоин стать избранным.',
+  slogan: 'Час настал',
   year: 2021,
   genres: [
     {
@@ -460,7 +461,7 @@ const film: Film = {
       },
       {
         url: 'https://www.youtube.com/embed/8g18jFHCLXk',
-        name: 'Official Main Trailer',
+        name: 'Official MainPage Trailer',
         site: 'youtube',
         type: 'TRAILER',
       },
@@ -472,6 +473,138 @@ const film: Film = {
       },
     ],
   },
+  similarMovies: [
+    {
+      id: 589290,
+      name: 'Бегущий по лезвию 2049',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/33dbf977-208f-448c-8726-d2fafdcced28/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/33dbf977-208f-448c-8726-d2fafdcced28/x1000',
+      },
+      year: 2017,
+      rating: {
+        kp: 7.783,
+      },
+    },
+    {
+      id: 2882,
+      name: 'Дюна',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/4483445/134b13da-8bd4-48ba-a248-097f6eb44f44/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/4483445/134b13da-8bd4-48ba-a248-097f6eb44f44/x1000',
+      },
+      year: 1984,
+      rating: {
+        kp: 6.872,
+      },
+    },
+    {
+      id: 333,
+      name: 'Звёздные войны: Эпизод 4 — Новая надежда',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9bdc6690-de82-4a8c-a114-aa3a353bc1da/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9bdc6690-de82-4a8c-a114-aa3a353bc1da/x1000',
+      },
+      year: 1977,
+      rating: {
+        kp: 8.115,
+      },
+    },
+    {
+      id: 5900,
+      name: 'Хроники Риддика',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/e24dcf5f-5243-4dd9-9df3-655af1eb4b80/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/e24dcf5f-5243-4dd9-9df3-655af1eb4b80/x1000',
+      },
+      year: 2004,
+      rating: {
+        kp: 7.378,
+      },
+    },
+    {
+      id: 251733,
+      name: 'Аватар',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4381-9245-523971e5b4c8/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4381-9245-523971e5b4c8/x1000',
+      },
+      year: 2009,
+      rating: {
+        kp: 7.973,
+      },
+    },
+    {
+      id: 229087,
+      name: 'Дюна',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/3a248746-1ada-43b0-9a20-59587af366b2/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/3a248746-1ada-43b0-9a20-59587af366b2/x1000',
+      },
+      year: 2000,
+      rating: {
+        kp: 7.11,
+      },
+    },
+    {
+      id: 77218,
+      name: 'Дети Дюны',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/b88d7d31-20d6-49dd-83fb-f1aade25cd8d/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/b88d7d31-20d6-49dd-83fb-f1aade25cd8d/x1000',
+      },
+      year: 2003,
+      rating: {
+        kp: 7.225,
+      },
+    },
+    {
+      id: 77540,
+      name: 'Джон Картер',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/76aec0f0-bc47-4715-9818-73d3687da49f/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/76aec0f0-bc47-4715-9818-73d3687da49f/x1000',
+      },
+      year: 2012,
+      rating: {
+        kp: 6.925,
+      },
+    },
+    {
+      id: 462765,
+      name: 'Основание',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/031e4f50-22af-43a1-be8c-39937debbd9c/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/031e4f50-22af-43a1-be8c-39937debbd9c/x1000',
+      },
+      year: 2021,
+      rating: {
+        kp: 6.986,
+      },
+    },
+    {
+      id: 464963,
+      name: 'Игра престолов',
+      poster: {
+        url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/dd78edfd-6a1f-486c-9a86-6acbca940418/orig',
+        previewUrl:
+          'https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/dd78edfd-6a1f-486c-9a86-6acbca940418/x1000',
+      },
+      year: 2011,
+      rating: {
+        kp: 8.979,
+      },
+    },
+  ],
 };
 
 export default film;

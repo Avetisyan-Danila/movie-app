@@ -4,17 +4,19 @@ import { AddToFavoriteButton } from '../AddToFavoriteButton/AddToFavoriteButton.
 import { useFavorites } from '../../hooks/useFavorites.ts';
 import { AddToWatchListButton } from '../AddToWatchListButton/AddToWatchListButton.tsx';
 import { useWatchList } from '../../hooks/useWatchList.ts';
+import { Link } from 'react-router-dom';
+import { Rating } from '../Rating/Rating.tsx';
 
 export const FilmCard = (props: FilmCardProps) => {
-  const { id, name, year, genres, poster } = props;
+  const { id, name, year, genres, poster, rating } = props;
 
   const { isFavorite, addToFavorite, deleteFromFavorite } = useFavorites(
     id,
-    name,
+    name ?? '',
   );
   const { isAdded, addToWatchList, deleteFromWatchList } = useWatchList(
     id,
-    name,
+    name ?? '',
   );
 
   const handleFavoriteClick = async (value: boolean) => {
@@ -34,7 +36,9 @@ export const FilmCard = (props: FilmCardProps) => {
 
   return (
     <div className={styles['card']}>
-      <img className={styles['poster']} src={poster?.previewUrl} alt={name} />
+      <Link to={`/film/${id}`}>
+        <img className={styles['poster']} src={poster?.previewUrl} alt={name} />
+      </Link>
 
       <AddToFavoriteButton
         className={styles['favorite-button']}
@@ -49,13 +53,21 @@ export const FilmCard = (props: FilmCardProps) => {
       />
 
       <div className={styles['info']}>
-        <h4 className={styles['title']}>{name}</h4>
+        <Link to={`/film/${id}`} className={styles['link']}>
+          <h4 className={styles['title']}>
+            {name}
+            {rating && <Rating rating={rating} className={styles['rating']} />}
+          </h4>
+        </Link>
 
         <div className={styles['line']}>
           <div className={styles['info-item']}>{year}</div>
-          <div className={styles['info-item']}>
-            {genres.map((g) => g.name).join(' ')}
-          </div>
+
+          {genres && (
+            <div className={styles['info-item']}>
+              {genres.map(({ name }) => name).join(' ')}
+            </div>
+          )}
         </div>
       </div>
     </div>

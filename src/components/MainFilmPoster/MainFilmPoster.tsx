@@ -2,8 +2,12 @@ import styles from './MainFilmPoster.module.css';
 import cn from 'classnames';
 import { MainFilmPosterProps } from './MainFilmPoster.props.ts';
 import { Button } from '../Button/Button.tsx';
+import { Link } from 'react-router-dom';
+import { Rating } from '../Rating/Rating.tsx';
+import { useCallback, useMemo } from 'react';
 
 export const MainFilmPoster = ({
+  id,
   backdrop,
   name,
   genres,
@@ -12,46 +16,56 @@ export const MainFilmPoster = ({
   rating,
   year,
 }: MainFilmPosterProps) => {
-  const onTrailerClick = () => {
-    if (videos) {
+  const isActionsEnabled = useMemo(() => {
+    return !!videos?.trailers;
+  }, [videos?.trailers]);
+
+  const onTrailerClick = useCallback(() => {
+    if (videos?.trailers.length && videos?.trailers.length > 0) {
       window.open(videos.trailers[0].url!, '_blank', 'noopener, noreferrer');
     }
-  };
+  }, [videos?.trailers]);
 
   return (
     <div
       className={styles['poster']}
       style={{ backgroundImage: `url(${backdrop?.url})` }}
     >
-      <div className={styles['background']}></div>
+      <Link to={`/film/${id}`}>
+        <div className={styles['background']}></div>
+      </Link>
 
       <div className={styles['info']}>
-        <h2 className={styles['title']}>{name}</h2>
+        <Link to={`/film/${id}`} className={styles['link']}>
+          <h2 className={styles['title']}>{name}</h2>
+        </Link>
+
         <p className={styles['description']}>{description}</p>
 
         <div className={styles['line']}>
           <div className={styles['info-item']}>{year}</div>
-          <div className={styles['info-item']}>
-            {genres.map((g) => g.name).join(' ')}
-          </div>
-          <div
-            className={cn(styles['info-item'], [styles['rating']], {
-              [styles['neutral']]: rating.kp < 7,
-              [styles['positive']]: rating.kp >= 7,
-            })}
-          >
-            {rating.kp.toFixed(1)}
-          </div>
+
+          {genres && (
+            <div className={styles['info-item']}>
+              {genres.map(({ name }) => name).join(' ')}
+            </div>
+          )}
+
+          {rating && (
+            <Rating
+              rating={rating}
+              className={cn(styles['info-item'], [styles['rating']])}
+            />
+          )}
         </div>
 
-        <div className={styles['actions']}>
-          <Button
-            onClick={videos ? onTrailerClick : undefined}
-            disabled={!videos}
-          >
-            Смотреть трейлер
-          </Button>
-        </div>
+        {isActionsEnabled && (
+          <div className={styles['actions']}>
+            {videos && (
+              <Button onClick={onTrailerClick}>Смотреть трейлер</Button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

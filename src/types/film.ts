@@ -1,15 +1,18 @@
+import { ShortFilmInfo } from './shortFilmInfo.ts';
+
 export type Film = {
   id: number;
-  genres: Array<{ name: string }>;
-  name: string;
-  description: string;
   year: number;
-  ageRating: number;
-  movieLength: number;
-  rating: {
+
+  genres?: Array<{ name: string }>;
+  description?: string;
+  ageRating?: number;
+  movieLength?: number;
+  rating?: {
     kp: number;
   };
-
+  name?: string;
+  slogan?: string;
   backdrop?: {
     url?: string;
     previewUrl?: string;
@@ -35,4 +38,5 @@ export type Film = {
     profession: string;
     enProfession: string;
   }>;
+  similarMovies?: Array<ShortFilmInfo>;
 };

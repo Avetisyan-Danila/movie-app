@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { getFilmWithParams } from '../helpers/getFilmWithParams.ts';
+import { getFilmsWithParams } from '../helpers/getFilmsWithParams.ts';
 import { addNotification } from '../helpers/notification.ts';
 import { UrlSearchParams } from '../types/urlSearchParams.ts';
 import { ListApiResponse } from '../types/listApiResponse.ts';
@@ -17,7 +17,7 @@ export const usePaginatedData = <T>(
     setIsLoading(true);
 
     try {
-      const data = await getFilmWithParams<ListApiResponse>({
+      const data = await getFilmsWithParams<ListApiResponse>({
         page: currentPage,
         limit: perPage,
         ...params,

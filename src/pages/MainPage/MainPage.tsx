@@ -9,7 +9,7 @@ import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useMemo } from 'react';
 import { FilmsCarouselSection } from '../../components/FilmsCarouselSection/FilmsCarouselSection.tsx';
 
-export const Main = () => {
+export const MainPage = () => {
   const popularFilmsTitle = 'Популярные';
   const closestReleasesTitle = 'Ближайшие премьеры';
 
@@ -32,8 +32,10 @@ export const Main = () => {
 
   return (
     <>
+      {/* TODO: убрать моки */}
       {mainFilm && (
         <MainFilmPoster
+          id={mainFilm.id}
           backdrop={mainFilm.backdrop}
           name={mainFilm.name}
           genres={mainFilm.genres}

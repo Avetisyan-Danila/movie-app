@@ -8,7 +8,7 @@ import 'react-notifications-component/dist/theme.css';
 import { store } from './store/store.ts';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Main } from './pages/Main/Main.tsx';
+import { MainPage } from './pages/MainPage/MainPage.tsx';
 import { RequireAuth } from './helpers/RequireAuth.tsx';
 import { AuthLayout } from './layout/Auth/AuthLayout.tsx';
 import { Layout } from './layout/Layout/Layout.tsx';
@@ -22,6 +22,7 @@ import { Popular } from './pages/Popular/Popular.tsx';
 import { ComingSoon } from './pages/ComingSoon/ComingSoon.tsx';
 import { Settings } from './pages/Settings/Settings.tsx';
 import { Notifications } from './pages/Notifications/Notifications.tsx';
+import { FilmDetailed } from './pages/FilmDetailed/FilmDetailed.tsx';
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Main />,
+        element: <MainPage />,
       },
       {
         path: '/favorites',
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: '/notifications',
         element: <Notifications />,
+      },
+      {
+        path: 'film/:id',
+        element: <FilmDetailed />,
       },
     ],
   },

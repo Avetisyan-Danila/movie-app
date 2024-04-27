@@ -12,7 +12,7 @@
   --light-gray: #e1e1e1;
 
   --positive-rating: #3bb33b;
-  --neutral-rating: #777777;
+  --neutral-rating: #969696;
   --danger-color: #dc3545;
 
   --body-spacing: 40px;
@@ -20,6 +20,8 @@
   --sidebar-active-width: 270px;
   --header-height: 64px;
   --heading-height: 79px;
+
+  --screen-height-without-header: calc(100vh - calc(var(--body-spacing) + var(--header-height) + var(--body-spacing) + var(--body-spacing)));
 }
 
 body {

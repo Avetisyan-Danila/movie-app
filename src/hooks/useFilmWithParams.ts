@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { addNotification } from '../helpers/notification.ts';
 import { UrlSearchParams } from '../types/urlSearchParams.ts';
-import { getFilmWithParams } from '../helpers/getFilmWithParams.ts';
+import { getFilmsWithParams } from '../helpers/getFilmsWithParams.ts';
 import { ListApiResponse } from '../types/listApiResponse.ts';
 
 interface UseFilmWithParamsResult<T> {
@@ -19,7 +19,7 @@ export const useFilmWithParams = <T>(
     const fetchFilm = async () => {
       setIsLoading(true);
       try {
-        const data = await getFilmWithParams<ListApiResponse>(params);
+        const data = await getFilmsWithParams<ListApiResponse>(params);
         setFilmData((data?.docs as T[]) ?? []);
       } catch (error) {
         addNotification('Ошибка при получении данных', 'danger');

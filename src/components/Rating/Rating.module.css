@@ -1,0 +1,11 @@
+.rating {
+  font-weight: 700;
+}
+
+.rating.neutral {
+  color: var(--neutral-rating);
+}
+
+.rating.positive {
+  color: var(--positive-rating);
+}

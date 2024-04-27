@@ -18,11 +18,11 @@ export const FilmsCarouselSection = ({
 
   return (
     <>
-      <Heading withMargin={false}>{title}</Heading>
+      {title && <Heading withMargin={false}>{title}</Heading>}
 
       {loading && <Loader />}
 
-      {!loading && films.length === 0 && (
+      {emptyMessage && !loading && films.length === 0 && (
         <Heading appearance="small" empty={true}>
           {emptyMessage}
         </Heading>
@@ -42,6 +42,7 @@ export const FilmsCarouselSection = ({
                 year={film.year}
                 genres={film.genres}
                 poster={film.poster}
+                rating={film.rating}
               />
             </SwiperSlide>
           ))}
