@@ -1,0 +1,34 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100vh;
+}
+
+.iframe {
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  border: 0;
+}
+
+.title {
+  margin-top: 40px;
+  font-size: 96px;
+  line-height: 104px;
+}
+
+.text {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.link {
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+}

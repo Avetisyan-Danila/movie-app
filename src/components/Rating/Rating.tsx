@@ -3,7 +3,7 @@ import styles from './Rating.module.css';
 import { RatingProps } from './Rating.props.ts';
 
 export const Rating = ({ rating, className }: RatingProps) => {
-  if (!rating) return;
+  if (!rating || rating.kp === 0) return;
 
   return (
     <span

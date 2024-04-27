@@ -34,18 +34,22 @@ export const FilmsCarouselSection = ({
           slidesPerView={slidesPerView}
           slidesPerGroup={slidesPerGroup}
         >
-          {films.map((film) => (
-            <SwiperSlide key={film.id}>
-              <FilmCard
-                id={film.id}
-                name={film.name}
-                year={film.year}
-                genres={film.genres}
-                poster={film.poster}
-                rating={film.rating}
-              />
-            </SwiperSlide>
-          ))}
+          {films.map((film) => {
+            if (!film.name || !film.poster?.previewUrl) return;
+
+            return (
+              <SwiperSlide key={film.id}>
+                <FilmCard
+                  id={film.id}
+                  name={film.name}
+                  year={film.year}
+                  genres={film.genres}
+                  poster={film.poster}
+                  rating={film.rating}
+                />
+              </SwiperSlide>
+            );
+          })}
         </FilmsCarousel>
       )}
     </>
