@@ -3,7 +3,7 @@ import { Film } from '../types/film.ts';
 import { useState, useEffect } from 'react';
 import { addNotification } from '../helpers/notification.ts';
 
-export const useFilmById = (filmId: string | null) => {
+export const useFilmById = (filmId: string | number | null) => {
   const [isLoading, setIsLoading] = useState(false);
   const [filmData, setFilmData] = useState<Film | null>(null);
 
@@ -11,7 +11,7 @@ export const useFilmById = (filmId: string | null) => {
     const fetchFilm = async () => {
       setIsLoading(true);
       try {
-        const { data } = await api.get<Film>(`/movie/${filmId}`);
+        const { data } = await api.get<Film>(`/movie/${String(filmId)}`);
         setFilmData(data);
       } catch (error) {
         addNotification('Ошибка при получении данных', 'danger');

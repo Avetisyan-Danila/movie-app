@@ -11,4 +11,6 @@ export interface MainFilmPosterProps
     | 'videos'
     | 'rating'
     | 'year'
-  > {}
+  > {
+  loading: boolean;
+}

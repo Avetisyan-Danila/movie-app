@@ -1,15 +1,19 @@
-import mainFilm from '../../mocks/main-page-film.ts';
 import { MainFilmPoster } from '../../components/MainFilmPoster/MainFilmPoster.tsx';
 import { useFilmWithParams } from '../../hooks/useFilmWithParams.ts';
 import {
   CLOSEST_RELEASES_FILMS_PARAMS,
+  MAIN_POSTER_FILM_ID,
   POPULAR_FILMS_PARAMS,
 } from '../../helpers/constants.ts';
 import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useMemo } from 'react';
 import { FilmsCarouselSection } from '../../components/FilmsCarouselSection/FilmsCarouselSection.tsx';
+import { useFilmById } from '../../hooks/useFilmById.ts';
 
 export const MainPage = () => {
+  const { filmData: mainPosterFilm, isLoading: mainPosterLoading } =
+    useFilmById(MAIN_POSTER_FILM_ID);
+
   const popularFilmsTitle = 'Популярные';
   const closestReleasesTitle = 'Ближайшие премьеры';
 
@@ -32,17 +36,17 @@ export const MainPage = () => {
 
   return (
     <>
-      {/* TODO: убрать моки */}
-      {mainFilm && (
+      {mainPosterFilm && (
         <MainFilmPoster
-          id={mainFilm.id}
-          backdrop={mainFilm.backdrop}
-          name={mainFilm.name}
-          genres={mainFilm.genres}
-          description={mainFilm.description}
-          videos={mainFilm.videos}
-          rating={mainFilm.rating}
-          year={mainFilm.year}
+          id={mainPosterFilm.id}
+          backdrop={mainPosterFilm.backdrop}
+          name={mainPosterFilm.name}
+          genres={mainPosterFilm.genres}
+          description={mainPosterFilm.description}
+          videos={mainPosterFilm.videos}
+          rating={mainPosterFilm.rating}
+          year={mainPosterFilm.year}
+          loading={mainPosterLoading}
         />
       )}
 
