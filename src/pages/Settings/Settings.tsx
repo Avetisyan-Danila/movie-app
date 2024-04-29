@@ -15,7 +15,6 @@ import { DeleteAccount } from '../../components/DeleteAccount/DeleteAccount.tsx'
 
 export const Settings = () => {
   const status = useSelector(selectStatus);
-
   const dispatch = useAppDispatch();
 
   const handleEmailSubmit = useCallback(

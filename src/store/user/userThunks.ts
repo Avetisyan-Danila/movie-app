@@ -68,6 +68,27 @@ export const logout = createAsyncThunk('user/logout', async () => {
   }
 });
 
+export const updateUserName = createAsyncThunk(
+  'user/updateUserName',
+  async (params: { name: string; password: string }) => {
+    try {
+      await reauthenticateCurrentUser(params.password);
+
+      await updateProfile(auth.currentUser!, {
+        displayName: params.name,
+      });
+
+      return getUserData();
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['updateName-unknown-error']);
+      }
+    }
+  },
+);
+
 export const updateUserEmail = createAsyncThunk(
   'user/updateUserEmail',
   async (params: { newEmail: string; password: string }) => {

@@ -23,6 +23,7 @@ import { ComingSoon } from './pages/ComingSoon/ComingSoon.tsx';
 import { Settings } from './pages/Settings/Settings.tsx';
 import { Notifications } from './pages/Notifications/Notifications.tsx';
 import { FilmDetailed } from './pages/FilmDetailed/FilmDetailed.tsx';
+import { Profile } from './pages/Profile/Profile.tsx';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: 'film/:id',
         element: <FilmDetailed />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
     ],
   },

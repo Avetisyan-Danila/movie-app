@@ -11,6 +11,8 @@ export default {
     'Произошла ошибка при регистрации. Попробуйте позже',
   'logout-unknown-error':
     'Произошла ошибка при попытке выхода из аккаунта. Попробуйте позже',
+  'updateName-unknown-error':
+    'Произошла ошибка при смене имени. Попробуйте позже',
   'updateEmail-unknown-error':
     'Произошла ошибка при смене Email. Попробуйте позже',
   'updatePassword-unknown-error':

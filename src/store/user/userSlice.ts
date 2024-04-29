@@ -9,6 +9,7 @@ import {
   logout,
   register,
   updateUserEmail,
+  updateUserName,
   updateUserPassword,
 } from './userThunks.ts';
 import {
@@ -22,6 +23,7 @@ import {
   DELETE_ACCOUNT_SUCCESS_MESSAGE,
   USER_PERSISTENT_STATE,
   NEED_REAUTHORIZATION_MESSAGE,
+  NAME_UPDATE_SUCCESS_MESSAGE,
 } from '../../helpers/constants.ts';
 
 export interface UserPersistentState {
@@ -89,6 +91,28 @@ export const userSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.status = STATUS_SUCCESS;
         state.jwt = null;
+      })
+
+      .addCase(updateUserName.pending, (state) => {
+        state.status = STATUS_LOADING;
+      })
+      .addCase(updateUserName.fulfilled, (state, action) => {
+        state.status = STATUS_SUCCESS;
+        state.profile = action.payload.user;
+        state.jwt = action.payload.jwt;
+
+        addNotification(NAME_UPDATE_SUCCESS_MESSAGE, 'success');
+      })
+      .addCase(updateUserName.rejected, (state, action) => {
+        state.status = STATUS_FAILED;
+
+        if (action.error.message) {
+          if (action.error.message === NEED_REAUTHORIZATION_MESSAGE) {
+            state.jwt = null;
+          }
+
+          addNotification(action.error.message, 'danger');
+        }
       })
 
       .addCase(updateUserEmail.pending, (state) => {
