@@ -9,6 +9,7 @@ import { useScroll } from '../../hooks/useScroll.ts';
 import { FilmListWithPaginationProps } from './FilmListWithPagination.props.ts';
 
 export const FilmListWithPagination = ({
+  uid,
   fetchDataFunction,
   data,
   isLoading,
@@ -20,14 +21,15 @@ export const FilmListWithPagination = ({
   const { triggerHeight } = useScroll();
 
   useEffect(() => {
-    if (!initialFetchDone.current) {
+    if (!initialFetchDone.current && uid) {
       fetchDataFunction();
       initialFetchDone.current = true;
     }
-  }, [fetchDataFunction]);
+  }, [fetchDataFunction, uid]);
 
   useEffect(() => {
     if (
+      uid &&
       loadAllActive &&
       triggerHeight >= document.body.scrollHeight - 1000 &&
       !isLoadedAll &&
@@ -35,7 +37,14 @@ export const FilmListWithPagination = ({
     ) {
       fetchDataFunction();
     }
-  }, [loadAllActive, triggerHeight, isLoadedAll, isLoading, fetchDataFunction]);
+  }, [
+    uid,
+    loadAllActive,
+    triggerHeight,
+    isLoadedAll,
+    isLoading,
+    fetchDataFunction,
+  ]);
 
   const handleLoadAll = () => {
     fetchDataFunction();

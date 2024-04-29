@@ -13,6 +13,7 @@ import { db } from '../firebase';
 import { addNotification } from '../helpers/notification.ts';
 
 export const useFirestorePaginatedData = <T>(
+  uid: string | undefined,
   collectionName: string,
   orderByField: string,
   perPage: number,
@@ -23,6 +24,8 @@ export const useFirestorePaginatedData = <T>(
   const [isLoadedAll, setIsLoadedAll] = useState(false);
 
   const fetchData = useCallback(async () => {
+    if (!uid) return;
+
     setIsLoading(true);
 
     const collectionRef = collection(db, collectionName);
@@ -56,7 +59,7 @@ export const useFirestorePaginatedData = <T>(
     } finally {
       setIsLoading(false);
     }
-  }, [lastVisible, perPage, collectionName, orderByField]);
+  }, [uid, lastVisible, perPage, collectionName, orderByField]);
 
   return { data, fetchData, isLoading, isLoadedAll };
 };

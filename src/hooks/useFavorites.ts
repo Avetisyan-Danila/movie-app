@@ -4,11 +4,17 @@ import { doc, getDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { addNotification } from '../helpers/notification.ts';
 import { ShortFilmInfo } from '../types/shortFilmInfo.ts';
 
-export const useFavorites = (id: number | string, name: string) => {
+export const useFavorites = (
+  id: number | string,
+  name: string,
+  uid: string | undefined,
+) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const filmRef = doc(db, `favorites/${id}`);
+  const filmRef = doc(db, `users/${uid}/favorites`, id.toString());
 
   useEffect(() => {
+    if (!uid) return;
+
     getDoc(filmRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
@@ -22,9 +28,12 @@ export const useFavorites = (id: number | string, name: string) => {
           'danger',
         );
       });
-  }, [filmRef, id, name]);
+  }, [filmRef, id, name, uid]);
 
   const addToFavorite = (filmData: ShortFilmInfo) => {
+    console.log(uid);
+    if (!uid) return;
+
     setDoc(filmRef, {
       ...filmData,
       createdAt: Timestamp.fromDate(new Date()),
@@ -40,6 +49,8 @@ export const useFavorites = (id: number | string, name: string) => {
   };
 
   const deleteFromFavorite = () => {
+    if (!uid) return;
+
     deleteDoc(filmRef)
       .then(() => setIsFavorite(false))
       .catch((error) => {

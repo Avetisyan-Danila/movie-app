@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { addNotification } from '../../helpers/notification.ts';
 import { Status } from '../../types/status.ts';
 import { Profile } from '../../types/user.ts';
@@ -47,7 +47,11 @@ const initialState: UserState = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setJwt: (state, action: PayloadAction<UserPersistentState['jwt']>) => {
+      state.jwt = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -183,4 +187,5 @@ export const userSlice = createSlice({
   },
 });
 
+export const { setJwt } = userSlice.actions;
 export default userSlice.reducer;

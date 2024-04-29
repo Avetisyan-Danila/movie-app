@@ -4,12 +4,18 @@ import { doc, getDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { addNotification } from '../helpers/notification.ts';
 import { ShortFilmInfo } from '../types/shortFilmInfo.ts';
 
-export const useWatchList = (id: number | string, name: string) => {
+export const useWatchList = (
+  id: number | string,
+  name: string,
+  uid: string | undefined,
+) => {
   const [isAdded, setIsAdded] = useState(false);
-  const filmRef = doc(db, `watchList/${id}`);
+  const watchListRef = doc(db, `users/${uid}/watchList`, id.toString());
 
   useEffect(() => {
-    getDoc(filmRef)
+    if (!uid) return;
+
+    getDoc(watchListRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
           setIsAdded(true);
@@ -22,10 +28,12 @@ export const useWatchList = (id: number | string, name: string) => {
           'danger',
         );
       });
-  }, [filmRef, id, name]);
+  }, [watchListRef, id, name, uid]);
 
   const addToWatchList = (filmData: ShortFilmInfo) => {
-    setDoc(filmRef, {
+    if (!uid) return;
+
+    setDoc(watchListRef, {
       ...filmData,
       createdAt: Timestamp.fromDate(new Date()),
     })
@@ -40,7 +48,9 @@ export const useWatchList = (id: number | string, name: string) => {
   };
 
   const deleteFromWatchList = () => {
-    deleteDoc(filmRef)
+    if (!uid) return;
+
+    deleteDoc(watchListRef)
       .then(() => setIsAdded(false))
       .catch((error) => {
         console.error(error);

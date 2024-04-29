@@ -6,17 +6,23 @@ import { AddToWatchListButton } from '../AddToWatchListButton/AddToWatchListButt
 import { useWatchList } from '../../hooks/useWatchList.ts';
 import { Link } from 'react-router-dom';
 import { Rating } from '../Rating/Rating.tsx';
+import { useAuth } from '../../hooks/useAuth.ts';
 
 export const FilmCard = (props: FilmCardProps) => {
   const { id, name, year, genres, poster, rating } = props;
 
+  const uid = useAuth();
+
   const { isFavorite, addToFavorite, deleteFromFavorite } = useFavorites(
     id,
     name ?? '',
+    uid,
   );
+
   const { isAdded, addToWatchList, deleteFromWatchList } = useWatchList(
     id,
     name ?? '',
+    uid,
   );
 
   const handleFavoriteClick = async (value: boolean) => {
@@ -26,6 +32,7 @@ export const FilmCard = (props: FilmCardProps) => {
       deleteFromFavorite();
     }
   };
+
   const handleWatchListClick = async (value: boolean) => {
     if (value) {
       addToWatchList(props);
