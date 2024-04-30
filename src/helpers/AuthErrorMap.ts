@@ -17,6 +17,8 @@ export default {
     'Произошла ошибка при смене Email. Попробуйте позже',
   'updatePassword-unknown-error':
     'Произошла ошибка при смене пароля. Попробуйте позже',
+  'updateAvatar-unknown-error':
+    'Произошла ошибка при смене фото профиля. Попробуйте позже',
   'deleteAccount-unknown-error':
     'Произошла ошибка при удалении аккаунта. Попробуйте позже',
 } as Record<string, string>;

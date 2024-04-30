@@ -1,0 +1,58 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--body-spacing) / 2);
+}
+
+.upload-block {
+  position: relative;
+
+  width: 352px;
+  height: 352px;
+
+  border-radius: 50%;
+  background-color: var(--light-gray);
+}
+
+.input {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-button {
+  content: 'Загрузить фото';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.input:hover + .upload-button {
+  opacity: 1;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}

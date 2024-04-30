@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 import cn from 'classnames';
 import BellIcon from '../../assets/icons/bell.svg';
-import Avatar from '../../assets/avatar.png';
+import Avatar from '../../assets/icons/avatar.svg';
 
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -68,7 +68,7 @@ export const Header = ({ className }: HeaderProps) => {
         <NavLink to={'/profile'} className={styles['user']}>
           <img
             className={styles['avatar']}
-            src={Avatar}
+            src={profile?.photoUrl || Avatar}
             alt="Аватар пользователя"
           />
           <span>{profile?.name ?? ''}</span>

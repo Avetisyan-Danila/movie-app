@@ -10,6 +10,7 @@ export const getUserData = async () => {
       uid: auth.currentUser.uid,
       email: auth.currentUser.email || '',
       name: auth.currentUser.displayName || '',
+      photoUrl: auth.currentUser.photoURL || '',
     };
 
     await auth.currentUser.getIdToken().then((access_token) => {

@@ -3,6 +3,8 @@ import { db } from '../firebase.ts';
 import { doc, getDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { addNotification } from '../helpers/notification.ts';
 import { ShortFilmInfo } from '../types/shortFilmInfo.ts';
+import { useAppDispatch } from '../store/store.ts';
+import { setJwt } from '../store/user/userSlice.ts';
 
 export const useWatchList = (
   id: number | string,
@@ -11,6 +13,16 @@ export const useWatchList = (
 ) => {
   const [isAdded, setIsAdded] = useState(false);
   const watchListRef = doc(db, `users/${uid}/watchList`, id.toString());
+
+  const dispatch = useAppDispatch();
+
+  const checkAuth = () => {
+    if (!uid) {
+      addNotification('Пользователь не авторизован', 'warning');
+      dispatch(setJwt(null));
+      return;
+    }
+  };
 
   useEffect(() => {
     if (!uid) return;
@@ -31,7 +43,7 @@ export const useWatchList = (
   }, [watchListRef, id, name, uid]);
 
   const addToWatchList = (filmData: ShortFilmInfo) => {
-    if (!uid) return;
+    checkAuth();
 
     setDoc(watchListRef, {
       ...filmData,
@@ -48,7 +60,7 @@ export const useWatchList = (
   };
 
   const deleteFromWatchList = () => {
-    if (!uid) return;
+    checkAuth();
 
     deleteDoc(watchListRef)
       .then(() => setIsAdded(false))

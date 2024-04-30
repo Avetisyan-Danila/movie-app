@@ -107,7 +107,7 @@ export const NameChangeForm = ({ status, onSubmit }: NameChangeFormProps) => {
 
   return (
     <>
-      <form className={styles['block']} onSubmit={handleSubmit}>
+      <form className={styles['form']} onSubmit={handleSubmit}>
         {/*Этот элемент нужен для потого чтобы рассчитать длину для input*/}
         <span ref={inputValueHideElem} className={styles['hide']}>
           {name}

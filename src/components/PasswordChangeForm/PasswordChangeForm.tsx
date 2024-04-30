@@ -96,7 +96,7 @@ export const PasswordChangeForm = ({
 
   return (
     <>
-      <form className={styles['block']} onSubmit={handleSubmit}>
+      <form className={styles['form']} onSubmit={handleSubmit}>
         {isChanging && (
           <>
             <input

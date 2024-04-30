@@ -3,6 +3,8 @@ import { db } from '../firebase.ts';
 import { doc, getDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { addNotification } from '../helpers/notification.ts';
 import { ShortFilmInfo } from '../types/shortFilmInfo.ts';
+import { setJwt } from '../store/user/userSlice.ts';
+import { useAppDispatch } from '../store/store.ts';
 
 export const useFavorites = (
   id: number | string,
@@ -11,6 +13,16 @@ export const useFavorites = (
 ) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const filmRef = doc(db, `users/${uid}/favorites`, id.toString());
+
+  const dispatch = useAppDispatch();
+
+  const checkAuth = () => {
+    if (!uid) {
+      addNotification('Пользователь не авторизован', 'warning');
+      dispatch(setJwt(null));
+      return;
+    }
+  };
 
   useEffect(() => {
     if (!uid) return;
@@ -31,8 +43,7 @@ export const useFavorites = (
   }, [filmRef, id, name, uid]);
 
   const addToFavorite = (filmData: ShortFilmInfo) => {
-    console.log(uid);
-    if (!uid) return;
+    checkAuth();
 
     setDoc(filmRef, {
       ...filmData,
@@ -49,7 +60,7 @@ export const useFavorites = (
   };
 
   const deleteFromFavorite = () => {
-    if (!uid) return;
+    checkAuth();
 
     deleteDoc(filmRef)
       .then(() => setIsFavorite(false))

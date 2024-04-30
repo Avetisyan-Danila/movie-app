@@ -10,10 +10,12 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { FirebaseError } from '@firebase/util';
-import { auth } from '../../firebase.ts';
+import { auth, db, storage } from '../../firebase.ts';
 import { getUserData } from '../../helpers/getUserData.ts';
 import AuthErrorMap from '../../helpers/AuthErrorMap.ts';
 import { reauthenticateCurrentUser } from '../../helpers/reauthenticateCurrentUser.ts';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { doc, setDoc } from 'firebase/firestore';
 
 export const login = createAsyncThunk(
   'user/login',
@@ -84,6 +86,42 @@ export const updateUserName = createAsyncThunk(
         throw new Error(AuthErrorMap[error.code]);
       } else {
         throw new Error(AuthErrorMap['updateName-unknown-error']);
+      }
+    }
+  },
+);
+
+export const updateProfileAvatar = createAsyncThunk(
+  'user/updateProfileAvatar',
+  async (params: { file: File; password: string; uid: string }) => {
+    try {
+      await reauthenticateCurrentUser(params.password);
+
+      // Создание ссылки на файл в Firebase Storage
+      const storageRef = ref(storage, `avatars/${params.uid}/avatar.jpg`);
+
+      // Загрузка файла
+      await uploadBytes(storageRef, params.file);
+
+      // Получение URL загруженного файла
+      const avatarURL = await getDownloadURL(storageRef);
+
+      // Обновление профиля пользователя в Firestore
+      const userDocRef = doc(db, 'users', params.uid);
+      await setDoc(userDocRef, {
+        avatarURL: avatarURL,
+      });
+
+      await updateProfile(auth.currentUser!, {
+        photoURL: avatarURL,
+      });
+
+      return getUserData();
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['updateAvatar-unknown-error']);
       }
     }
   },
