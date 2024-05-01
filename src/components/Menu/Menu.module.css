@@ -25,11 +25,11 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 37px;
 }
 
 .logo img:first-child {
-  transform: translateX(7px);
+  transform: translateX(12px);
 }
 
 @keyframes slideDown {

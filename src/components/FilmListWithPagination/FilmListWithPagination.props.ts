@@ -1,9 +1,11 @@
 import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
+import { UrlSearchParams } from '../../types/urlSearchParams.ts';
 
 export interface FilmListWithPaginationProps {
   uid: string | undefined;
+  params: UrlSearchParams | string;
   data: ShortFilmInfo[];
-  fetchDataFunction: () => Promise<void>;
+  fetchDataFunction: (newParams?: boolean) => Promise<void>;
   isLoading: boolean;
   isLoadedAll: boolean;
   emptyMessage: string;

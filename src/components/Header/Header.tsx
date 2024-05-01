@@ -49,9 +49,9 @@ export const Header = ({ className }: HeaderProps) => {
       })}
     >
       <div className={cn(styles['block'], styles['links'])}>
-        <Link to={'/films'}>Фильмы</Link>
-        <Link to={'/series'}>Сериалы</Link>
-        <Link to={'/documentaries'}>Документальные фильмы</Link>
+        <Link to={'/popular/films'}>Популярные фильмы</Link>
+        <Link to={'/popular/series'}>Популярные сериалы</Link>
+        <Link to={'/popular/documentaries'}>Лучшие документальные фильмы</Link>
       </div>
 
       <div ref={refElement} className={cn(styles['block'], styles['controls'])}>

@@ -48,10 +48,6 @@ const router = createBrowserRouter([
         element: <WatchList />,
       },
       {
-        path: '/popular',
-        element: <Popular />,
-      },
-      {
         path: '/coming-soon',
         element: <ComingSoon />,
       },
@@ -70,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/popular/:type',
+        element: <Popular />,
       },
     ],
   },

@@ -8,6 +8,7 @@ import { FilmsCarouselSection } from '../../components/FilmsCarouselSection/Film
 import { Button } from '../../components/Button/Button.tsx';
 import { Rating } from '../../components/Rating/Rating.tsx';
 import { useFilmById } from '../../hooks/useFilmById.ts';
+import CameraSlash from '../../assets/icons/camera-slash.svg';
 
 export const FilmDetailed = () => {
   const { id } = useParams();
@@ -32,6 +33,8 @@ export const FilmDetailed = () => {
 
   if (!filmData) return;
 
+  console.log(filmData);
+
   return (
     <>
       {filmData.backdrop?.url && (
@@ -46,7 +49,7 @@ export const FilmDetailed = () => {
       <div className={styles['info-wrapper']}>
         <img
           className={styles['poster']}
-          src={filmData.poster?.url}
+          src={filmData.poster?.url ?? CameraSlash}
           alt={`Постер к фильму - ${filmData.name}`}
         />
 
@@ -91,7 +94,7 @@ export const FilmDetailed = () => {
               Жанр
             </Heading>
 
-            {filmData.genres && (
+            {filmData.genres && filmData.genres?.length > 0 && (
               <ul className={styles['genres-list']}>
                 {filmData.genres.map(({ name }) => (
                   <li className={styles['genres-item']} key={name}>
@@ -112,7 +115,7 @@ export const FilmDetailed = () => {
         </div>
       </div>
 
-      {filmData.persons && (
+      {filmData.persons && filmData.persons?.length > 0 && (
         <div className={styles['info-block']}>
           <Heading
             className={styles['info-title']}
@@ -147,7 +150,7 @@ export const FilmDetailed = () => {
         </div>
       )}
 
-      {filmData.similarMovies && (
+      {filmData.similarMovies && filmData.similarMovies?.length > 0 && (
         <div className={styles['info-block']}>
           <Heading
             className={styles['info-title']}

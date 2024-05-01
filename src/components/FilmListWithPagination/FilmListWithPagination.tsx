@@ -10,6 +10,7 @@ import { FilmListWithPaginationProps } from './FilmListWithPagination.props.ts';
 
 export const FilmListWithPagination = ({
   uid,
+  params,
   fetchDataFunction,
   data,
   isLoading,
@@ -26,6 +27,12 @@ export const FilmListWithPagination = ({
       initialFetchDone.current = true;
     }
   }, [fetchDataFunction, uid]);
+
+  useEffect(() => {
+    if (initialFetchDone.current) {
+      fetchDataFunction(true);
+    }
+  }, [params]);
 
   useEffect(() => {
     if (

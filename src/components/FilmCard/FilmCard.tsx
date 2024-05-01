@@ -7,6 +7,8 @@ import { useWatchList } from '../../hooks/useWatchList.ts';
 import { Link } from 'react-router-dom';
 import { Rating } from '../Rating/Rating.tsx';
 import { useAuth } from '../../hooks/useAuth.ts';
+import CameraSlash from '../../assets/icons/camera-slash.svg';
+import cn from 'classnames';
 
 export const FilmCard = (props: FilmCardProps) => {
   const { id, name, year, genres, poster, rating } = props;
@@ -43,8 +45,15 @@ export const FilmCard = (props: FilmCardProps) => {
 
   return (
     <div className={styles['card']}>
-      <Link to={`/film/${id}`}>
-        <img className={styles['poster']} src={poster?.previewUrl} alt={name} />
+      <Link
+        to={`/film/${id}`}
+        className={cn({ [styles['without-image']]: !poster?.previewUrl })}
+      >
+        <img
+          className={styles['poster']}
+          src={poster?.previewUrl ?? CameraSlash}
+          alt={name}
+        />
       </Link>
 
       <AddToFavoriteButton
