@@ -8,6 +8,7 @@ import {
   login,
   logout,
   register,
+  resetPassword,
   updateProfileAvatar,
   updateUserEmail,
   updateUserName,
@@ -26,6 +27,7 @@ import {
   NEED_REAUTHORIZATION_MESSAGE,
   NAME_UPDATE_SUCCESS_MESSAGE,
   AVATAR_UPDATE_SUCCESS_MESSAGE,
+  RESET_EMAIL_SEND_MESSAGE,
 } from '../../helpers/constants.ts';
 
 export interface UserPersistentState {
@@ -97,6 +99,22 @@ export const userSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.status = STATUS_SUCCESS;
         state.jwt = null;
+      })
+
+      .addCase(resetPassword.pending, (state) => {
+        state.status = STATUS_LOADING;
+      })
+      .addCase(resetPassword.fulfilled, (state) => {
+        state.status = STATUS_SUCCESS;
+
+        addNotification(RESET_EMAIL_SEND_MESSAGE, 'success', 15000);
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.status = STATUS_FAILED;
+
+        if (action.error.message) {
+          addNotification(action.error.message, 'danger');
+        }
       })
 
       .addCase(updateUserName.pending, (state) => {

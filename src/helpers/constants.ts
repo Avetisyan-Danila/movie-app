@@ -17,6 +17,8 @@ export const EMAIL_VERIFICATION_MESSAGE =
   'Вам отправлено письмо для подтверждения эл. почты';
 export const NEED_REAUTHORIZATION_MESSAGE =
   'Необходимо повторно пройти авторизацию';
+export const RESET_EMAIL_SEND_MESSAGE =
+  'Письмо для восстановления пароля отправлено';
 export const NAME_UPDATE_SUCCESS_MESSAGE = 'Имя успешно изменено';
 export const AVATAR_UPDATE_SUCCESS_MESSAGE = 'Фото профиля успешно изменено';
 export const EMAIL_UPDATE_SUCCESS_MESSAGE = 'Email успешно изменен';

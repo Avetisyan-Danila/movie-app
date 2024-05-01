@@ -24,6 +24,7 @@ import { Settings } from './pages/Settings/Settings.tsx';
 import { Notifications } from './pages/Notifications/Notifications.tsx';
 import { FilmDetailed } from './pages/FilmDetailed/FilmDetailed.tsx';
 import { Profile } from './pages/Profile/Profile.tsx';
+import { ResetPassword } from './pages/ResetPassword/ResetPassword.tsx';
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+      },
+      {
+        path: 'reset-password',
+        element: <ResetPassword />,
       },
     ],
   },

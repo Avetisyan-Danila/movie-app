@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectJwt, selectStatus } from '../../store/user/userSelectors.ts';
 import { useNavigate } from 'react-router-dom';
 import { STATUS_LOADING } from '../../helpers/constants.ts';
+import { Link } from '../../components/Link/Link.tsx';
 
 interface LoginForm {
   email: {
@@ -67,6 +68,10 @@ export const Login = () => {
         required
         autoComplete="on"
       />
+
+      <Link to={'/auth/reset-password'} className={styles['reset-link']}>
+        Забыли пароль?
+      </Link>
 
       <Button
         className={styles['button']}

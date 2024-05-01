@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   deleteUser,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateEmail,
@@ -69,6 +70,21 @@ export const logout = createAsyncThunk('user/logout', async () => {
     }
   }
 });
+
+export const resetPassword = createAsyncThunk(
+  'user/resetPassword',
+  async (params: { email: string }) => {
+    try {
+      await sendPasswordResetEmail(auth, params.email);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        throw new Error(AuthErrorMap[error.code]);
+      } else {
+        throw new Error(AuthErrorMap['resetPassword-unknown-error']);
+      }
+    }
+  },
+);
 
 export const updateUserName = createAsyncThunk(
   'user/updateUserName',

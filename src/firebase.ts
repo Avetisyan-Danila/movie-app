@@ -17,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+auth.languageCode = 'ru';
 
 export const db = getFirestore(app);
 export const storage = getStorage(app);
