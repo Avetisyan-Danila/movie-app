@@ -4,7 +4,6 @@ import { MainFilmPosterProps } from './MainFilmPoster.props.ts';
 import { Button } from '../Button/Button.tsx';
 import { Link } from 'react-router-dom';
 import { Rating } from '../Rating/Rating.tsx';
-import { useCallback, useMemo } from 'react';
 import { Loader } from '../Loader/Loader.tsx';
 
 export const MainFilmPoster = ({
@@ -18,15 +17,11 @@ export const MainFilmPoster = ({
   year,
   loading,
 }: MainFilmPosterProps) => {
-  const isActionsEnabled = useMemo(() => {
-    return !!videos?.trailers;
-  }, [videos?.trailers]);
-
-  const onTrailerClick = useCallback(() => {
+  const onTrailerClick = () => {
     if (videos?.trailers.length && videos?.trailers.length > 0) {
       window.open(videos.trailers[0].url!, '_blank', 'noopener, noreferrer');
     }
-  }, [videos?.trailers]);
+  };
 
   return (
     <>
@@ -65,7 +60,7 @@ export const MainFilmPoster = ({
               )}
             </div>
 
-            {isActionsEnabled && (
+            {!!videos?.trailers && (
               <div className={styles['actions']}>
                 {videos && (
                   <Button onClick={onTrailerClick}>Смотреть трейлер</Button>

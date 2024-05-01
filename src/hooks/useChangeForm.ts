@@ -1,10 +1,4 @@
-import {
-  useState,
-  useCallback,
-  useEffect,
-  FormEvent,
-  ChangeEvent,
-} from 'react';
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../store/user/userSelectors.ts';
 import { usePasswordConfirmationModal } from './usePasswordConfirmationModal.ts';
@@ -51,41 +45,38 @@ export const useChangeForm = ({
     }
   }, [profile, field, status]);
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-  }, []);
+  };
 
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
 
-      if (profile && field && value === profile[field]) {
-        setIsChanging(false);
-        return;
-      }
+    if (profile && field && value === profile[field]) {
+      setIsChanging(false);
+      return;
+    }
 
-      openModal();
-    },
-    [value, profile, field, openModal],
-  );
+    openModal();
+  };
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = () => {
     if (profile && field) {
       setValue(profile[field]);
     }
 
     setIsChanging(false);
-  }, [profile, field]);
+  };
 
-  const handleModalConfirm = useCallback(() => {
+  const handleModalConfirm = () => {
     onSubmit(value, password);
     closeModal();
-  }, [value, password, onSubmit, closeModal]);
+  };
 
-  const handleModalCancel = useCallback(() => {
+  const handleModalCancel = () => {
     closeModal();
     handleCancel();
-  }, [closeModal, handleCancel]);
+  };
 
   return {
     value,

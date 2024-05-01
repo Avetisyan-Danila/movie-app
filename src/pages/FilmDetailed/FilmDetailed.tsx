@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import styles from './FilmDetailed.module.css';
 import { Heading } from '../../components/Heading/Heading.tsx';
 import ClockIcon from '../../assets/icons/clock.svg';
@@ -17,11 +17,7 @@ export const FilmDetailed = () => {
 
   const { filmData, isLoading } = useFilmById(params.id);
 
-  const isActionsEnabled = useMemo(() => {
-    return !!filmData?.videos?.trailers;
-  }, [filmData?.videos?.trailers]);
-
-  const onTrailerClick = useCallback(() => {
+  const onTrailerClick = () => {
     if (filmData?.videos?.trailers && filmData?.videos?.trailers.length > 0) {
       window.open(
         filmData.videos.trailers[0].url!,
@@ -29,7 +25,7 @@ export const FilmDetailed = () => {
         'noopener, noreferrer',
       );
     }
-  }, [filmData?.videos?.trailers]);
+  };
 
   if (!filmData) return;
 
@@ -105,7 +101,7 @@ export const FilmDetailed = () => {
             )}
           </div>
 
-          {isActionsEnabled && (
+          {!!filmData?.videos?.trailers && (
             <div className={styles['actions']}>
               {filmData.videos && (
                 <Button onClick={onTrailerClick}>Смотреть трейлер</Button>

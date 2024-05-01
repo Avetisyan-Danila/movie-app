@@ -1,5 +1,5 @@
 import { EmailChangeFormProps } from './EmailChangeForm.props.ts';
-import { ChangeEvent, useCallback, useEffect, useRef } from 'react';
+import { ChangeEvent, useEffect, useRef } from 'react';
 import Input from '../Input/Input.tsx';
 import styles from './EmailChangeForm.module.css';
 import { useSelector } from 'react-redux';
@@ -37,12 +37,9 @@ export const EmailChangeForm = ({ status, onSubmit }: EmailChangeFormProps) => {
     }
   }, [isChanging]);
 
-  const handlePasswordInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-    },
-    [setPassword],
-  );
+  const handlePasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <>

@@ -3,7 +3,6 @@ import styles from '../Settings/Settings.module.css';
 import { useSelector } from 'react-redux';
 import { selectStatus } from '../../store/user/userSelectors.ts';
 import { NameChangeForm } from '../../components/NameChangeForm/NameChangeForm.tsx';
-import { useCallback } from 'react';
 import { useAppDispatch } from '../../store/store.ts';
 import {
   updateProfileAvatar,
@@ -15,19 +14,13 @@ export const Profile = () => {
   const status = useSelector(selectStatus);
   const dispatch = useAppDispatch();
 
-  const handleAvatarSubmit = useCallback(
-    (file: File, password: string, uid: string) => {
-      dispatch(updateProfileAvatar({ file, password, uid }));
-    },
-    [dispatch],
-  );
+  const handleAvatarSubmit = (file: File, password: string, uid: string) => {
+    dispatch(updateProfileAvatar({ file, password, uid }));
+  };
 
-  const handleNameSubmit = useCallback(
-    (name: string, password: string) => {
-      dispatch(updateUserName({ name, password }));
-    },
-    [dispatch],
-  );
+  const handleNameSubmit = (name: string, password: string) => {
+    dispatch(updateUserName({ name, password }));
+  };
 
   return (
     <>

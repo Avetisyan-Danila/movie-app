@@ -2,7 +2,6 @@ import { Heading } from '../../components/Heading/Heading.tsx';
 import styles from './Settings.module.css';
 import { useSelector } from 'react-redux';
 import { selectStatus } from '../../store/user/userSelectors.ts';
-import { useCallback } from 'react';
 import { useAppDispatch } from '../../store/store.ts';
 import {
   deleteAccount,
@@ -17,26 +16,17 @@ export const Settings = () => {
   const status = useSelector(selectStatus);
   const dispatch = useAppDispatch();
 
-  const handleEmailSubmit = useCallback(
-    (email: string, password: string) => {
-      dispatch(updateUserEmail({ newEmail: email, password }));
-    },
-    [dispatch],
-  );
+  const handleEmailSubmit = (email: string, password: string) => {
+    dispatch(updateUserEmail({ newEmail: email, password }));
+  };
 
-  const handlePasswordSubmit = useCallback(
-    (newPassword: string, oldPassword: string) => {
-      dispatch(updateUserPassword({ newPassword, oldPassword: oldPassword }));
-    },
-    [dispatch],
-  );
+  const handlePasswordSubmit = (newPassword: string, oldPassword: string) => {
+    dispatch(updateUserPassword({ newPassword, oldPassword: oldPassword }));
+  };
 
-  const handleDeleteAccount = useCallback(
-    (password: string) => {
-      dispatch(deleteAccount({ password }));
-    },
-    [dispatch],
-  );
+  const handleDeleteAccount = (password: string) => {
+    dispatch(deleteAccount({ password }));
+  };
 
   return (
     <>

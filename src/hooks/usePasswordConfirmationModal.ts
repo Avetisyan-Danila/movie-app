@@ -1,17 +1,17 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 export const usePasswordConfirmationModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [password, setPassword] = useState('');
 
-  const openModal = useCallback(() => {
+  const openModal = () => {
     setIsModalOpen(true);
-  }, []);
+  };
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setIsModalOpen(false);
     setPassword('');
-  }, []);
+  };
 
   return {
     isModalOpen,

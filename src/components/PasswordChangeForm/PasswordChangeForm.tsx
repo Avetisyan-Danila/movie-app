@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useRef } from 'react';
+import { ChangeEvent, useEffect, useRef } from 'react';
 import Input from '../Input/Input.tsx';
 import styles from './PasswordChangeForm.module.css';
 import { PasswordChangeFormProps } from './PasswordChangeForm.props.ts';
@@ -41,12 +41,9 @@ export const PasswordChangeForm = ({
     }
   }, [isChanging]);
 
-  const handleOldPasswordInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setOldPassword(e.target.value);
-    },
-    [setOldPassword],
-  );
+  const handleOldPasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setOldPassword(e.target.value);
+  };
 
   return (
     <>

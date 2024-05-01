@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Input from '../Input/Input.tsx';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
@@ -56,39 +50,33 @@ export const ProfileAvatarUploader = ({
     }
   };
 
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
 
-      if (!uid) {
-        addNotification('Пользователь не авторизован', 'warning');
-        dispatch(setJwt(null));
-        return;
-      }
+    if (!uid) {
+      addNotification('Пользователь не авторизован', 'warning');
+      dispatch(setJwt(null));
+      return;
+    }
 
-      if (!file) {
-        addNotification('Файл не выбран', 'warning');
-        return;
-      }
+    if (!file) {
+      addNotification('Файл не выбран', 'warning');
+      return;
+    }
 
-      openModal();
-    },
-    [dispatch, file, openModal, uid],
-  );
+    openModal();
+  };
 
   const onCancel = () => {
     setFile(null);
     setPreviewSrc(null);
   };
 
-  const handlePasswordInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-    },
-    [setPassword],
-  );
+  const handlePasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
-  const handleModalConfirm = useCallback(() => {
+  const handleModalConfirm = () => {
     if (!uid) {
       addNotification('Пользователь не авторизован', 'warning');
       dispatch(setJwt(null));
@@ -102,13 +90,12 @@ export const ProfileAvatarUploader = ({
 
     onSubmit(file, password, uid);
     closeModal();
-  }, [closeModal, dispatch, file, onSubmit, password, uid]);
+  };
 
-  const handleModalCancel = useCallback(() => {
+  const handleModalCancel = () => {
     closeModal();
-
     onCancel();
-  }, [closeModal]);
+  };
 
   return (
     <>

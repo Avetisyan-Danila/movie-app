@@ -2,7 +2,7 @@ import { Button } from '../Button/Button.tsx';
 import { Confirm } from '../Confirm/Confirm.tsx';
 import Input from '../Input/Input.tsx';
 import { DeleteAccountProps } from './DeleteAccount.props.ts';
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
 import { usePasswordConfirmationModal } from '../../hooks/usePasswordConfirmationModal.ts';
@@ -14,26 +14,22 @@ export const DeleteAccount = ({ status, onSubmit }: DeleteAccountProps) => {
 
   const profile = useSelector(selectProfile);
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     openModal();
-  }, [openModal]);
+  };
 
-  const handlePasswordInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-    },
-    [setPassword],
-  );
+  const handlePasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
-  const handleModalConfirm = useCallback(() => {
+  const handleModalConfirm = () => {
     onSubmit(password);
-
     closeModal();
-  }, [closeModal, onSubmit, password]);
+  };
 
-  const handleModalCancel = useCallback(() => {
+  const handleModalCancel = () => {
     closeModal();
-  }, [closeModal]);
+  };
 
   return (
     <>
