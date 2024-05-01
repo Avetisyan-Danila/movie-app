@@ -1,13 +1,13 @@
 import { ChangeEvent, useCallback, useEffect, useRef } from 'react';
 import Input from '../Input/Input.tsx';
 import styles from './PasswordChangeForm.module.css';
-import { Button } from '../Button/Button.tsx';
 import { PasswordChangeFormProps } from './PasswordChangeForm.props.ts';
-import { Confirm } from '../Confirm/Confirm.tsx';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
 import { STATUS_LOADING } from '../../helpers/constants.ts';
 import { useChangeForm } from '../../hooks/useChangeForm.ts';
+import { PasswordConfirmationModal } from '../PasswordConfirmationModal/PasswordConfirmationModal.tsx';
+import { FormControls } from '../FormControls/FormControls.tsx';
 
 export const PasswordChangeForm = ({
   status,
@@ -77,61 +77,24 @@ export const PasswordChangeForm = ({
           </>
         )}
 
-        {!isChanging && (
-          <Button
-            onClick={() => setIsChanging(true)}
-            disabled={status === STATUS_LOADING}
-            type="button"
-          >
-            Сменить пароль
-          </Button>
-        )}
-
-        {isChanging && (
-          <>
-            <Button disabled={status === STATUS_LOADING} type="submit">
-              Сохранить
-            </Button>
-
-            <Button
-              color="danger"
-              onClick={handleCancel}
-              disabled={status === STATUS_LOADING}
-              type="button"
-            >
-              Отмена
-            </Button>
-          </>
-        )}
+        <FormControls
+          isChanging={isChanging}
+          statusLoading={status === STATUS_LOADING}
+          onEditClick={() => setIsChanging(true)}
+          onSaveClick={handleSubmit}
+          onCancelClick={handleCancel}
+          isPasswordChange={true}
+        />
       </form>
 
-      {isModalOpen && (
-        <Confirm
-          title="Подтверждение"
-          message="Введите пароль для подтверждения смены пароля"
-          onConfirm={handleModalConfirm}
-          onCancel={handleModalCancel}
-        >
-          <input
-            className="visually-hidden"
-            type="text"
-            readOnly={true}
-            autoComplete="username email"
-            value={profile?.email}
-          />
-
-          <Input
-            id="password"
-            label="Пароль"
-            type="password"
-            placeholder="Пароль"
-            autoComplete="new-password"
-            value={oldPassword}
-            onChange={handleOldPasswordInputChange}
-            required={true}
-          />
-        </Confirm>
-      )}
+      <PasswordConfirmationModal
+        isModalOpen={isModalOpen}
+        email={profile?.email || ''}
+        password={oldPassword}
+        onPasswordChange={handleOldPasswordInputChange}
+        onConfirm={handleModalConfirm}
+        onCancel={handleModalCancel}
+      />
     </>
   );
 };

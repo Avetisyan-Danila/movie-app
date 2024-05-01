@@ -58,10 +58,12 @@ export const useChangeForm = ({
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
+
       if (profile && field && value === profile[field]) {
         setIsChanging(false);
         return;
       }
+
       openModal();
     },
     [value, profile, field, openModal],
