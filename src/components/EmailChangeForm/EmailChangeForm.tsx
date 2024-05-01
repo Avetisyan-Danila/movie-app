@@ -1,51 +1,35 @@
 import { EmailChangeFormProps } from './EmailChangeForm.props.ts';
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import Input from '../Input/Input.tsx';
 import styles from './EmailChangeForm.module.css';
 import { Button } from '../Button/Button.tsx';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
 import { Confirm } from '../Confirm/Confirm.tsx';
-import { usePasswordConfirmationModal } from '../../hooks/usePasswordConfirmationModal.ts';
-import {
-  STATUS_FAILED,
-  STATUS_LOADING,
-  STATUS_SUCCESS,
-} from '../../helpers/constants.ts';
+import { STATUS_LOADING } from '../../helpers/constants.ts';
+import { useChangeForm } from '../../hooks/useChangeForm.ts';
 
 export const EmailChangeForm = ({ status, onSubmit }: EmailChangeFormProps) => {
   const [width, setWidth] = useState(0);
 
-  const [email, setEmail] = useState<string | undefined>('');
-  const [isChanging, setIsChanging] = useState(false);
-
-  const { isModalOpen, password, setPassword, openModal, closeModal } =
-    usePasswordConfirmationModal();
+  const {
+    value: email,
+    isChanging,
+    isModalOpen,
+    password,
+    handleChange,
+    handleSubmit,
+    handleCancel,
+    handleModalConfirm,
+    handleModalCancel,
+    setPassword,
+    setIsChanging,
+  } = useChangeForm({ field: 'email', status, onSubmit });
 
   const profile = useSelector(selectProfile);
 
   const inputValueHideElem = useRef<HTMLSpanElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    setEmail(profile?.email);
-  }, [profile?.email]);
-
-  useEffect(() => {
-    if (status === STATUS_FAILED) {
-      setEmail(profile?.email);
-      setIsChanging(false);
-    } else if (status === STATUS_SUCCESS) {
-      setIsChanging(false);
-    }
-  }, [profile?.email, status]);
 
   useEffect(() => {
     if (isChanging) {
@@ -59,51 +43,12 @@ export const EmailChangeForm = ({ status, onSubmit }: EmailChangeFormProps) => {
     }
   }, [email, inputValueHideElem.current?.offsetWidth, isChanging]);
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  }, []);
-
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-
-      if (!email) return;
-
-      if (email === profile?.email) {
-        setIsChanging(false);
-        return;
-      }
-
-      openModal();
-    },
-    [email, openModal, profile?.email],
-  );
-
-  const handleCancel = useCallback(() => {
-    setIsChanging(false);
-    setEmail(profile?.email);
-  }, [profile?.email]);
-
   const handlePasswordInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
     },
     [setPassword],
   );
-
-  const handleModalConfirm = useCallback(() => {
-    if (!email) return;
-
-    onSubmit(email, password);
-    closeModal();
-  }, [closeModal, email, onSubmit, password]);
-
-  const handleModalCancel = useCallback(() => {
-    closeModal();
-
-    setIsChanging(false);
-    setEmail(profile?.email);
-  }, [closeModal, profile?.email]);
 
   return (
     <>

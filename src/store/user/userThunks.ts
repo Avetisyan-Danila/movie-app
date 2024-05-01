@@ -171,8 +171,6 @@ export const updateUserPassword = createAsyncThunk(
       await reauthenticateCurrentUser(params.oldPassword);
 
       await updatePassword(auth.currentUser!, params.newPassword);
-
-      return getUserData();
     } catch (error) {
       if (error instanceof FirebaseError) {
         throw new Error(AuthErrorMap[error.code]);

@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef } from 'react';
 import Input from '../Input/Input.tsx';
 import styles from './PasswordChangeForm.module.css';
 import { Button } from '../Button/Button.tsx';
@@ -13,40 +6,34 @@ import { PasswordChangeFormProps } from './PasswordChangeForm.props.ts';
 import { Confirm } from '../Confirm/Confirm.tsx';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
-import { usePasswordConfirmationModal } from '../../hooks/usePasswordConfirmationModal.ts';
-import {
-  STATUS_FAILED,
-  STATUS_LOADING,
-  STATUS_SUCCESS,
-} from '../../helpers/constants.ts';
+import { STATUS_LOADING } from '../../helpers/constants.ts';
+import { useChangeForm } from '../../hooks/useChangeForm.ts';
 
 export const PasswordChangeForm = ({
   status,
   onSubmit,
 }: PasswordChangeFormProps) => {
-  const [password, setPassword] = useState('');
-  const [isChanging, setIsChanging] = useState(false);
-
   const {
+    value: newPassword,
+    isChanging,
     isModalOpen,
     password: oldPassword,
+    handleChange: handleNewPasswordChange,
+    handleSubmit,
+    handleCancel,
+    handleModalConfirm,
+    handleModalCancel,
     setPassword: setOldPassword,
-    openModal,
-    closeModal,
-  } = usePasswordConfirmationModal();
+    setIsChanging,
+  } = useChangeForm({
+    status,
+    onSubmit,
+    isPasswordChange: true,
+  });
 
   const profile = useSelector(selectProfile);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    if (status === STATUS_FAILED) {
-      setPassword('');
-      setIsChanging(false);
-    } else if (status === STATUS_SUCCESS) {
-      setIsChanging(false);
-    }
-  }, [status]);
 
   useEffect(() => {
     if (isChanging) {
@@ -54,45 +41,12 @@ export const PasswordChangeForm = ({
     }
   }, [isChanging]);
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  }, []);
-
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-      if (!password) return;
-
-      openModal();
-    },
-    [openModal, password],
-  );
-
-  const handleCancel = useCallback(() => {
-    setIsChanging(false);
-    setPassword('');
-  }, []);
-
   const handleOldPasswordInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setOldPassword(e.target.value);
     },
     [setOldPassword],
   );
-
-  const handleModalConfirm = useCallback(() => {
-    if (!password) return;
-
-    onSubmit(password, oldPassword);
-    closeModal();
-  }, [password, onSubmit, oldPassword, closeModal]);
-
-  const handleModalCancel = useCallback(() => {
-    closeModal();
-
-    setIsChanging(false);
-    setPassword('');
-  }, [closeModal]);
 
   return (
     <>
@@ -114,8 +68,8 @@ export const PasswordChangeForm = ({
               type="password"
               placeholder="Пароль"
               autoComplete="new-password"
-              value={password}
-              onChange={handleChange}
+              value={newPassword}
+              onChange={handleNewPasswordChange}
               disabled={!isChanging}
               required={true}
               minLength={6}

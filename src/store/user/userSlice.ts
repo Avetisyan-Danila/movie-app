@@ -187,10 +187,9 @@ export const userSlice = createSlice({
       .addCase(updateUserPassword.pending, (state) => {
         state.status = STATUS_LOADING;
       })
-      .addCase(updateUserPassword.fulfilled, (state, action) => {
+      .addCase(updateUserPassword.fulfilled, (state) => {
         state.status = STATUS_SUCCESS;
-        state.profile = action.payload.user;
-        state.jwt = action.payload.jwt;
+        state.jwt = null;
 
         addNotification(PASSWORD_UPDATE_SUCCESS_MESSAGE, 'success');
       })

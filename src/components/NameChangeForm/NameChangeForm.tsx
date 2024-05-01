@@ -1,51 +1,35 @@
 import { NameChangeFormProps } from './NameChangeForm.props.ts';
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import Input from '../Input/Input.tsx';
 import styles from './NameChangeForm.module.css';
 import { Button } from '../Button/Button.tsx';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
 import { Confirm } from '../Confirm/Confirm.tsx';
-import { usePasswordConfirmationModal } from '../../hooks/usePasswordConfirmationModal.ts';
-import {
-  STATUS_FAILED,
-  STATUS_LOADING,
-  STATUS_SUCCESS,
-} from '../../helpers/constants.ts';
+import { STATUS_LOADING } from '../../helpers/constants.ts';
+import { useChangeForm } from '../../hooks/useChangeForm.ts';
 
 export const NameChangeForm = ({ status, onSubmit }: NameChangeFormProps) => {
   const [width, setWidth] = useState(0);
 
-  const [name, setName] = useState<string | undefined>('');
-  const [isChanging, setIsChanging] = useState(false);
-
-  const { isModalOpen, password, setPassword, openModal, closeModal } =
-    usePasswordConfirmationModal();
+  const {
+    value: name,
+    isChanging,
+    isModalOpen,
+    password,
+    handleChange,
+    handleSubmit,
+    handleCancel,
+    handleModalConfirm,
+    handleModalCancel,
+    setPassword,
+    setIsChanging,
+  } = useChangeForm({ field: 'name', status, onSubmit });
 
   const profile = useSelector(selectProfile);
 
   const inputValueHideElem = useRef<HTMLSpanElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    setName(profile?.name);
-  }, [profile?.name]);
-
-  useEffect(() => {
-    if (status === STATUS_FAILED) {
-      setName(profile?.name);
-      setIsChanging(false);
-    } else if (status === STATUS_SUCCESS) {
-      setIsChanging(false);
-    }
-  }, [profile?.name, status]);
 
   useEffect(() => {
     if (isChanging) {
@@ -59,51 +43,12 @@ export const NameChangeForm = ({ status, onSubmit }: NameChangeFormProps) => {
     }
   }, [name, inputValueHideElem.current?.offsetWidth, isChanging]);
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  }, []);
-
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-
-      if (!name) return;
-
-      if (name === profile?.name) {
-        setIsChanging(false);
-        return;
-      }
-
-      openModal();
-    },
-    [name, openModal, profile?.name],
-  );
-
-  const handleCancel = useCallback(() => {
-    setIsChanging(false);
-    setName(profile?.name);
-  }, [profile?.name]);
-
   const handlePasswordInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
     },
     [setPassword],
   );
-
-  const handleModalConfirm = useCallback(() => {
-    if (!name) return;
-
-    onSubmit(name, password);
-    closeModal();
-  }, [closeModal, name, onSubmit, password]);
-
-  const handleModalCancel = useCallback(() => {
-    closeModal();
-
-    setIsChanging(false);
-    setName(profile?.name);
-  }, [closeModal, profile?.name]);
 
   return (
     <>
