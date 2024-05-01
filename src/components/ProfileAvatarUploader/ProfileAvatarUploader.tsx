@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import Input from '../Input/Input.tsx';
 import { useSelector } from 'react-redux';
 import { selectProfile } from '../../store/user/userSelectors.ts';
@@ -10,7 +16,11 @@ import { addNotification } from '../../helpers/notification.ts';
 import { setJwt } from '../../store/user/userSlice.ts';
 import { useAuth } from '../../hooks/useAuth.ts';
 import { useAppDispatch } from '../../store/store.ts';
-import { STATUS_LOADING } from '../../helpers/constants.ts';
+import {
+  STATUS_FAILED,
+  STATUS_LOADING,
+  STATUS_SUCCESS,
+} from '../../helpers/constants.ts';
 import Avatar from '../../assets/icons/avatar.svg';
 import styles from './ProfileAvatarUploader.module.css';
 
@@ -28,6 +38,12 @@ export const ProfileAvatarUploader = ({
   const dispatch = useAppDispatch();
   const profile = useSelector(selectProfile);
 
+  useEffect(() => {
+    if (status === STATUS_FAILED || status === STATUS_SUCCESS) {
+      onCancel();
+    }
+  }, [profile?.photoUrl, status]);
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
@@ -35,6 +51,8 @@ export const ProfileAvatarUploader = ({
 
       setFile(file);
       setPreviewSrc(src);
+
+      e.target.value = '';
     }
   };
 
@@ -57,6 +75,11 @@ export const ProfileAvatarUploader = ({
     },
     [dispatch, file, openModal, uid],
   );
+
+  const onCancel = () => {
+    setFile(null);
+    setPreviewSrc(null);
+  };
 
   const handlePasswordInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +106,8 @@ export const ProfileAvatarUploader = ({
 
   const handleModalCancel = useCallback(() => {
     closeModal();
-    setFile(null);
+
+    onCancel();
   }, [closeModal]);
 
   return (
@@ -92,7 +116,7 @@ export const ProfileAvatarUploader = ({
         <div className={styles['upload-block']}>
           <img
             className={styles['avatar']}
-            src={profile?.photoUrl || previewSrc || Avatar}
+            src={previewSrc || profile?.photoUrl || Avatar}
             alt="Аватар пользователя"
           />
 
@@ -107,9 +131,20 @@ export const ProfileAvatarUploader = ({
         </div>
 
         {file && (
-          <Button type="submit" disabled={status === STATUS_LOADING}>
-            Сохранить
-          </Button>
+          <div className={styles['actions']}>
+            <Button type="submit" disabled={status === STATUS_LOADING}>
+              Сохранить
+            </Button>
+
+            <Button
+              onClick={onCancel}
+              type="button"
+              color="danger"
+              disabled={status === STATUS_LOADING}
+            >
+              Отмена
+            </Button>
+          </div>
         )}
       </form>
 
