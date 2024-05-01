@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 60px;
+  gap: 20px;
 
   transition: 0.4s ease;
 }
@@ -22,13 +22,14 @@
   align-items: center;
   gap: 24px;
 
-  max-width: 50%;
+  max-width: 30%;
 }
 
 .block.links {
   flex-wrap: wrap;
-  background-color: transparent;
+  max-width: 70%;
 
+  background-color: transparent;
   transition: 0.4s ease;
 }
 
@@ -84,13 +85,10 @@
 }
 
 @keyframes fillBg {
-  from {
+  0% {
     background-color: transparent;
   }
-  50% {
+  100% {
     background-color: transparent;
-  }
-  to {
-    background-color: var(--primary-color);
   }
 }
