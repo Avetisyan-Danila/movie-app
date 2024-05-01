@@ -3,8 +3,11 @@ import { FilmListWithPagination } from '../../components/FilmListWithPagination/
 import { usePaginatedData } from '../../hooks/usePaginatedData.ts';
 import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { PER_PAGE, POPULAR_FILMS_PARAMS } from '../../helpers/constants.ts';
+import { useAuth } from '../../hooks/useAuth.ts';
 
 export const Popular = () => {
+  const uid = useAuth();
+
   const { data, fetchData, isLoading, isLoadedAll } =
     usePaginatedData<ShortFilmInfo>(PER_PAGE, POPULAR_FILMS_PARAMS);
 
@@ -15,6 +18,7 @@ export const Popular = () => {
       <Heading>Популярные</Heading>
 
       <FilmListWithPagination
+        uid={uid}
         data={data}
         fetchDataFunction={fetchData}
         isLoading={isLoading}
