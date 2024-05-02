@@ -12,6 +12,10 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--body-spacing);
+
+  @media (max-width: 1480px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .first-load {

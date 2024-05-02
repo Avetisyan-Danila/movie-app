@@ -9,9 +9,12 @@ import { ShortFilmInfo } from '../../types/shortFilmInfo.ts';
 import { useMemo } from 'react';
 import { FilmsCarouselSection } from '../../components/FilmsCarouselSection/FilmsCarouselSection.tsx';
 import { useFilmById } from '../../hooks/useFilmById.ts';
+import useWindowSize from '../../hooks/useWindowSize.ts';
 
 export const MainPage = () => {
   const URL = '/movie';
+
+  const { width } = useWindowSize();
 
   const { filmData: mainPosterFilm, isLoading: mainPosterLoading } =
     useFilmById(MAIN_POSTER_FILM_ID);
@@ -56,8 +59,8 @@ export const MainPage = () => {
         title={popularFilmsTitle}
         films={popularFilms ?? []}
         loading={popularFilmsLoading}
-        slidesPerView={5}
-        slidesPerGroup={5}
+        slidesPerView={width > 1480 ? 5 : 3}
+        slidesPerGroup={width > 1480 ? 5 : 3}
         emptyMessage={popularEmptyMessage}
       />
 
@@ -65,8 +68,8 @@ export const MainPage = () => {
         title={closestReleasesTitle}
         films={closestReleases ?? []}
         loading={closestReleasesLoading}
-        slidesPerView={4}
-        slidesPerGroup={4}
+        slidesPerView={width > 1480 ? 4 : 3}
+        slidesPerGroup={width > 1480 ? 4 : 3}
         emptyMessage={closestReleasesEmptyMessage}
       />
     </>

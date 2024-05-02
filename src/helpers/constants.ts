@@ -1,10 +1,12 @@
 import { Status } from '../types/status.ts';
 
-export const MAIN_POSTER_FILM_ID = 409424;
+export const MAIN_POSTER_FILM_ID = 1071383;
 
 export const USER_PERSISTENT_STATE = 'userData';
 
 export const PER_PAGE = 10;
+export const PER_PAGE_LAPTOP = 8;
+
 export const POPULAR_FILMS_PARAMS = { lists: 'popular-films', year: 2024 };
 export const POPULAR_SERIES_PARAMS = { lists: 'popular-series', year: 2024 };
 export const POPULAR_DOCUMENTARY_PARAMS = {

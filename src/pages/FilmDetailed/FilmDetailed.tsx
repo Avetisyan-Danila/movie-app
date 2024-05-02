@@ -29,12 +29,14 @@ export const FilmDetailed = () => {
 
   if (!filmData) return;
 
+  console.log(filmData);
+
   return (
     <>
       {filmData.backdrop?.url && (
         <div className={styles['backdrop']}>
           <img
-            src={filmData.backdrop.url}
+            src={filmData.backdrop.url ?? CameraSlash}
             alt={`Фон к фильму - ${filmData.name}`}
           />
         </div>
@@ -62,7 +64,9 @@ export const FilmDetailed = () => {
               </div>
             )}
 
-            <span className={styles['ageRating']}>{filmData.ageRating}+</span>
+            {filmData.ageRating && (
+              <span className={styles['ageRating']}>{filmData.ageRating}+</span>
+            )}
           </div>
 
           <Heading className={styles['name']} withMargin={false}>
