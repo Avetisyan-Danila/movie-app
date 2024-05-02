@@ -29,8 +29,6 @@ export const FilmDetailed = () => {
 
   if (!filmData) return;
 
-  console.log(filmData);
-
   return (
     <>
       {filmData.backdrop?.url && (

@@ -45,6 +45,10 @@
   animation: fillBg 1s ease;
 }
 
+.notifications {
+  padding: 10px;
+}
+
 .user {
   display: flex;
   align-items: center;

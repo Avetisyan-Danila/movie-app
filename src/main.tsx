@@ -19,7 +19,6 @@ import { Provider } from 'react-redux';
 import { Favorites } from './pages/Favorites/Favorites.tsx';
 import { WatchList } from './pages/WatchList/WatchList.tsx';
 import { Popular } from './pages/Popular/Popular.tsx';
-import { ComingSoon } from './pages/ComingSoon/ComingSoon.tsx';
 import { Settings } from './pages/Settings/Settings.tsx';
 import { Notifications } from './pages/Notifications/Notifications.tsx';
 import { FilmDetailed } from './pages/FilmDetailed/FilmDetailed.tsx';
@@ -46,10 +45,6 @@ const router = createBrowserRouter([
       {
         path: '/watch-list',
         element: <WatchList />,
-      },
-      {
-        path: '/coming-soon',
-        element: <ComingSoon />,
       },
       {
         path: '/settings',

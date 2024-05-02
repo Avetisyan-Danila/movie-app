@@ -61,7 +61,11 @@ export const Header = ({ className }: HeaderProps) => {
           onSearchIconClick={onSearchIconClick}
         />
 
-        <ButtonLink to={'/notifications'} activeState={false}>
+        <ButtonLink
+          to={'/notifications'}
+          className={styles['notifications']}
+          activeState={false}
+        >
           <img src={BellIcon} alt="Уведомления" />
         </ButtonLink>
 
