@@ -9,6 +9,7 @@ import { Button } from '../../components/Button/Button.tsx';
 import { Rating } from '../../components/Rating/Rating.tsx';
 import { useFilmById } from '../../hooks/useFilmById.ts';
 import CameraSlash from '../../assets/icons/camera-slash.svg';
+import { Loader } from '../../components/Loader/Loader.tsx';
 
 export const FilmDetailed = () => {
   const { id } = useParams();
@@ -29,14 +30,16 @@ export const FilmDetailed = () => {
 
   if (!filmData) return;
 
-  console.log(filmData);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
       {filmData.backdrop?.url && (
         <div className={styles['backdrop']}>
           <img
-            src={filmData.backdrop.url ?? CameraSlash}
+            src={filmData.backdrop.url}
             alt={`Фон к фильму - ${filmData.name}`}
           />
         </div>
@@ -132,7 +135,10 @@ export const FilmDetailed = () => {
 
                 return (
                   <div className={styles['actor']} key={id}>
-                    <img src={photo} alt={`Фото актера - ${name}`} />
+                    <img
+                      src={photo ?? CameraSlash}
+                      alt={`Фото актера - ${name}`}
+                    />
 
                     <div>
                       <h4 className={styles['actor-name']}>{name ?? enName}</h4>

@@ -41,7 +41,8 @@
 }
 
 .poster {
-  max-width: 40%;
+  min-width: 30%;
+  width: auto;
   height: 80vh;
   border-radius: 15px;
   background-color: var(--blue);
@@ -196,6 +197,10 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 50px 80px;
+
+  @media (max-width: 1480px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .actor {
@@ -208,6 +213,8 @@
   flex: 1;
   object-fit: cover;
   border-radius: 15px;
+  min-height: 300px;
+  background-color: var(--blue);
 }
 
 .actor-description {
