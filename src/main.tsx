@@ -24,6 +24,7 @@ import { Notifications } from './pages/Notifications/Notifications.tsx';
 import { FilmDetailed } from './pages/FilmDetailed/FilmDetailed.tsx';
 import { Profile } from './pages/Profile/Profile.tsx';
 import { ResetPassword } from './pages/ResetPassword/ResetPassword.tsx';
+import { SearchPage } from './pages/SearchPage/SearchPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: '/popular/:type',
         element: <Popular />,
+      },
+      {
+        path: '/search/:query',
+        element: <SearchPage />,
       },
     ],
   },

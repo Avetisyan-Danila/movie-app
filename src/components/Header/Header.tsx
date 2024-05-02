@@ -4,7 +4,7 @@ import BellIcon from '../../assets/icons/bell.svg';
 import Avatar from '../../assets/icons/avatar.svg';
 
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Search } from '../Search/Search.tsx';
 import { ButtonLink } from '../ButtonLink/ButtonLink.tsx';
@@ -19,6 +19,8 @@ export const Header = ({ className }: HeaderProps) => {
   const { elementWidth, refElement } = useObserveElementWidth<HTMLDivElement>();
   const [isSearchActive, setIsSearchActive] = useState(false);
 
+  const navigate = useNavigate();
+
   const { scroll } = useScroll();
   const profile = useSelector(selectProfile);
 
@@ -27,7 +29,7 @@ export const Header = ({ className }: HeaderProps) => {
   };
 
   const onSearch = (value: string) => {
-    console.log('value -', value);
+    navigate(`/search/${value}`);
   };
 
   const bgWidthCondition = () => {

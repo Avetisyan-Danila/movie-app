@@ -22,12 +22,12 @@
   align-items: center;
   gap: 24px;
 
-  max-width: 30%;
+  max-width: 40%;
 }
 
 .block.links {
   flex-wrap: wrap;
-  max-width: 70%;
+  max-width: 60%;
 
   background-color: transparent;
   transition: 0.4s ease;

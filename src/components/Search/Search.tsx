@@ -1,6 +1,6 @@
 import styles from './Search.module.css';
 import cn from 'classnames';
-import { useRef } from 'react';
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { SearchProps } from './Search.props.ts';
 import SearchIcon from '../../assets/icons/search.svg';
 import { useOutsideAlerter } from '../../hooks/useClickOutside.ts';
@@ -13,44 +13,55 @@ export const Search = ({
   onSearchIconClick,
   ...props
 }: SearchProps) => {
-  const inputWrapperRef = useRef<HTMLDivElement | null>(null);
+  const [value, setValue] = useState('');
+  const inputWrapperRef = useRef<HTMLFormElement | null>(null);
   useOutsideAlerter(inputWrapperRef, () => onSearchIconClick(false));
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!isSearchActive) {
+      onSearchIconClick(true);
+      inputRef.current?.focus();
+      return;
+    }
+
+    inputRef.current?.blur();
+    if (value) {
+      onSearch(value);
+      setValue('');
+      onSearchIconClick(false);
+    } else {
+      addNotification('Заполните поле поиска', 'warning');
+      inputRef.current?.focus();
+    }
+  };
+
   return (
-    <div
+    <form
+      onSubmit={submit}
       className={cn(styles['input-wrapper'], {
         [styles['active']]: isSearchActive,
       })}
       ref={inputWrapperRef}
     >
-      <img
-        src={SearchIcon}
-        alt="Поиск"
-        className={styles['icon']}
-        onClick={() => {
-          if (!isSearchActive) {
-            onSearchIconClick(true);
-            inputRef.current?.focus();
-          } else {
-            inputRef.current?.blur();
-            if (inputRef.current?.value) {
-              onSearch(inputRef.current.value);
-            } else {
-              addNotification('Заполните поле поиска', 'warning');
-            }
-          }
-        }}
-      />
+      <button className={styles['search-button']}>
+        <img src={SearchIcon} alt="Поиск" className={styles['icon']} />
+      </button>
 
       <input
         ref={inputRef}
+        value={value}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValue(e.target.value)
+        }
         className={cn(className, styles['input'], {
           [styles['active']]: isSearchActive,
         })}
         {...props}
       />
-    </div>
+    </form>
   );
 };

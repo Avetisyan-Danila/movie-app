@@ -5,6 +5,7 @@ import { UrlSearchParams } from '../types/urlSearchParams.ts';
 import { ListApiResponse } from '../types/listApiResponse.ts';
 
 export const usePaginatedData = <T>(
+  url: string,
   perPage: number,
   params: UrlSearchParams | string,
 ) => {
@@ -28,7 +29,7 @@ export const usePaginatedData = <T>(
       try {
         if (typeof params === 'string' || !params) return;
 
-        const data = await getFilmsWithParams<ListApiResponse>({
+        const data = await getFilmsWithParams<ListApiResponse>(url, {
           page: queryPage,
           limit: perPage,
           ...params,
@@ -52,7 +53,7 @@ export const usePaginatedData = <T>(
         setIsLoading(false);
       }
     },
-    [currentPage, params, perPage],
+    [currentPage, params, perPage, url],
   );
 
   return { data, fetchData, isLoading, isLoadedAll };

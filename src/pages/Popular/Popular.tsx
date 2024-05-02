@@ -38,7 +38,7 @@ export const Popular = () => {
   }, [type]);
 
   const { data, fetchData, isLoading, isLoadedAll } =
-    usePaginatedData<ShortFilmInfo>(PER_PAGE, params);
+    usePaginatedData<ShortFilmInfo>('/movie', PER_PAGE, params);
 
   const emptyMessage = 'Не удалось загрузить популярные фильмы';
 

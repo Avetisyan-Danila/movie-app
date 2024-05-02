@@ -10,6 +10,7 @@ interface UseFilmWithParamsResult<T> {
 }
 
 export const useFilmWithParams = <T>(
+  url: string,
   params: UrlSearchParams,
 ): UseFilmWithParamsResult<T> => {
   const [filmData, setFilmData] = useState<T[] | null>(null);
@@ -19,7 +20,7 @@ export const useFilmWithParams = <T>(
     const fetchFilm = async () => {
       setIsLoading(true);
       try {
-        const data = await getFilmsWithParams<ListApiResponse>(params);
+        const data = await getFilmsWithParams<ListApiResponse>(url, params);
         setFilmData((data?.docs as T[]) ?? []);
       } catch (error) {
         addNotification('Ошибка при получении данных', 'danger');
@@ -29,7 +30,7 @@ export const useFilmWithParams = <T>(
     };
 
     fetchFilm();
-  }, [params]);
+  }, [params, url]);
 
   return { isLoading, filmData };
 };

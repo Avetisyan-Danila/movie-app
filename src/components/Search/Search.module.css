@@ -18,10 +18,17 @@
 }
 
 .icon {
+  display: block;
   cursor: pointer;
 
   border-radius: 25px;
   padding: 10px;
+}
+
+.search-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
 
 .input {

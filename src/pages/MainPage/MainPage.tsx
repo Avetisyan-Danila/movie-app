@@ -11,6 +11,8 @@ import { FilmsCarouselSection } from '../../components/FilmsCarouselSection/Film
 import { useFilmById } from '../../hooks/useFilmById.ts';
 
 export const MainPage = () => {
+  const URL = '/movie';
+
   const { filmData: mainPosterFilm, isLoading: mainPosterLoading } =
     useFilmById(MAIN_POSTER_FILM_ID);
 
@@ -30,9 +32,9 @@ export const MainPage = () => {
   );
 
   const { filmData: popularFilms, isLoading: popularFilmsLoading } =
-    useFilmWithParams<ShortFilmInfo>(popularFilmsParams);
+    useFilmWithParams<ShortFilmInfo>(URL, popularFilmsParams);
   const { filmData: closestReleases, isLoading: closestReleasesLoading } =
-    useFilmWithParams<ShortFilmInfo>(closestReleasesParams);
+    useFilmWithParams<ShortFilmInfo>(URL, closestReleasesParams);
 
   return (
     <>
