@@ -1,11 +1,13 @@
 import styles from './AddToWatchListButton.module.css';
 import cn from 'classnames';
 import { AddToWatchListButtonProps } from './AddToWatchListButton.props.ts';
+import { Loader } from '../Loader/Loader.tsx';
 
 export const AddToWatchListButton = ({
   className,
   appearance = 'small',
   isActive = false,
+  loading,
   ...props
 }: AddToWatchListButtonProps) => {
   return (
@@ -15,9 +17,12 @@ export const AddToWatchListButton = ({
         [styles['big']]: appearance === 'big',
         [styles['active']]: isActive === true,
       })}
+      disabled={loading}
       {...props}
     >
-      {!isActive && (
+      {loading && <Loader className={styles['loader']} />}
+
+      {!loading && !isActive && (
         <svg
           fill="#ffffff"
           width="24px"
@@ -32,7 +37,7 @@ export const AddToWatchListButton = ({
         </svg>
       )}
 
-      {isActive && (
+      {!loading && isActive && (
         <svg
           fill="#ffffff"
           width="24px"

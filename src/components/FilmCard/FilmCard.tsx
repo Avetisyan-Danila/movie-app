@@ -15,31 +15,33 @@ export const FilmCard = (props: FilmCardProps) => {
 
   const uid = useAuth();
 
-  const { isFavorite, addToFavorite, deleteFromFavorite } = useFavorites(
-    id,
-    name ?? '',
-    uid,
-  );
+  const {
+    isLoading: isFavoriteDataLoading,
+    isFavorite,
+    addToFavorite,
+    deleteFromFavorite,
+  } = useFavorites(id, name ?? '', uid);
 
-  const { isAdded, addToWatchList, deleteFromWatchList } = useWatchList(
-    id,
-    name ?? '',
-    uid,
-  );
+  const {
+    isLoading: isWatchListDataLoading,
+    isAdded,
+    addToWatchList,
+    deleteFromWatchList,
+  } = useWatchList(id, name ?? '', uid);
 
   const handleFavoriteClick = async (value: boolean) => {
     if (value) {
-      addToFavorite(props);
+      await addToFavorite(props);
     } else {
-      deleteFromFavorite();
+      await deleteFromFavorite();
     }
   };
 
   const handleWatchListClick = async (value: boolean) => {
     if (value) {
-      addToWatchList(props);
+      await addToWatchList(props);
     } else {
-      deleteFromWatchList();
+      await deleteFromWatchList();
     }
   };
 
@@ -60,12 +62,14 @@ export const FilmCard = (props: FilmCardProps) => {
         className={styles['favorite-button']}
         isActive={isFavorite}
         onClick={() => handleFavoriteClick(!isFavorite)}
+        loading={isFavoriteDataLoading}
       />
 
       <AddToWatchListButton
         className={styles['watch-list-button']}
         isActive={isAdded}
         onClick={() => handleWatchListClick(!isAdded)}
+        loading={isWatchListDataLoading}
       />
 
       <div className={styles['info']}>

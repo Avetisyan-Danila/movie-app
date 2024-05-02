@@ -1,3 +1,10 @@
+.loader {
+  width: 32px;
+  height: 22px;
+  margin: 0;
+  border-color: var(--primary-color);
+}
+
 .add-to-watch-list-button {
   display: flex;
   align-items: center;

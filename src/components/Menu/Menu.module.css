@@ -32,6 +32,11 @@
   transform: translateX(12px);
 }
 
+.logo img:last-child {
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
 @keyframes slideDown {
   from {
     height: 0;
@@ -43,4 +48,8 @@
 
 .menu:hover span {
   opacity: 1 !important;
+}
+
+.menu:hover .logo img:last-child {
+  opacity: 1;
 }

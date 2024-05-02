@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { db } from '../firebase.ts';
 import { doc, getDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { addNotification } from '../helpers/notification.ts';
@@ -11,67 +11,90 @@ export const useFavorites = (
   name: string,
   uid: string | undefined,
 ) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const filmRef = doc(db, `users/${uid}/favorites`, id.toString());
+  const filmRef = useMemo(
+    () => doc(db, `users/${uid}/favorites`, id.toString()),
+    [id, uid],
+  );
 
   const dispatch = useAppDispatch();
 
-  const checkAuth = () => {
+  const checkAuth = useCallback(() => {
     if (!uid) {
       addNotification('Пользователь не авторизован', 'warning');
       dispatch(setJwt(null));
       return;
     }
-  };
+  }, [dispatch, uid]);
+
+  const getFavoriteData = useCallback(async () => {
+    setIsLoading(true);
+
+    try {
+      const snapshot = await getDoc(filmRef);
+
+      if (snapshot.exists()) {
+        setIsFavorite(true);
+      }
+    } catch {
+      addNotification(
+        `Ошибка при попытке получить информацию об избранном фильме - (${name})`,
+        'danger',
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [filmRef, name]);
 
   useEffect(() => {
     if (!uid) return;
 
-    getDoc(filmRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setIsFavorite(true);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        addNotification(
-          `Ошибка при попытке получить информацию об избранном фильме - (${name})`,
-          'danger',
-        );
-      });
-  }, [filmRef, id, name, uid]);
+    getFavoriteData();
+  }, [filmRef, getFavoriteData, id, name, uid]);
 
-  const addToFavorite = (filmData: ShortFilmInfo) => {
-    checkAuth();
+  const addToFavorite = useCallback(
+    async (filmData: ShortFilmInfo) => {
+      checkAuth();
 
-    setDoc(filmRef, {
-      ...filmData,
-      createdAt: Timestamp.fromDate(new Date()),
-    })
-      .then(() => setIsFavorite(true))
-      .catch((error) => {
-        console.error(error);
+      setIsLoading(true);
+
+      try {
+        await setDoc(filmRef, {
+          ...filmData,
+          createdAt: Timestamp.fromDate(new Date()),
+        });
+
+        setIsFavorite(true);
+      } catch {
         addNotification(
           `Ошибка при добавлении фильма в избранное - (${name})`,
           'danger',
         );
-      });
-  };
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [checkAuth, filmRef, name],
+  );
 
-  const deleteFromFavorite = () => {
+  const deleteFromFavorite = useCallback(async () => {
     checkAuth();
 
-    deleteDoc(filmRef)
-      .then(() => setIsFavorite(false))
-      .catch((error) => {
-        console.error(error);
-        addNotification(
-          `Ошибка при удалении фильма из избранного - (${name})`,
-          'danger',
-        );
-      });
-  };
+    setIsLoading(true);
 
-  return { isFavorite, addToFavorite, deleteFromFavorite };
+    try {
+      await deleteDoc(filmRef);
+      setIsFavorite(false);
+    } catch {
+      addNotification(
+        `Ошибка при удалении фильма из избранного - (${name})`,
+        'danger',
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [checkAuth, filmRef, name]);
+
+  return { isLoading, isFavorite, addToFavorite, deleteFromFavorite };
 };

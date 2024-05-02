@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { db } from '../firebase.ts';
 import { doc, getDoc, setDoc, deleteDoc, Timestamp } from 'firebase/firestore';
 import { addNotification } from '../helpers/notification.ts';
@@ -11,67 +11,90 @@ export const useWatchList = (
   name: string,
   uid: string | undefined,
 ) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-  const watchListRef = doc(db, `users/${uid}/watchList`, id.toString());
+  const watchListRef = useMemo(
+    () => doc(db, `users/${uid}/watchList`, id.toString()),
+    [id, uid],
+  );
 
   const dispatch = useAppDispatch();
 
-  const checkAuth = () => {
+  const checkAuth = useCallback(() => {
     if (!uid) {
       addNotification('Пользователь не авторизован', 'warning');
       dispatch(setJwt(null));
       return;
     }
-  };
+  }, [dispatch, uid]);
+
+  const getWatchListData = useCallback(async () => {
+    setIsLoading(true);
+
+    try {
+      const snapshot = await getDoc(watchListRef);
+
+      if (snapshot.exists()) {
+        setIsAdded(true);
+      }
+    } catch {
+      addNotification(
+        `Ошибка при попытке получить информацию о наличии фильма в списке "Смотреть позже" - (${name})`,
+        'danger',
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [name, watchListRef]);
 
   useEffect(() => {
     if (!uid) return;
 
-    getDoc(watchListRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setIsAdded(true);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        addNotification(
-          `Ошибка при попытке получить информацию о наличии фильма в списке "Смотреть позже" - (${name})`,
-          'danger',
-        );
-      });
-  }, [watchListRef, id, name, uid]);
+    getWatchListData();
+  }, [watchListRef, id, name, uid, getWatchListData]);
 
-  const addToWatchList = (filmData: ShortFilmInfo) => {
-    checkAuth();
+  const addToWatchList = useCallback(
+    async (filmData: ShortFilmInfo) => {
+      checkAuth();
 
-    setDoc(watchListRef, {
-      ...filmData,
-      createdAt: Timestamp.fromDate(new Date()),
-    })
-      .then(() => setIsAdded(true))
-      .catch((error) => {
-        console.error(error);
+      setIsLoading(true);
+
+      try {
+        await setDoc(watchListRef, {
+          ...filmData,
+          createdAt: Timestamp.fromDate(new Date()),
+        });
+
+        setIsAdded(true);
+      } catch {
         addNotification(
           `Ошибка при добавлении фильма в список "Смотреть позже" - (${name})`,
           'danger',
         );
-      });
-  };
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [checkAuth, name, watchListRef],
+  );
 
-  const deleteFromWatchList = () => {
+  const deleteFromWatchList = useCallback(async () => {
     checkAuth();
 
-    deleteDoc(watchListRef)
-      .then(() => setIsAdded(false))
-      .catch((error) => {
-        console.error(error);
-        addNotification(
-          `Ошибка при удалении фильма из списка "Смотреть позже" - (${name})`,
-          'danger',
-        );
-      });
-  };
+    setIsLoading(true);
 
-  return { isAdded, addToWatchList, deleteFromWatchList };
+    try {
+      await deleteDoc(watchListRef);
+      setIsAdded(false);
+    } catch {
+      addNotification(
+        `Ошибка при удалении фильма из списка "Смотреть позже" - (${name})`,
+        'danger',
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [checkAuth, name, watchListRef]);
+
+  return { isLoading, isAdded, addToWatchList, deleteFromWatchList };
 };
