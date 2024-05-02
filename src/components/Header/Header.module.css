@@ -20,17 +20,16 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 24px;
-
-  max-width: 40%;
+  gap: 15px;
 }
 
 .block.links {
-  flex-wrap: wrap;
-  max-width: 60%;
-
   background-color: transparent;
   transition: 0.4s ease;
+}
+
+.block-link {
+  white-space: nowrap;
 }
 
 .header.scroll .block.links {

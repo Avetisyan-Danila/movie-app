@@ -11,11 +11,11 @@ import { ButtonLink } from '../ButtonLink/ButtonLink.tsx';
 import { Link } from '../Link/Link.tsx';
 import { useScroll } from '../../hooks/useScroll.ts';
 import { selectProfile } from '../../store/user/userSelectors.ts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HeaderProps } from './Header.props.ts';
 import { useObserveElementWidth } from '../../hooks/useObserveElementWidth.ts';
 
-export const Header = ({ className }: HeaderProps) => {
+export const Header = ({ className, isMenuOpen }: HeaderProps) => {
   const { elementWidth, refElement } = useObserveElementWidth<HTMLDivElement>();
   const [isSearchActive, setIsSearchActive] = useState(false);
 
@@ -23,6 +23,12 @@ export const Header = ({ className }: HeaderProps) => {
 
   const { scroll } = useScroll();
   const profile = useSelector(selectProfile);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsSearchActive(false);
+    }
+  }, [isMenuOpen]);
 
   const onSearchIconClick = (value: boolean) => {
     setIsSearchActive(value);
@@ -51,11 +57,16 @@ export const Header = ({ className }: HeaderProps) => {
       })}
     >
       <div className={cn(styles['block'], styles['links'])}>
-        <Link to={'/popular/films'}>Популярные фильмы</Link>
-        <Link to={'/popular/series'}>Популярные сериалы</Link>
-        <Link to={'/popular/documentaries'}>Лучшие документальные фильмы</Link>
+        <Link className={styles['block-link']} to={'/popular/films'}>
+          Популярные фильмы
+        </Link>
+        <Link className={styles['block-link']} to={'/popular/series'}>
+          Популярные сериалы
+        </Link>
+        <Link className={styles['block-link']} to={'/popular/documentaries'}>
+          Лучшие документальные фильмы
+        </Link>
       </div>
-
       <div ref={refElement} className={cn(styles['block'], styles['controls'])}>
         <Search
           onSearch={onSearch}
@@ -80,7 +91,6 @@ export const Header = ({ className }: HeaderProps) => {
           <span>{profile?.name ?? ''}</span>
         </NavLink>
       </div>
-
       <div
         style={{
           width: bgWidthCondition(),

@@ -10,8 +10,9 @@ import CalendarIcon from '../../assets/icons/calendar.svg';
 import SlidersIcon from '../../assets/icons/sliders.svg';
 import LogoutIcon from '../../assets/icons/log-out.svg';
 import { ButtonLink } from '../ButtonLink/ButtonLink.tsx';
+import { MenuProps } from './Menu.props.ts';
 
-export const Menu = () => {
+export const Menu = ({ ...props }: MenuProps) => {
   const dispatch = useAppDispatch();
 
   const onLogout = () => {
@@ -19,7 +20,7 @@ export const Menu = () => {
   };
 
   return (
-    <div className={styles['menu']}>
+    <div className={styles['menu']} {...props}>
       <div className={styles['logo']}>
         <img src={LogoIcon} alt="Логотип компании" />
         <img src={LogoText} alt="Название компании" />
