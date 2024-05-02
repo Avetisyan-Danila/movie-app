@@ -20,7 +20,7 @@ export const SearchPage = () => {
 
   return (
     <>
-      <Heading>Поиск</Heading>
+      <Heading>Поиск по запросу: {params.query}</Heading>
 
       <FilmListWithPagination
         uid={uid}
