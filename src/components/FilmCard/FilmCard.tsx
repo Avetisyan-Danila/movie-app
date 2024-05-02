@@ -29,21 +29,27 @@ export const FilmCard = (props: FilmCardProps) => {
     deleteFromList: deleteFromWatchList,
   } = useList(id, name ?? '', uid, 'watchList');
 
-  const handleFavoriteClick = useCallback(async () => {
-    if (isFavorite) {
-      await addToFavorite(props);
-    } else {
-      await deleteFromFavorite();
-    }
-  }, [addToFavorite, deleteFromFavorite, isFavorite, props]);
+  const handleFavoriteClick = useCallback(
+    async (value: boolean) => {
+      if (value) {
+        await addToFavorite(props);
+      } else {
+        await deleteFromFavorite();
+      }
+    },
+    [addToFavorite, deleteFromFavorite, props],
+  );
 
-  const handleWatchListClick = useCallback(async () => {
-    if (isAddedToWatchList) {
-      await addToWatchList(props);
-    } else {
-      await deleteFromWatchList();
-    }
-  }, [addToWatchList, deleteFromWatchList, isAddedToWatchList, props]);
+  const handleWatchListClick = useCallback(
+    async (value: boolean) => {
+      if (value) {
+        await addToWatchList(props);
+      } else {
+        await deleteFromWatchList();
+      }
+    },
+    [addToWatchList, deleteFromWatchList, props],
+  );
 
   const genreString = useMemo(
     () => genres?.map(({ name }) => name).join(' '),
@@ -66,14 +72,14 @@ export const FilmCard = (props: FilmCardProps) => {
       <AddToFavoriteButton
         className={styles['favorite-button']}
         isActive={isFavorite}
-        onClick={() => handleFavoriteClick()}
+        onClick={() => handleFavoriteClick(!isFavorite)}
         loading={isFavoriteLoading}
       />
 
       <AddToWatchListButton
         className={styles['watch-list-button']}
         isActive={isAddedToWatchList}
-        onClick={() => handleWatchListClick()}
+        onClick={() => handleWatchListClick(!isAddedToWatchList)}
         loading={isWatchListLoading}
       />
 

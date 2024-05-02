@@ -28,6 +28,11 @@ export const useFirestorePaginatedData = <T>(
 
     setIsLoading(true);
 
+    if (isLoadedAll) {
+      setIsLoading(false);
+      return;
+    }
+
     const collectionRef = collection(db, collectionName);
     const dataQuery = lastVisible
       ? query(
@@ -59,7 +64,7 @@ export const useFirestorePaginatedData = <T>(
     } finally {
       setIsLoading(false);
     }
-  }, [uid, lastVisible, perPage, collectionName, orderByField]);
+  }, [uid, isLoadedAll, collectionName, lastVisible, perPage, orderByField]);
 
   return { data, fetchData, isLoading, isLoadedAll };
 };

@@ -23,53 +23,51 @@ export const MainFilmPoster = ({
     }
   };
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <>
-      {loading && <Loader />}
+    <div
+      className={styles['poster']}
+      style={{ backgroundImage: `url(${backdrop?.url})` }}
+    >
+      <Link to={`/film/${id}`}>
+        <div className={styles['background']}></div>
+      </Link>
 
-      {!loading && (
-        <div
-          className={styles['poster']}
-          style={{ backgroundImage: `url(${backdrop?.url})` }}
-        >
-          <Link to={`/film/${id}`}>
-            <div className={styles['background']}></div>
-          </Link>
+      <div className={styles['info']}>
+        <Link to={`/film/${id}`} className={styles['link']}>
+          <h2 className={styles['title']}>{name}</h2>
+        </Link>
 
-          <div className={styles['info']}>
-            <Link to={`/film/${id}`} className={styles['link']}>
-              <h2 className={styles['title']}>{name}</h2>
-            </Link>
+        <p className={styles['description']}>{description}</p>
 
-            <p className={styles['description']}>{description}</p>
+        <div className={styles['line']}>
+          <div className={styles['info-item']}>{year}</div>
 
-            <div className={styles['line']}>
-              <div className={styles['info-item']}>{year}</div>
-
-              {genres && (
-                <div className={styles['info-item']}>
-                  {genres.map(({ name }) => name).join(' ')}
-                </div>
-              )}
-
-              {rating && (
-                <Rating
-                  rating={rating}
-                  className={cn(styles['info-item'], [styles['rating']])}
-                />
-              )}
+          {genres && (
+            <div className={styles['info-item']}>
+              {genres.map(({ name }) => name).join(' ')}
             </div>
+          )}
 
-            {!!videos?.trailers && (
-              <div className={styles['actions']}>
-                {videos && (
-                  <Button onClick={onTrailerClick}>Смотреть трейлер</Button>
-                )}
-              </div>
+          {rating && (
+            <Rating
+              rating={rating}
+              className={cn(styles['info-item'], [styles['rating']])}
+            />
+          )}
+        </div>
+
+        {!!videos?.trailers && (
+          <div className={styles['actions']}>
+            {videos && (
+              <Button onClick={onTrailerClick}>Смотреть трейлер</Button>
             )}
           </div>
-        </div>
-      )}
-    </>
+        )}
+      </div>
+    </div>
   );
 };
