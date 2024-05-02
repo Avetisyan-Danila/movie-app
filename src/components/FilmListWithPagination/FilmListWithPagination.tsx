@@ -31,6 +31,7 @@ export const FilmListWithPagination = ({
   useEffect(() => {
     if (initialFetchDone.current) {
       fetchDataFunction(true);
+      setLoadAllActive(false);
     }
   }, [params]);
 
